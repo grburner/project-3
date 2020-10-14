@@ -4,8 +4,13 @@ import './style.css';
 function Signup(){
 
   return (
-    <div>
-      <h1>Signup</h1>
+    <div className="container">
+      <div className="signup-form">
+        Name: <input></input><br />
+        Email: <input></input><br />
+        Phone: <input></input><br />
+        Address: <input></input><br />
+      </div>
     </div>
   );
 }

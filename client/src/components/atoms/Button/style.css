@@ -1,9 +1,11 @@
 .cta{
     background-color:darkred;
     color:white;
+    transition:all 300ms;
 }
 
 .hover-class{
     background-color:white;
     color:darkred;
+    transition:all 300ms;
 }

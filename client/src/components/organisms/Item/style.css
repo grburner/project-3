@@ -1,0 +1,8 @@
+.item{
+    border:1px solid darkred;
+    background-color:white;
+}
+
+.item img{
+    width:100%;
+}
