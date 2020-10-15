@@ -7,15 +7,14 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import SummaryStats from '../../organisms/SummaryStats';
 import OrderTable from '../../organisms/OrdersTable';
+import RetailNav from '../../organisms/RetailNav';
 
 const Retailer = () => {
 
   return (
     <Container>
       <Row>
-        <Navbar bg="light" variant="light" className="w-100">
-          <Navbar.Brand href="#home">Retailer</Navbar.Brand>
-        </Navbar>
+        <RetailNav />
       </Row>
       <Row>
         <SummaryStats />

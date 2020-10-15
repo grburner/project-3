@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import { StateProvider } from './utils/GlobalRetailerState';
 
 // Pages
 import Home from './components/pages/Home/Home';
@@ -19,6 +20,7 @@ import Header from "./components/organisms/Header/Header"
 import Footer from "./components/organisms/Footer/Footer"
 
 function App() {
+
   return (
     <div className="App">
       <Header />
@@ -46,7 +48,9 @@ function App() {
               <Consumer />
             </Route>
             <Route path="/retailer">
-              <Retailer />
+              <StateProvider>
+                <Retailer />
+              </StateProvider>
             </Route>
             <Route path="/product/:id">
               <Product />
