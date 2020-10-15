@@ -4,14 +4,14 @@ import './style.css';
 function Consumer(){
 
   const seed = {
-    firstName: "John",
-    lastName: "Smith",
-    email: "jsmith@hotmail.com",
-    phone: "6105555555",
-    city: "Philadelphia",
-    state: "PA",
-    zip: "19123"
-  }
+    firstName: 'John',
+    lastName: 'Smith',
+    email: 'jsmith@hotmail.com',
+    phone: '6105555555',
+    city: 'Philadelphia',
+    state: 'PA',
+    zip: '19123'
+  };
 
   return (
     <div className="container consumer">

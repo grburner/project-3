@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -16,8 +16,8 @@ import Retailer from './components/pages/Retailer/Retailer';
 import Product from './components/pages/Product/Product';
 
 // Organisms
-import Header from "./components/organisms/Header/Header"
-import Footer from "./components/organisms/Footer/Footer"
+import Header from './components/organisms/Header/Header';
+import Footer from './components/organisms/Footer/Footer';
 
 function App() {
 
@@ -28,15 +28,15 @@ function App() {
         <div>
           <nav>
 
-                <Link to="/">Home</Link>
+            <Link to="/">Home</Link>
                 &nbsp;&nbsp;&nbsp;
-                <Link to="/signup">Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
                 &nbsp;&nbsp;&nbsp;
-                <Link to="/consumer">Consumer</Link>
+            <Link to="/consumer">Consumer</Link>
                 &nbsp;&nbsp;&nbsp;
-                <Link to="/retailer">Retailer</Link>
+            <Link to="/retailer">Retailer</Link>
                 &nbsp;&nbsp;&nbsp;
-                <Link to="/product/5656565">Product</Link>
+            <Link to="/product/5656565">Product</Link>
 
           </nav>
 

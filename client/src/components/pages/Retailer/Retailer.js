@@ -8,11 +8,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import SummaryStats from '../../organisms/SummaryStats';
 import OrderTable from '../../organisms/OrdersTable';
 import RetailNav from '../../organisms/RetailNav';
+import SingleProductAddModal from '../../organisms/SingleProductAddModal';
 
 const Retailer = () => {
 
   return (
     <Container>
+      <SingleProductAddModal />
       <Row>
         <RetailNav />
       </Row>

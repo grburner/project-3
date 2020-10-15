@@ -7,8 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const RetailNav = () => {
   const globalState = useContext(store);
-  const { dispatch } = globalState
-  console.log(globalState)
+  const { dispatch } = globalState;
 
   return (
     <Navbar bg="light" expand="lg" className="w-100">
@@ -16,14 +15,12 @@ const RetailNav = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <h2 onClick={() => dispatch({ type: "SHOWsProdModalinView"})}>ON</h2>
-          <h2 onClick={() => dispatch({ type: "HIDEsProdModalinView"})}>OFF</h2>
           <h2>{globalState.inView}</h2>
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#link">Link</Nav.Link>
           <NavDropdown title="Add Product" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Single Product</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Bulk Products</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1" onClick={() => dispatch({ type: 'SHOWsProdModalinView'})}>Single Product</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2" onClick={() => dispatch({ type: 'SHOWbProdModalinView'})}>Bulk Products</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Add Inventory" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Single Inventory</NavDropdown.Item>
@@ -32,7 +29,7 @@ const RetailNav = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  )
-}
+  );
+};
 
 export default RetailNav;

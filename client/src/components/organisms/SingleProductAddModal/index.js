@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { store } from '../../../utils/GlobalRetailerState';
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 const SingleProductAddModal = () => {
-    const [showSPA, setShowSPA] = useState(false);
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
 
-    const handleClose = () => setShowSPA(false);
-    const handleShow = () => setShowSPA(true);
+  console.log(globalState.state.sProdModalinView);
 
-    return (
-        <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button>
-  
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    )
-}
+  return (
+      <>
+      <Modal show={globalState.state.sProdModalinView}>
+        <Modal.Header closeButton>
+          <Modal.Title>Single Product Add Template</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+};
 
 export default SingleProductAddModal;
