@@ -1,14 +1,18 @@
 import React from 'react';
 import './style.css';
 
-function Home(){
+import Hero from "../../organisms/Hero/Hero"
+import Filters from "../../organisms/Filters/Filters" 
+import Marketplace from "../../organisms/Marketplace/Marketplace" 
 
+function Home(){
   return (
-    <div className="container">
-      <h1>Home</h1>
-      <hr />
-      <div>Filters</div>
-      <div>Marketplace</div>
+    <div>
+      <Hero />
+      <div  className="container">
+        <Filters />
+        <Marketplace />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import React from 'react';
-import '../Logo/Logo.css';
+import './style.css';
 
 function Logo(){
   return (
     <div className="logo-wrapper">
+      <a href="/">
       <img src="http://placehold.it/300x50" />
+      </a>
     </div>
   );
 }
