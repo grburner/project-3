@@ -8,22 +8,22 @@ import Col from 'react-bootstrap/Col';
 function Search(){
   
   const [searchValue, searchUpdate] = useState({
-      search: ""
-  })
+    search: ''
+  });
 
   const updateSearch = (event) => {
-      searchUpdate({
-          search: event.target.value
-      })
-  }
+    searchUpdate({
+      search: event.target.value
+    });
+  };
 
   const searchClick = () => {
-    console.log(searchValue.search)
-  }
+    console.log(searchValue.search);
+  };
 
   return (
     <div className="search-wrapper">
-        <input onChange={updateSearch}></input><i onClick={searchClick} className="search-icon fa fa-search" aria-hidden="true"></i>
+      <input onChange={updateSearch}></input><i onClick={searchClick} className="search-icon fa fa-search" aria-hidden="true"></i>
     </div>
   );
 }
