@@ -6,35 +6,36 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+
+// Pages
 import Home from './components/pages/Home/Home';
 import Signup from './components/pages/Signup/Signup';
 import Consumer from './components/pages/Consumer/Consumer';
 import Retailer from './components/pages/Retailer/Retailer';
 import Product from './components/pages/Product/Product';
 
+// Organisms
+import Header from "./components/organisms/Header/Header"
+import Footer from "./components/organisms/Footer/Footer"
+
 function App() {
   return (
     <div className="App">
+      <Header />
       <Router>
         <div>
           <nav>
-            <ul>
-              <li>
+
                 <Link to="/">Home</Link>
-              </li>
-              <li>
+                &nbsp;&nbsp;&nbsp;
                 <Link to="/signup">Sign Up</Link>
-              </li>
-              <li>
+                &nbsp;&nbsp;&nbsp;
                 <Link to="/consumer">Consumer</Link>
-              </li>
-              <li>
+                &nbsp;&nbsp;&nbsp;
                 <Link to="/retailer">Retailer</Link>
-              </li>
-              <li>
+                &nbsp;&nbsp;&nbsp;
                 <Link to="/product/5656565">Product</Link>
-              </li>
-            </ul>
+
           </nav>
 
           <Switch>
@@ -56,6 +57,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </div>
   );
 }

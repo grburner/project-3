@@ -1,4 +1,5 @@
-import React, {useParams} from 'react';
+import React from 'react';
+import { useParams } from "react-router-dom";
 import './style.css';
 
 function Product(){
@@ -8,7 +9,7 @@ function Product(){
   return (
     <div className="container">
       <h1>Product</h1>
-      <p>ID: {id}</p>
+      <p>ID: {id} </p>
     </div>
   );
 }

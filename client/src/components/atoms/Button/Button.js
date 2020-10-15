@@ -1,21 +1,17 @@
 import React, {useState} from 'react';
-import '../Button/Button.css';
+import './style.css';
 
-function Button(){
-  const [hoverState, setHover] = useState(false);
+import Button from 'react-bootstrap/Button';
 
+function customButton({children, href}){
+
+
+  
   return (
     <div className="buttonWrapper">
-      <button 
-        className={hoverState ? 'hover-class cta' : 'cta'}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onClick={()=>buttonClick(url)}
-      >
-        {children}
-      </button>
+    <Button href={href} variant="outline-danger">{children}</Button>
     </div>
   );
 }
-  
-export default Button;
+
+export default customButton;
