@@ -1,8 +1,8 @@
 module.exports = {
-    //Consumer: require("./consumer"),
-   // Order: require("./order"),
+    Consumer: require("./consumer"),
+    Order: require("./order"),
     Product: require("./product"),
-   // Retailer: require("./retailer"),
-  //  User: require("./user")
+    Retailer: require("./retailer"),
+    User: require("./user")
   };
   
