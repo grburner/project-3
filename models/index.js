@@ -1,12 +1,8 @@
 module.exports = {
-    Consumer: require("./consumer"),
-    Favorite: require("./favorite"),
-    Inventory: require("./inventory"),
-    Order: require("./order"),
-    OrderDetail: require("./orderDetail"),
+    //Consumer: require("./consumer"),
+   // Order: require("./order"),
     Product: require("./product"),
-    Retailer: require("./retailer"),
-    RetailerProduct: require("./retailerProduct"),
-    User: require("./user")
+   // Retailer: require("./retailer"),
+  //  User: require("./user")
   };
   
