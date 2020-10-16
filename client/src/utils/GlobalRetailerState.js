@@ -1,11 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 
+
 const initialState = {
   sProdModalinView: false,
   bProdModalinView: false,
   sInvModalinView: false,
   bInvModalinView: false
 };
+
 const store = createContext(initialState);
 const { Provider } = store;
 

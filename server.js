@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/marketplace_db");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/marketplace");
 
 // Send every request to the React app
 // Define any API routes before this runs

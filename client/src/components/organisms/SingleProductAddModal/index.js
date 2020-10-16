@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
 
-
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
@@ -33,7 +32,6 @@ const SingleProductAddModal = () => {
   useEffect(() => {
     console.log(product)
   }) 
-
 
   return (
       <>
