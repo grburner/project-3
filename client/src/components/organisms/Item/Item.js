@@ -7,15 +7,14 @@ import Container from 'react-bootstrap/Container';
 import Button from '../../atoms/Button/Button';
 
 function Item(props){
-
+  const link = "/product/" + props.value._id
+  const image = "https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png"
   return (
-    <a href={props.value.link}>
+    <a href={link} className="item-link">
       <div className="item">
-      
-        <img src={props.value.image} />
-        <p>{props.value.title}</p>
+        <div style={{backgroundImage: "url("+ image + ")" }} className="item-image">&nbsp;</div>
+        <p>{props.value.name}</p>
         <p>{props.value.price}</p>
-      
       </div>
     </a>
   );
