@@ -1,41 +1,41 @@
 import React, { createContext, useReducer } from 'react';
 
-const initalState = {
+const initialState = {
   sProdModalinView: false,
   bProdModalinView: false,
   sInvModalinView: false,
   bInvModalinView: false
 };
-const store = createContext(initalState);
+const store = createContext(initialState);
 const { Provider } = store;
 
-const StateProvider = ( { children} ) => {
+const StateProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
     case 'SHOWsProdModalinView':
       return {
-        ...initalState,
+        ...initialState,
         sProdModalinView: true
       };
     case 'HIDEsProdModalinView':
       return {
-        ...initalState,
+        ...initialState,
         sProdModalinView: false
       };
     case 'SHOWbProdModalinView':
       return {
-        ...initalState,
+        ...initialState,
         bProdModalinView: true
       };
     case 'HIDEbProdModalinView':
       return {
-        ...initalState,
+        ...initialState,
         bProdModalinView: false
       };
     default:
       throw new Error();
     }
-  }, initalState);
+  }, initialState);
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
