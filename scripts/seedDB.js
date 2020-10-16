@@ -3,6 +3,77 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/marketplace");
 
+const userSeed = [
+    { name: "Mattie Poquette", email: "mattie@aol.com", role: "consumer", password: "password" },
+    { name: "Meaghan Garufi", email: "meaghan@hotmail.com", role: "consumer", password: "password" },
+    { name: "Gladys Rim", email: "gladys.rim@rim.org", role: "consumer", password: "password" },
+    { name: "Yuki Whobrey", email: "yuki_whobrey@aol.com", role: "consumer", password: "password" },
+    { name: "Fletcher Flosi", email: "fletcher.flosi@yahoo.com", role: "consumer", password: "password" },
+    { name: "Bette Nicka", email: "bette_nicka@cox.net", role: "consumer", password: "password" },
+    { name: "Veronika Inouye", email: "vinouye@aol.com", role: "consumer", password: "password" },
+    { name: "Willard Kolmetz", email: "willard@hotmail.com", role: "consumer", password: "password" },
+    { name: "Jose Stockham", email: "jose@yahoo.com", role: "retailer", password: "password" },
+    { name: "Rozella Ostrosky", email: "rozella.ostrosky@ostrosky.com", role: "retailer", password: "password" },
+    { name: "Valentine Gillian", email: "valentine_gillian@gmail.com", role: "retailer", password: "password" },
+    { name: "Kati Rulapaugh", email: "kati.rulapaugh@hotmail.com", role: "retailer", password: "password" },
+    { name: "Youlanda Schemmer", email: "youlanda@aol.com", role: "retailer", password: "password" }
+]
+
+db.User
+    .remove({})
+    .then(() => db.User.collection.insertMany(userSeed))
+    .then(data => {
+        console.log(`${data.result.n} User records inserted!`);
+        //process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
+
+const consumerSeed = [
+    {user_id: "", name: "Mattie Poquette", address_street1: "73 State Road 434 E", address_street2: "1st floor", address_city: "Phoenix", address_state: "AZ", address_zip: "85013", phone_number: "602-277-4385", birth_date: "12/1/1995"},
+    {user_id: "", name: "Meaghan Garufi", address_street1: "69734 E Carrillo St", address_street2: "", address_city: "Mc Minnville", address_state: "TN", address_zip: "37110", phone_number: "931-313-9635", birth_date: "10/10/1999"},
+    {user_id: "", name: "Gladys Rim", address_street1: "322 New Horizon Blvd", address_street2: "Apt C", address_city: "Milwaukee", address_state: "WI", address_zip: "53207", phone_number: "414-661-9598", birth_date: "4/1/1948"},
+    {user_id: "", name: "Yuki Whobrey", address_street1: "1 State Route 27", address_street2: "", address_city: "Taylor", address_state: "MI", address_zip: "48180", phone_number: "313-288-7937", birth_date: "5/5/1992"},
+    {user_id: "", name: "Fletcher Flosi", address_street1: "394 Manchester Blvd", address_street2: "", address_city: "Rockford", address_state: "IL", address_zip: "61109", phone_number: "815-828-2147", birth_date: "7/3/1987"},
+    {user_id: "", name: "Bette Nicka", address_street1: "6 S 33rd St", address_street2: "Ste 606", address_city: "Aston", address_state: "PA", address_zip: "19014", phone_number: "610-545-3615", birth_date: "3/25/1990"},
+    {user_id: "", name: "Veronika Inouye", address_street1: "6 Greenleaf Ave", address_street2: "Apt 3", address_city: "San Jose", address_state: "CA", address_zip: "95111", phone_number: "408-540-1785", birth_date: "9/4/1978"},
+    {user_id: "", name: "Willard Kolmetz", address_street1: "618 W Yakima Ave", address_street2: "", address_city: "Irving", address_state: "TX", address_zip: "75062", phone_number: "972-303-9197", birth_date: "10/9/1998"}
+]
+
+db.Consumer
+    .remove({})
+    .then(() => db.Consumer.collection.insertMany(consumerSeed))
+    .then(data => {
+        console.log(`${data.result.n} Consumer records inserted!`);
+        //process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
+
+const retailerSeed = [
+    {user_id: "", name: "Tri State Refueler Co", address_street1: "128 Bransten Rd", address_street2: "2nd driveway", address_city: "New York", address_state: "NY", address_zip: "10011", phone_number: "212-675-8570", ships_to: ["NY", "PA", "VT"]},
+    {user_id: "", name: "Parkway Company", address_street1: "17 Morena Blvd", address_street2: "", address_city: "Camarillo", address_state: "CA", address_zip: "93012", phone_number: "805-832-6163", ships_to: ["CA", "WA", "NV"]},
+    {user_id: "", name: "Fbs Business Finance", address_street1: "775 W 17th St", address_street2: "Ste 8003", address_city: "San Antonio", address_state: "TX", address_zip: "78204", phone_number: "210-812-9597", ships_to: ["TX"]},
+    {user_id: "", name: "Eder Assocs Consltng Engrs Pc", address_street1: "6980 Dorsett Rd", address_street2: "1st floor", address_city: "Abilene", address_state: "KS", address_zip: "67410", phone_number: "785-463-7829", ships_to: ["KS", "KY", "FL", "LA"]},
+    {user_id: "", name: "Tri M Tool Inc", address_street1: "2881 Lewis Rd", address_street2: "", address_city: "Prineville", address_state: "OR", address_zip: "97754", phone_number: "541-548-8197", ships_to: ["OR", "CA", "WA"]}
+]
+
+db.Retailer
+    .remove({})
+    .then(() => db.Retailer.collection.insertMany(retailerSeed))
+    .then(data => {
+        console.log(`${data.result.n} Retailer records inserted!`);
+        //process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
+
 const productSeed = [
     {name: "MOTHER ROCK", description: "a delicious wine", country: "ZA", geo2: "geo2", type1: "white", type2: "still", size: "750mL", grape_blend: "concord", units: 15, price: 29.99},
     {name: "LOURENS WHITE BLEND", description: "a delicious wine", country: "ZA", geo2: "geo2", type1: "white", type2: "still", size: "750mL", grape_blend: "concord", units: 19, price: 34.99},
@@ -55,15 +126,14 @@ const productSeed = [
     {name: "LA BELLE ETOILE ROSE", description: "a delicious wine", country: "FR", geo2: "geo2", type1: "rose", type2: "still", size: "750mL", grape_blend: "concord", units: 11, price: 21.99}
 ]
 
-
 db.Product
-.remove({})
-.then(() => db.Product.collection.insertMany(productSeed))
-.then(data => {
-  console.log(data.result.n + " records inserted!");
-  process.exit(0);
-})
-.catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+    .remove({})
+    .then(() => db.Product.collection.insertMany(productSeed))
+    .then(data => {
+        console.log(`${data.result.n} Product records inserted!`);
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    });

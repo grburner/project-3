@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs");
+//const bcrypt = require("bcryptjs");
 
 const consumerSchema = new Schema({
   user_id: { 
@@ -17,6 +17,7 @@ const consumerSchema = new Schema({
   address_city: String,
   address_state: String,
   address_zip: String,
+  phone_number: String,
   birth_date: { 
       type: Date,
       validate: function(input) {
@@ -25,7 +26,7 @@ const consumerSchema = new Schema({
       message: input => "You must be 21 to register!"
     },
   cc_on_file: [{
-          number: bcrypt.String,
+          cc_number: String, //bcrypt.String,
           expiration_month: Number,
           expiration_year: Number
       }],
