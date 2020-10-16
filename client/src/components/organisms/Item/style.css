@@ -1,8 +1,37 @@
 .item{
     border:1px solid darkred;
     background-color:white;
+    height:100%;
 }
 
 .item img{
     width:100%;
+}
+
+.item-image{
+    width:100%;
+    height:300px;
+    background-size:100%;
+    background-position:top center;
+
+}
+
+.item-image:hover{
+    background-size:110%;
+    transition:all 300ms;
+}
+
+.item-link{
+    text-decoration:none;
+}
+
+.item a{
+    text-decoration:none;
+}
+
+.item:hover{
+    text-decoration:none;
+    color:white;
+    background-color:lightgray;
+    transition:all 300ms;
 }
