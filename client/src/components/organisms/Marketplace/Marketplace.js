@@ -4,8 +4,19 @@ import './style.css';
 import Item from '../../organisms/Item/Item';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import API from '../../../utils/API'
 
 function Marketplace(){
+
+  const getProductData = () => {
+    API.getProducts()
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+  }
+
+  getProductData();
 
   const seed = [
     {
