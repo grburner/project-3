@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
+import API from '../../../utils/API'
+
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
@@ -32,6 +34,14 @@ const SingleProductAddModal = () => {
   useEffect(() => {
     console.log(product);
   }); 
+
+  function addProduct(obj){
+    API.createProduct(obj)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err));
+  }
 
   return (
       <>
@@ -150,7 +160,7 @@ const SingleProductAddModal = () => {
           <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={() => console.log(product)
+          <Button variant="primary" type="submit" onClick={() => addProduct(product)
           // dispatch({ type: 'HIDEsProdModalinView'})
           }>
             Submit

@@ -11,7 +11,8 @@ const ProductContext = React.createContext({
   size: "",
   type1: "",
   type2: "",
-  units: 0
+  units: 0,
+  update: () => {}
 });
 
 export default ProductContext;

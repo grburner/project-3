@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Product
       .find(req.query)
+      .limit(20)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -30,6 +31,12 @@ module.exports = {
     db.Product
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByName: function(req, res) {
+    db.Product
+      .find({name: { $regex: req.params.name }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
