@@ -10,6 +10,8 @@ import OrderTable from '../../organisms/OrdersTable';
 import RetailNav from '../../organisms/RetailNav';
 import SingleProductAddModal from '../../organisms/SingleProductAddModal';
 
+
+
 const Retailer = () => {
 
   return (

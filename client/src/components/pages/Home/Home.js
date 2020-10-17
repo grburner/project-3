@@ -23,16 +23,34 @@ function Home(){
     size: "",
     type1: "",
     type2: "",
-    units: 0
+    units: 0,
+    update: (obj) => {
+      setProductState(
+        obj
+      )
+    }
   })
+
+  function update(obj) {
+    let data = updateHelper(obj)
+    setProductState(
+      data
+    )
+    function updateHelper(obj){
+      let data2 = obj;
+      data2.update = update;
+      return data2;
+    }
+  }
 
   const getProductData = () => {
     API.getProducts()
       .then(res => {
-        setProductState(res.data);
-        for(let i = 0; i < res.data.length; i++){
-          console.log(res.data[i].name)
-        }
+        let data = res.data;
+        data.update = update;
+        setProductState(
+          data
+        );
       })
       .catch(err => console.log(err));
   };
