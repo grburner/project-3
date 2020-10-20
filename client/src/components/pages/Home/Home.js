@@ -6,36 +6,36 @@ import Filters from '../../organisms/Filters/Filters';
 import Marketplace from '../../organisms/Marketplace/Marketplace'; 
 
 // Context
-import ProductContext from '../../../utils/ProductContext'
+import ProductContext from '../../../utils/ProductContext';
 
-import API from '../../../utils/API'
+import API from '../../../utils/API';
 
 function Home(){
   
   const [productState, setProductState] = useState({
-    id: "",
-    country: "",
-    description: "",
-    geo2: "",
-    grape_blend: "",
-    name: "",
+    id: '',
+    country: '',
+    description: '',
+    geo2: '',
+    grape_blend: '',
+    name: '',
     price: 0,
-    size: "",
-    type1: "",
-    type2: "",
+    size: '',
+    type1: '',
+    type2: '',
     units: 0,
     update: (obj) => {
       setProductState(
         obj
-      )
+      );
     }
-  })
+  });
 
   function update(obj) {
-    let data = updateHelper(obj)
+    let data = updateHelper(obj);
     setProductState(
       data
-    )
+    );
     function updateHelper(obj){
       let data2 = obj;
       data2.update = update;
