@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-import API from '../../../utils/API'
+import API from '../../../utils/API';
 
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
@@ -23,6 +23,13 @@ const SingleProductAddModal = () => {
     tags: []
   });
 
+  const testUser = {
+    'name': 'gary test',
+    'email': 'gary@test.com',
+    'role': 'consumer',
+    'password': 'testpass'
+  };
+
   const updateProduct = e => {
     const { name, value } = e.target;
     setProduct({
@@ -35,12 +42,25 @@ const SingleProductAddModal = () => {
     console.log(product);
   }); 
 
-  function addProduct(obj){
-    API.createProduct(obj)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => console.log(err));
+  function addProduct(product){
+    const productToAdd = {
+      'name': product.text,
+      'description': product.description,
+      'country': product.country,
+      'geo2': product.region,
+      'type1': product.type1,
+      'type2': product.type2,
+      'size': product.size,
+      'grape_blend': product.grapes,
+      'units': 0,
+      'price': 0
+    };
+
+    API.createProduct(productToAdd)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -160,8 +180,9 @@ const SingleProductAddModal = () => {
           <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={() => addProduct(product)
-          // dispatch({ type: 'HIDEsProdModalinView'})
+          <Button variant="primary" type="submit" onClick={() => 
+            addProduct(product)
+          //dispatch({ type: 'HIDEsProdModalinView'})
           }>
             Submit
           </Button>

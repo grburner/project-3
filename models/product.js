@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   retailer_id: {
     type: Schema.Types.ObjectId,
-    ref: "Retailer"
+    ref: 'Retailer'
   },
   name: { 
-      type: String, 
-      required: true 
-    },
+    type: String, 
+    required: true 
+  },
   description: String,
   country: String,
   geo2: String,
@@ -23,6 +23,6 @@ const productSchema = new Schema({
   //, image: mime
 });
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

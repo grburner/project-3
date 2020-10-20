@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 // import API from '../../../utils/API';
 
-import ProductContext from '../../../utils/ProductContext'
+import ProductContext from '../../../utils/ProductContext';
 
 function Marketplace(){
 
@@ -15,7 +15,7 @@ function Marketplace(){
   const seed = [];
 
   for(let i = 0; i < products.length; i++){
-    seed.push(products[i])
+    seed.push(products[i]);
   }
 
   return (
@@ -25,7 +25,7 @@ function Marketplace(){
         {seed.map((x,i)=>{
           // console.log(x)
           return (
-            <Col lg={3} md={6} sm={12} style={{marginBottom: "20px"}}>
+            <Col lg={3} md={6} sm={12} style={{marginBottom: '20px'}}>
               <Item value={x}/>
             </Col>
           );

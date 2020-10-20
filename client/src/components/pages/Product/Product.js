@@ -10,15 +10,15 @@ function Product(){
 
   let { id } = useParams();
 
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
 
-  const productData = "";
+  const productData = '';
 
   const getProductDatabyId = () => {
     API.getProductsID(id)
       .then(res => {
-        console.log(res.data)
-        setProduct(res.data)
+        console.log(res.data);
+        setProduct(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -33,7 +33,7 @@ function Product(){
       <h1>{ product.name }</h1>
       <p><em>ID #: {id}</em></p>
       <hr />
-      <ul style={{textAlign:"left"}}>
+      <ul style={{textAlign:'left'}}>
         <li>Description: { product.description }</li>
         <li>Country: { product.country }</li>
         <li>Grape Blend: { product.grape_blend }</li>
