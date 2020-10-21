@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react';
 import './style.css';
 
-import Button from '../../atoms/Button/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Button from '../../atoms/Button/Button';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 
 import API from '../../../utils/API';
 
@@ -36,7 +36,6 @@ function Search(){
   }
 
   const searchClick = () => {
-    console.log(searchValue.search);
     if(searchValue.search.length <= 0){
       API.getProducts()
         .then(res => {
@@ -50,10 +49,7 @@ function Search(){
     } else {
       API.getProductsByName(searchValue.search.toUpperCase())
         .then(res => {
-          console.log(res.data);
-          // console.log("Update" + update)
           products.update(res.data);
-          console.log(products);
         })
         .catch(err => console.log(err));
     }
