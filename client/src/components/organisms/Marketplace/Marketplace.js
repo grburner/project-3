@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import './style.css';
 
 import Item from '../../organisms/Item/Item';
@@ -8,15 +8,32 @@ import Col from 'react-bootstrap/Col';
 
 import ProductContext from '../../../utils/ProductContext';
 
-function Marketplace(){
+function Marketplace(props){
 
   const products = useContext(ProductContext);
 
   const seed = [];
 
-  for(let i = 0; i < products.length; i++){
-    seed.push(products[i]);
-  }
+    if(props.filters.priceMax !== 0 || props.filters.store !== "" || props.filters.type !== "" || props.filters.style !== "") {
+      for(let i = 0; i < products.length; i++){
+        if(props.filters.priceMax !== 0 ){
+          if(products[i].price < props.filters.priceMax){
+            seed.push(products[i]);
+          }
+        }
+      }
+    } else {
+      for(let i = 0; i < products.length; i++){
+        seed.push(products[i]);
+      }
+    }
+
+  // props.filters
+  // priceMax: 0,
+  // store: "",
+  // type: "",
+  // style: "",
+  
 
   return (
     <div className="container marketplace">

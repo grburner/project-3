@@ -5,6 +5,8 @@ import Hero from '../../organisms/Hero/Hero';
 import Filters from '../../organisms/Filters/Filters'; 
 import Marketplace from '../../organisms/Marketplace/Marketplace'; 
 
+import Button from '../../atoms/Button/Button'
+
 // Context
 import ProductContext from '../../../utils/ProductContext';
 
@@ -59,12 +61,30 @@ function Home(){
     getProductData();
   }, []);
 
+  
+  // Filter functions
+  const [filters, setFilters] = useState({
+    priceMax: 0,
+    store: "",
+    type: "",
+    style: "",
+  })
+
+  const filterChange = (event) => {
+    const {name, value} = event.target
+    setFilters({
+      ...filters,
+      [name]: value
+    })
+    console.log(filters)
+  }
+
   return (
     <ProductContext.Provider value={productState}>
       <Hero />
-      <div  className="container">
-        <Filters />
-        <Marketplace />
+      <div className="container">
+        <Filters filters={filters} filterChange={filterChange} />
+        <Marketplace filters={filters} />
       </div>
     </ProductContext.Provider>
   );
