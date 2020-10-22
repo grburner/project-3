@@ -20,16 +20,16 @@ const retailerSchema = new Schema({
   ships_to: [String],
   cc_processing: String, //bcrypt.String,
   bio: String,
-  products: [{
-    product_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'Product'
-    },
-    additional_desc: String,
-    units: Number,
-    price: Number
-    //, image: mime
-  }]
+  // products: [{
+  //   product_id: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Product'
+  //   },
+  //   additional_desc: String,
+  //   units: Number,
+  //   price: Number
+  //   //, image: mime
+  // }]
 });
 
 const Retailer = mongoose.model('Retailer', retailerSchema);
