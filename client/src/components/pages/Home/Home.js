@@ -33,6 +33,7 @@ function Home(){
     }
   });
 
+  // Needed for search
   function update(obj) {
     let data = updateHelper(obj);
     setProductState(
@@ -45,6 +46,7 @@ function Home(){
     }
   }
 
+  // Load product data
   const getProductData = () => {
     API.getProducts()
       .then(res => {
@@ -60,7 +62,6 @@ function Home(){
   useEffect(() => {
     getProductData();
   }, []);
-
   
   // Filter functions
   const [filters, setFilters] = useState({
@@ -79,11 +80,20 @@ function Home(){
     console.log(filters)
   }
 
+  const resetFilters = () => {
+    setFilters({
+      priceMax: 0,
+      store: "",
+      type: "",
+      style: "",
+    })
+  }
+
   return (
     <ProductContext.Provider value={productState}>
       <Hero />
       <div className="container">
-        <Filters filters={filters} filterChange={filterChange} />
+        <Filters filters={filters} filterChange={filterChange} filterReset={resetFilters}/>
         <Marketplace filters={filters} />
       </div>
     </ProductContext.Provider>

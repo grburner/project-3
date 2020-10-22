@@ -4,8 +4,20 @@
     transition:all 300ms;
 }
 
-.hover-class{
+.main-button{
+    border:2px solid darkred;
+    background-color:darkred;
+    color:white;
+    border-radius:5px;
+    padding:5px 10px;
+    transition:all 300ms;
+  }
+  
+  .main-button-hover{
+    border-radius:5px;
+    padding:5px 10px;
+    border:2px solid darkred;
     background-color:white;
     color:darkred;
     transition:all 300ms;
-}
+  }

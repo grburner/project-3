@@ -12,22 +12,46 @@ function Marketplace(props){
 
   const products = useContext(ProductContext);
 
-  const seed = [];
+  let seed = [];
 
-    if(props.filters.priceMax !== 0 || props.filters.store !== "" || props.filters.type !== "" || props.filters.style !== "") {
-      for(let i = 0; i < products.length; i++){
-        if(props.filters.priceMax !== 0 ){
-          if(products[i].price < props.filters.priceMax){
-            seed.push(products[i]);
-          }
-        }
-      }
-    } else {
-      for(let i = 0; i < products.length; i++){
-        seed.push(products[i]);
-      }
+  const loadProducts = () => {
+    for(let i = 0; i < products.length; i++){
+      seed.push(products[i]);
     }
+  }
 
+  if(props.filters.priceMax === 0 || props.filters.store === "" || props.filters.type === "" || props.filters.style === "") {
+    loadProducts();
+  }
+
+  if(props.filters.priceMax !== 0) {
+    console.log(seed)
+    let newArray = seed.filter(function(num){
+      return num.price < props.filters.priceMax
+    })
+    seed = newArray;
+  }
+
+  if(props.filters.type !== "") {
+    let newArray = seed.filter(function(num){
+      return num.type1.toUpperCase() === props.filters.type.toUpperCase()
+    })
+    seed = newArray;
+  }
+
+  if(props.filters.style !== "") {
+    let newArray = seed.filter(function(num){
+      return num.type2.toUpperCase() === props.filters.style.toUpperCase()
+    })
+    seed = newArray;
+  }
+
+
+  // if(props.filters.priceMax !== 0 || props.filters.store !== "" || props.filters.type !== "" || props.filters.style !== "") {
+  
+
+      
+    
   // props.filters
   // priceMax: 0,
   // store: "",
