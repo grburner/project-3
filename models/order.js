@@ -9,7 +9,7 @@ const orderSchema = new Schema({
   },
   retailer_id: { 
     type: Schema.Types.ObjectId, 
-    ref: 'Retailer',
+    ref: 'User',
     required: true 
   },
   date: {

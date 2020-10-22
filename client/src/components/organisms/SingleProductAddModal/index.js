@@ -9,7 +9,7 @@ import API from '../../../utils/API';
 
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
-  const [user, setUser] = useState("5f90df97d56aef06bcb010d3");
+  const [user, setUser] = useState('5f90df97d56aef06bcb010d3');
   const { dispatch } = globalState;
 
   const [product, setProduct] = useState({

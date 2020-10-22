@@ -96,38 +96,38 @@ db.Product
     process.exit(1);
   });
 
-  const orderSeed = [
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cb")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d3")', date: '9/2/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22784")', quantity: 2, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca2278b")', quantity: 4, price: 19.99 } ] },
+const orderSeed = [
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cb")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d3")', date: '9/2/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22784")', quantity: 2, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca2278b")', quantity: 4, price: 19.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d5")', date: '9/5/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22787")', quantity: 6, price: 9.00 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d5")', date: '9/5/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22787")', quantity: 6, price: 9.00 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cd")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d5")', date: '10/20/2020', status: 'pending', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22787")', quantity: 2, price: 9.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca2278e")', quantity: 1, price: 22.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22793")', quantity: 1, price: 21.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cd")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d5")', date: '10/20/2020', status: 'pending', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22787")', quantity: 2, price: 9.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca2278e")', quantity: 1, price: 22.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22793")', quantity: 1, price: 21.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cf")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d4")', date: '10/19/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22794")', quantity: 2, price: 22.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22795")', quantity: 1, price: 39.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cf")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d4")', date: '10/19/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22794")', quantity: 2, price: 22.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22795")', quantity: 1, price: 39.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cb")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d4")', date: '10/14/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22795")', quantity: 4, price: 39.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cb")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d4")', date: '10/14/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22795")', quantity: 4, price: 39.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cd")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d3")', date: '10/10/10', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22784")', quantity: 6, price: 29.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cd")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d3")', date: '10/10/10', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22784")', quantity: 6, price: 29.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010ce")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d6")', date: '9/30/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22798")', quantity: 6, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a0")', quantity: 4, price: 29.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010ce")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d6")', date: '9/30/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca22798")', quantity: 6, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a0")', quantity: 4, price: 29.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cf")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d6")', date: '10/2/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a5")', quantity: 3, price: 24.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227aa")', quantity: 3, price: 21.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cf")', retailer_id: 'ObjectId("5f90df97d56aef06bcb010d6")', date: '10/2/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a5")', quantity: 3, price: 24.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227aa")', quantity: 3, price: 21.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/22/2020', status: 'pending', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 2, price: 29.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/22/2020', status: 'pending', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 2, price: 29.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010ce")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/15/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 1, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ad")', quantity: 3, price: 19.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ae")', quantity: 6, price: 13.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227b0")', quantity: 2, price: 34.99 } ] },
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010ce")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/15/2020', status: 'closed', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 1, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ad")', quantity: 3, price: 19.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ae")', quantity: 6, price: 13.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227b0")', quantity: 2, price: 34.99 } ] },
 
-    { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/21/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 12, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ad")', quantity: 12, price: 19.99 } ] }
-  ]
+  { user_id: 'ObjectId("5f90df97d56aef06bcb010cc")', retailer_id: 'ObjectId("5f90def5747f0b4e289d05e9")', date: '10/21/2020', status: 'open', detail: [ { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227a7")', quantity: 12, price: 29.99 }, { product_id: 'ObjectId("5f90e02f0f4cef1b1ca227ad")', quantity: 12, price: 19.99 } ] }
+];
   
-  db.Order
-    .remove({})
-    .then(() => db.Order.collection.insertMany(orderSeed))
-    .then(data => {
-      console.log(`${data.result.n} Order records inserted!`);
-      process.exit(0);
-    })
-    .catch(err => {
-      console.error(err);
-      process.exit(1);
-    });
+db.Order
+  .remove({})
+  .then(() => db.Order.collection.insertMany(orderSeed))
+  .then(data => {
+    console.log(`${data.result.n} Order records inserted!`);
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

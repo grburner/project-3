@@ -10,11 +10,11 @@ function customButton({children, href, onClick}){
   return (
     <div className="buttonWrapper">
       <button
-      href={href} 
-      onClick={onClick} 
-      className={hoverState ? "main-button-hover" : "main-button"}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+        href={href} 
+        onClick={onClick} 
+        className={hoverState ? 'main-button-hover' : 'main-button'}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
       >
         {children}
       </button>
