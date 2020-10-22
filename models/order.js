@@ -18,9 +18,9 @@ const orderSchema = new Schema({
   },
   status: String,
   detail: [{
-    inventory_id: {
+    product_id: {
       type: Schema.Types.ObjectId, 
-      ref: 'Inventory'
+      ref: 'Product'
     },
     quantity: Number,
     price: Number
