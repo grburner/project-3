@@ -9,6 +9,7 @@ import API from '../../../utils/API';
 
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
+  const [user, setUser] = useState("5f90df97d56aef06bcb010d3");
   const { dispatch } = globalState;
 
   const [product, setProduct] = useState({
@@ -38,12 +39,9 @@ const SingleProductAddModal = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(product);
-  }); 
-
   function addProduct(product){
     const productToAdd = {
+      'retailer_id': user,
       'name': product.text,
       'description': product.description,
       'country': product.country,
@@ -66,7 +64,7 @@ const SingleProductAddModal = () => {
   return (
       <>
       <Modal show={globalState.state.sProdModalinView}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Single Product Add Template</Modal.Title>
         </Modal.Header>
         <Form>
@@ -89,9 +87,6 @@ const SingleProductAddModal = () => {
               placeholder="Enter product description"
               name="description"
             />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <Form.Label>Country</Form.Label>
           <Form.Control 
