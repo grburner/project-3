@@ -18,31 +18,31 @@ function Marketplace(props){
     for(let i = 0; i < products.length; i++){
       seed.push(products[i]);
     }
-  }
+  };
 
-  if(props.filters.priceMax === 0 || props.filters.store === "" || props.filters.type === "" || props.filters.style === "") {
+  if(props.filters.priceMax === 0 || props.filters.store === '' || props.filters.type === '' || props.filters.style === '') {
     loadProducts();
   }
 
   if(props.filters.priceMax !== 0) {
-    console.log(seed)
+    console.log(seed);
     let newArray = seed.filter(function(num){
-      return num.price < props.filters.priceMax
-    })
+      return num.price < props.filters.priceMax;
+    });
     seed = newArray;
   }
 
-  if(props.filters.type !== "") {
+  if(props.filters.type !== '') {
     let newArray = seed.filter(function(num){
-      return num.type1.toUpperCase() === props.filters.type.toUpperCase()
-    })
+      return num.type1.toUpperCase() === props.filters.type.toUpperCase();
+    });
     seed = newArray;
   }
 
-  if(props.filters.style !== "") {
+  if(props.filters.style !== '') {
     let newArray = seed.filter(function(num){
-      return num.type2.toUpperCase() === props.filters.style.toUpperCase()
-    })
+      return num.type2.toUpperCase() === props.filters.style.toUpperCase();
+    });
     seed = newArray;
   }
 
