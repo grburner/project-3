@@ -15,6 +15,7 @@ function Filters(props){
   const [maxPrice, setMaxPrice] = useState({})
 
   useEffect(() => {
+    // Find max price from products
     if(products.length >= 1) {
       let max = 0;
       for(let i = 0; i < products.length; i++){
@@ -23,7 +24,7 @@ function Filters(props){
         }
       }
       setMaxPrice({
-        maxPrice: max
+        maxPrice: Math.round(max)
       })
     }
   },[products]);
@@ -63,10 +64,8 @@ function Filters(props){
               <option value="Fortified">Fortified</option>
             </select>
           </Col>
-        </Row>
-        <Row>
           <Col md>
-            <Button>Refine Search</Button>
+            <Button onClick={props.filterReset}>Reset</Button>
           </Col>
         </Row>
       </Container>
