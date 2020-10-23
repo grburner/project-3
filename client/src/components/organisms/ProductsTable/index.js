@@ -15,11 +15,13 @@ const ProductsTable = () => {
   }, []);
 
   const changeState = (field, index, value) => {
-    setChartData(
-      ...chartData,
-      chartData[index][field] = value
-    )
-    console.log(chartData)
+    const newData = chartData.map((d, i) => {
+      if (i === index) {
+        d[field] = value;
+      }
+      return d;
+    });
+    setChartData(newData);
   }
 
   const toggleStatus = e => {
