@@ -9,6 +9,7 @@ import SummaryStats from '../../organisms/SummaryStats';
 import OrderTable from '../../organisms/OrdersTable';
 import RetailNav from '../../organisms/RetailNav';
 import SingleProductAddModal from '../../organisms/SingleProductAddModal';
+import ProductTable from '../../organisms/ProductsTable';
 
 
 
@@ -27,7 +28,7 @@ const Retailer = () => {
         <OrderTable />
       </Row>
       <Row>
-        <h1>Inventory</h1>
+        <ProductTable />
       </Row>
       <Row>
         <h1>Products</h1>
