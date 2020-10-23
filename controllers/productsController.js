@@ -39,5 +39,12 @@ module.exports = {
       .find({name: { $regex: req.params.name }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findByRetailerId: function(req, res) {
+    db.Product
+      .find({retailer_id: req.params.retailer_id})
+      .then(dbModel => 
+        res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   }
 };
