@@ -8,22 +8,41 @@ const ProductsTable = () => {
 
 
   useEffect(() => {
-    console.log(retailerId)
-    API.getProductsByRetailerId(retailerId).then((data) => {
-      console.log(data)
-      // setChartData(data);
-    }, []);
-  });
-  
+    API.getProductsByRetailerId(retailerId).then(data => {
+      console.log(data.data);
+      setChartData(data.data);
+    })
+  }, []);
+
+  const changeState = (field, index, value) => {
+    const newData = chartData.map((d, i) => {
+      if (i === index) {
+        d[field] = value;
+      }
+      return d;
+    });
+    setChartData(newData);
+  }
+
+  const toggleStatus = e => {
+    const id = e.target.dataset.id
+    const value = e.target.dataset.value
+    const index = e.target.dataset.index
+    chartData.forEach((elem, index) => {
+      if (id === elem._id) {
+        elem.status ? changeState("status", index, false) : changeState("status", index, true)
+      }
+    })
+  }
   
   const renderProductRow = (element, index) => {
     return (
-      <tr key={index}>
-        <td onClick={() => console.log('product changes saved')}>@</td>
-        <td>{element.product_name}</td>
-        <td>{element.price}</td>
-        <td>{element.cur_inventory}</td>
-        <td>{element.status}</td>
+      <tr key={index} data-id={element._id}>
+        <td  data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
+        <td data-id={element._id} >{element.name}</td>
+        <td data-id={element._id} >{element.price}</td>
+        <td data-id={element._id} >{element.units}</td>
+        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status ? "Live" : "Paused"}</td>
       </tr>
     );
   };
@@ -42,7 +61,7 @@ const ProductsTable = () => {
         </tr>
       </thead>
       <tbody>
-        {chartData.map(renderProductRow)}
+        {chartData ? chartData.map(renderProductRow) : 'waiting...'}
       </tbody>
     </Table>
   );
