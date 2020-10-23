@@ -1,0 +1,11 @@
+.filter-wrapper{
+    background-color:white;
+    box-shadow:3px 4px 5px #666;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.filter-header{
+   color: #930045;
+   font-weight:bold;
+}

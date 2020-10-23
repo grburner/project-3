@@ -4,13 +4,13 @@ import API from '../../../utils/API';
 
 const ProductsTable = () => {
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState("5f90df97d56aef06bcb010d3")
+  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
 
 
   useEffect(() => {
-    console.log(retailerId)
+    console.log(retailerId);
     API.getProductsByRetailerId(retailerId).then((data) => {
-      console.log(data)
+      console.log(data);
       // setChartData(data);
     }, []);
   });

@@ -1,23 +1,41 @@
 .cta{
-    background-color:darkred;
+    background-color:#930045;
     color:white;
     transition:all 300ms;
 }
 
 .main-button{
-    border:2px solid darkred;
-    background-color:darkred;
+    border:2px solid #930045;
+    background-color:#930045;
     color:white;
     border-radius:5px;
     padding:5px 10px;
     transition:all 300ms;
   }
   
-  .main-button-hover{
-    border-radius:5px;
-    padding:5px 10px;
-    border:2px solid darkred;
-    background-color:white;
-    color:darkred;
+.main-button-hover{
+  border-radius:5px;
+  padding:5px 10px;
+  border:2px solid #930045;
+  background-color:white;
+  color:#930045;
+  transition:all 300ms;
+}
+
+.main-button-white{
+  border-radius:5px;
+  padding:5px 10px;
+  border:2px solid #930045;
+  background-color:white;
+  color:#930045;
     transition:all 300ms;
   }
+  
+.main-button-white-hover{
+  border:2px solid #930045;
+  background-color:#930045;
+  color:white;
+  border-radius:5px;
+  padding:5px 10px;
+  transition:all 300ms;
+}

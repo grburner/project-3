@@ -1,7 +1,8 @@
 .item{
-    border:1px solid darkred;
+    border:1px solid #930045;
     background-color:white;
     height:100%;
+    text-decoration:none;
 }
 
 .item img{
@@ -13,7 +14,6 @@
     height:300px;
     background-size:100%;
     background-position:top center;
-
 }
 
 .item-image:hover{
@@ -22,16 +22,16 @@
 }
 
 .item-link{
-    text-decoration:none;
+    color: #444444;
+    text-decoration:none !important;
 }
 
-.item a{
-    text-decoration:none;
+.item-link:hover{
+    color:#930045;
 }
 
 .item:hover{
     text-decoration:none;
-    color:white;
-    background-color:lightgray;
+    background-color:#F8F8F8;
     transition:all 300ms;
 }

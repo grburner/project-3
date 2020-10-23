@@ -18,6 +18,6 @@ export default {
     return axios.post('/api/users', user);
   },
   getProductsByRetailerId: function(id) {
-    return axios.get('/api/products/retailer_id/' + id)
+    return axios.get('/api/products/retailer_id/' + id);
   }
 };

@@ -26,20 +26,6 @@ function App() {
       <Header />
       <Router>
         <div>
-          <nav>
-
-            <Link to="/">Home</Link>
-                &nbsp;&nbsp;&nbsp;
-            <Link to="/signup">Sign Up</Link>
-                &nbsp;&nbsp;&nbsp;
-            <Link to="/consumer">Consumer</Link>
-                &nbsp;&nbsp;&nbsp;
-            <Link to="/retailer">Retailer</Link>
-                &nbsp;&nbsp;&nbsp;
-            <Link to="/product/5656565">Product</Link>
-
-          </nav>
-
           <Switch>
             <Route path="/signup">
               <Signup />
