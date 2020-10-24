@@ -39,14 +39,14 @@ const ProductsTable = () => {
     })
   }
 
-  const changeInput = e => {
+  const changeInput = (e, field) => {
     console.log(e.target)
     const id = e.target.dataset.id
     const value = e.target.value
     const index = e.target.dataset.index
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
-        changeState('price', index , value)
+        changeState(field, index , value)
       }
     })
   }
@@ -63,20 +63,37 @@ const ProductsTable = () => {
               childRef={inputRef}
               type='input'
             >
-              <input 
-                ref={inputRef}
-                data-value={element.price} 
-                data-index={index}
-                data-id={element._id}
-                type='text'
-                //name='inputData'
-                placeholder={element.price}
-                value={element.price}
-                onChange={e => changeInput(e)}
-              />
+            <input 
+              ref={inputRef}
+              data-value={element.price} 
+              data-index={index}
+              data-id={element._id}
+              type='text'
+              placeholder={element.price}
+              value={element.price}
+              onChange={e => changeInput(e, 'price')}
+            />
           </Editable>
         </td>
-        <td data-id={element._id} >{element.units}</td>
+        <td data-id={element._id}>
+          <Editable
+              text={inputData}
+              placeholder={element.units}
+              childRef={inputRef}
+              type='input'
+            >
+            <input 
+              ref={inputRef}
+              data-value={element.units} 
+              data-index={index}
+              data-id={element._id}
+              type='text'
+              placeholder={element.units}
+              value={element.units}
+              onChange={e => changeInput(e, 'units')}
+            />
+          </Editable>
+        </td>
         <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status ? "Live" : "Paused"}</td>
       </tr>
     );
