@@ -22,7 +22,7 @@ const Retailer = () => {
         <RetailNav />
       </Row>
       <Row>
-        <SummaryStats />
+        {/* <SummaryStats /> */}
       </Row>
       <Row>
         <OrderTable />

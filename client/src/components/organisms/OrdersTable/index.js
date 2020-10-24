@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
-import * as API from '../../../utils/mockAPI';
+import API from '../../../utils/API';
 
 const OrdersTable = () => {
   const [chartData, setChartData] = useState([]);
+  const [retailerId, setRetailerId] = useState("5f90df97d56aef06bcb010d3")
 
   useEffect(() => {
-    API.orderDataAPI.then((data) => {
-      setChartData(data);
-    }, []);
-  });
+    API.findByRetailerId(retailerId).then(data => {
+      setChartData(data.data);
+    });
+  }, []);
+
+  const getTotal = (elem) => {
+    let total = 0 
+    elem.detail.forEach(e => {
+      // console.log(e.quantity, e.price)
+        const itemTotal = e.quantity * e.price
+        total += itemTotal
+    })
+    console.log(total)
+    return total
+  }
   
   
   const renderProductRow = (element, index) => {
     return (
       <tr key={index}>
         <td onClick={() => console.log('item detail clicked')}>@</td>
-        <td>{element.order_number}</td>
-        <td>{element.order_amount}</td>
-        <td>{element.order_items}</td>
+        <td>{element._id}</td>
+        <td>{element.user_id}</td>
+        <td>{element.date}</td>
+        <td>{getTotal(element)}</td>
         <td>{element.status}</td>
       </tr>
     );
@@ -32,9 +45,10 @@ const OrdersTable = () => {
       <thead>
         <tr>
           <th>@</th>
-          <th>Order Number</th>
-          <th>Order Amount</th>
-          <th>Order Items</th>
+          <th>Order ID</th>
+          <th>User Id</th>
+          <th>Date</th>
+          <th>Total</th>
           <th>Status</th>
         </tr>
       </thead>
