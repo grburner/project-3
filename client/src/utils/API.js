@@ -21,10 +21,12 @@ export default {
     return axios.get('/api/products/retailer_id/' + id)
   },
   updateProducts: function(id, body) {
+    console.log(body)
+    // correct body gets here
     return axios({
-      method: 'post',
+      method: 'patch',
       url: ('api/products/' + id),
-      body: body
+      data: body
     })
   }
 };

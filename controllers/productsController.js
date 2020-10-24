@@ -48,13 +48,14 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   findByIdAndUpdate: function(req, res) {
+   console.log(req)
     db.Product
-      .findByIdAndUpdate({_id: req.id}, {body: req.body})
-      .then(res => {
-        console.log(res)
-      })
+      .findByIdAndUpdate({_id: req.params.id}, req.body)
+      // .then(res => {
+      //   console.log(res)
+      // })
       .then(dbModel => 
         res.json(dbModel))
-      .catch(err => req.status(422).json(err))
+      .catch(err => res.status(422).json(err))
   }
 };

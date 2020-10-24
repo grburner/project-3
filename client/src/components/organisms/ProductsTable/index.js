@@ -13,7 +13,6 @@ const ProductsTable = () => {
 
   useEffect(() => {
     API.getProductsByRetailerId(retailerId).then(data => {
-      console.log(data.data);
       setChartData(data.data);
     })
   }, []);
@@ -21,7 +20,6 @@ const ProductsTable = () => {
   const changeState = (field, index, value) => {
     const newData = chartData.map((d, i) => {
       if (i === index) {
-        console.log('into equal index')
         d[field] = value;
       }
       return d;
@@ -39,7 +37,6 @@ const ProductsTable = () => {
   }
 
   const changeInput = (e, field) => {
-    console.log(e.target)
     const id = e.target.dataset.id
     const value = e.target.value
     chartData.forEach((elem, index) => {
@@ -53,11 +50,11 @@ const ProductsTable = () => {
     chartData.forEach(elem => {
       const body = 
       {
-        "price": elem.price,
-        "units": elem.units,
+        "price": parseInt(elem.price),
+        "units": parseInt(elem.units),
         "status": elem.status
       }
-      console.log(elem._id)
+      // console.log(body)
       API.updateProducts(elem._id, body)
     })
   }

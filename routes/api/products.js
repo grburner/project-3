@@ -12,7 +12,7 @@ router
   .get(productsController.findById)
   .put(productsController.update)
   .delete(productsController.remove)
-  .post(productsController.findByIdAndUpdate);
+  .patch(productsController.findByIdAndUpdate);
 
 // Matches with "/api/products/name/:name"
 router
