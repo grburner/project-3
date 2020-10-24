@@ -19,5 +19,12 @@ export default {
   },
   getProductsByRetailerId: function(id) {
     return axios.get('/api/products/retailer_id/' + id)
+  },
+  updateProducts: function(id, body) {
+    return axios({
+      method: 'post',
+      url: ('api/products/' + id),
+      body: body
+    })
   }
 };

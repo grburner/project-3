@@ -11,7 +11,8 @@ router
   .route('/:id')
   .get(productsController.findById)
   .put(productsController.update)
-  .delete(productsController.remove);
+  .delete(productsController.remove)
+  .post(productsController.findByIdAndUpdate);
 
 // Matches with "/api/products/name/:name"
 router

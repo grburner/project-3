@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
 import Editable from '../../../utils/Editable.js';
+import Button from '../../atoms/Button/Button.js';
 
 const ProductsTable = () => {
   const [chartData, setChartData] = useState([]);
@@ -30,8 +31,6 @@ const ProductsTable = () => {
 
   const toggleStatus = e => {
     const id = e.target.dataset.id
-    const value = e.target.dataset.value
-    const index = e.target.dataset.index
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
         elem.status ? changeState("status", index, false) : changeState("status", index, true)
@@ -43,11 +42,23 @@ const ProductsTable = () => {
     console.log(e.target)
     const id = e.target.dataset.id
     const value = e.target.value
-    const index = e.target.dataset.index
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
         changeState(field, index , value)
       }
+    })
+  }
+
+  const sendData = () => {
+    chartData.forEach(elem => {
+      const body = 
+      {
+        "price": elem.price,
+        "units": elem.units,
+        "status": elem.status
+      }
+      console.log(elem._id)
+      API.updateProducts(elem._id, body)
     })
   }
   
@@ -100,22 +111,25 @@ const ProductsTable = () => {
   };
 
   return (
-
-    <Table striped bordered hover size="sm">
-      <caption>Products</caption>
-      <thead>
-        <tr>
-          <th>@</th>
-          <th>Product Name</th>
-          <th>Current Price</th>
-          <th>Current Inventory</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {chartData ? chartData.map(renderProductRow) : 'waiting...'}
-      </tbody>
-    </Table>
+    <div>
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>@</th>
+            <th>Product Name</th>
+            <th>Current Price</th>
+            <th>Current Inventory</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {chartData ? chartData.map(renderProductRow) : 'waiting...'}
+        </tbody>
+      </Table>
+      <Button onClick={sendData}>
+        Save
+      </Button>
+    </div>
   );
 };
 
