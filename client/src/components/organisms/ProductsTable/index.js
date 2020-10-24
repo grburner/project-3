@@ -54,7 +54,6 @@ const ProductsTable = () => {
         "units": parseInt(elem.units),
         "status": elem.status
       }
-      // console.log(body)
       API.updateProducts(elem._id, body)
     })
   }
@@ -108,6 +107,7 @@ const ProductsTable = () => {
   };
 
   return (
+
     <div>
       <Table striped bordered hover size="sm">
         <thead>
