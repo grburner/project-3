@@ -32,12 +32,13 @@ function Filters(props){
 
 
   return (
-    <div>
+    
+    <div className="filter-wrapper">
       <Container>
-        <p>Filters</p>
+        <p className="filter-header">Filter Your Search:</p>
         <Row>
           <Col md>
-            <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? maxPrice.maxPrice : props.filters.priceMax}</label>
+            <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? '$' + maxPrice.maxPrice : '$' + props.filters.priceMax}</label>
             <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
           </Col>
           <Col md>
@@ -71,6 +72,7 @@ function Filters(props){
         </Row>
       </Container>
     </div>
+        
   );
 }
   

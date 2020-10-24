@@ -1,10 +1,15 @@
 .marketplace{
-    border:1px solid black;
+    border:2px solid #930045;
     border-radius:5px;
     padding:10px;
     background-color:#F9F9F9;
+    box-shadow:3px 4px 5px #666;
 }
 
 .marketplace .item{
     margin:10px 0;
+}
+
+.marketplace h3{
+    color:#930045;
 }

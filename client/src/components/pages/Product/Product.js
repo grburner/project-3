@@ -30,18 +30,20 @@ function Product(){
 
   return (
     <div className="container">
-      <h1>{ product.name }</h1>
-      <p><em>ID #: {id}</em></p>
-      <hr />
-      <ul style={{textAlign:'left'}}>
-        <li>Description: { product.description }</li>
-        <li>Country: { product.country }</li>
-        <li>Grape Blend: { product.grape_blend }</li>
-        <li>Size: { product.size }</li>
-        <li>Price { product.price }</li>
-        <li>Type: { product.type1 }</li>
-        <li>Style: { product.type2 }</li>
-      </ul>
+      <div className="product">
+        <h1>{ product.name }</h1>
+        <p><em>ID #: {id}</em></p>
+        <hr />
+        <ul style={{textAlign:'left'}}>
+          <li>Description: { product.description }</li>
+          <li>Country: { product.country }</li>
+          <li>Grape Blend: { product.grape_blend }</li>
+          <li>Size: { product.size }</li>
+          <li>Price { product.price }</li>
+          <li>Type: { product.type1 }</li>
+          <li>Style: { product.type2 }</li>
+        </ul>
+      </div>
     </div>
   );
 }

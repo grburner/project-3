@@ -4,7 +4,7 @@ import './style.css';
 import Hero from '../../organisms/Hero/Hero';
 import Filters from '../../organisms/Filters/Filters'; 
 import Marketplace from '../../organisms/Marketplace/Marketplace'; 
-
+import Search from '../../molecules/Search/Search';
 import Button from '../../atoms/Button/Button';
 
 // Context
@@ -91,9 +91,11 @@ function Home(){
 
   return (
     <ProductContext.Provider value={productState}>
-      <Hero />
+      <Hero>
+        <Search />
+      </Hero>
+      <Filters filters={filters} filterChange={filterChange} filterReset={resetFilters}/>
       <div className="container">
-        <Filters filters={filters} filterChange={filterChange} filterReset={resetFilters}/>
         <Marketplace filters={filters} />
       </div>
     </ProductContext.Provider>

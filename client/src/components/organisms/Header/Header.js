@@ -13,7 +13,7 @@ function Header(){
       <Row>
         <Col><Logo /></Col>
         <Col><Headline /></Col>
-        <Col><Button href="/signup" variant="outline-danger">Sign Up</Button></Col>
+        <Col><Button href="/signup" variant="white">Sign Up</Button></Col>
       </Row>
     </header>
   );
