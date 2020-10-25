@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { store } from '../../../utils/GlobalRetailerState';
 import OrderDetail from '../../organisms/OrderDetail';
+import DateFormatter from '../../../utils/DateFormatter';
 
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
@@ -51,18 +52,18 @@ const OrdersTable = () => {
   };
   
   const renderProductRow = (element, index) => {
-    let date = new Date(element.date)
-    let year = date.getFullYear();
-    let month = date.getMonth()+1;
-    let dt = date.getDate();
+    // let date = new Date(element.date)
+    // let year = date.getFullYear();
+    // let month = date.getMonth()+1;
+    // let dt = date.getDate();
 
     return (
       <tr key={index}>
         <td onClick={e => passProdDetail(e)} data-index={index}>@</td>
         <td>{element._id}</td>
         <td>{element.user_id}</td>
-        <td>{year+'-' + month + '-'+ dt}</td>
-        <td>{year+'-' + month + '-' + (dt + 7)}</td>
+        <td>{DateFormatter(element.date)}</td>
+        <td>{DateFormatter(element.date, 14)}</td>
         <td>{getTotal(element)}</td>
         <td>{element.status}</td>
       </tr>

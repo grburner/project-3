@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const OrderDetail = (props) => {
   const { data } = props;
@@ -34,9 +37,13 @@ const OrderDetail = (props) => {
   };
   return (
     <div>
-      <div>{custName ? custName : ''}</div>
-      <div>{data.orderDate}</div>
-      <div>{data.stats}</div>
+      <Container>
+      <Row>
+        <Col>{custName ? custName : ''}</Col>
+        <Col>{data.orderDate}</Col>
+        <Col>{data.stats}</Col>
+      </Row>
+      </Container>
       <Table>
         <tbody>
           {data.products.map(renderProductRow)}
