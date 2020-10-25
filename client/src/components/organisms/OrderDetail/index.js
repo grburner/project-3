@@ -13,7 +13,7 @@ const OrderDetail = (props) => {
   const { data } = props;
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
-  console.log(data)
+
   useEffect(() => {
     API.getUserName(data.custId)
       .then(data => setCustName(data.data.name));
