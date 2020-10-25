@@ -5,6 +5,7 @@ import API from '../../../utils/API';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import DateFormatter from '../../../utils/DateFormatter';
 
 const OrderDetail = (props) => {
   const { data } = props;
@@ -36,20 +37,18 @@ const OrderDetail = (props) => {
     );
   };
   return (
-    <div>
-      <Container>
+    <tr>
       <Row>
         <Col>{custName ? custName : ''}</Col>
-        <Col>{data.orderDate}</Col>
+        <Col>{DateFormatter(data.orderDate)}</Col>
         <Col>{data.stats}</Col>
       </Row>
-      </Container>
       <Table>
         <tbody>
           {data.products.map(renderProductRow)}
         </tbody>
       </Table>
-    </div>
+    </tr>
 
   );
 };
