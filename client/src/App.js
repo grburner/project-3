@@ -18,6 +18,7 @@ import Product from './components/pages/Product/Product';
 // Organisms
 import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
+import ImageUpload from './components/organisms/ImageUpload/index.js';
 
 function App() {
 

@@ -1,3 +1,13 @@
 .headline{
     color:white
 }
+
+.headline a{
+    color:white;
+    text-decoration: none;
+}
+
+.headline a:hover{
+    color:white;
+    text-decoration: none;
+}

@@ -9,3 +9,22 @@
 .product h1{
     color:#930045;
 }
+.image-wrapper{
+    width:50%;
+    float:left;
+}
+.image-wrapper img{
+    width:100%;
+    box-shadow:3px 4px 5px black;
+    border-radius:5px;
+}
+
+.product i{
+    color:#930045;
+    margin-right:20px;
+}
+
+.product li{
+    border-bottom:1px solid #999999;
+    padding:5px 0;
+}

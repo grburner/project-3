@@ -46,19 +46,6 @@ function Marketplace(props){
     seed = newArray;
   }
 
-
-  // if(props.filters.priceMax !== 0 || props.filters.store !== "" || props.filters.type !== "" || props.filters.style !== "") {
-  
-
-      
-    
-  // props.filters
-  // priceMax: 0,
-  // store: "",
-  // type: "",
-  // style: "",
-  
-
   return (
     <div className="container marketplace">
       <h3>Marketplace</h3>
