@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import DateFormatter from '../../../utils/DateFormatter';
 
 const OrderDetail = (props) => {
   const { data } = props;
@@ -33,16 +37,18 @@ const OrderDetail = (props) => {
     );
   };
   return (
-    <div>
-      <div>{custName ? custName : ''}</div>
-      <div>{data.orderDate}</div>
-      <div>{data.stats}</div>
+    <tr>
+      <Row>
+        <Col>{custName ? custName : ''}</Col>
+        <Col>{DateFormatter(data.orderDate)}</Col>
+        <Col>{data.stats}</Col>
+      </Row>
       <Table>
         <tbody>
           {data.products.map(renderProductRow)}
         </tbody>
       </Table>
-    </div>
+    </tr>
 
   );
 };
