@@ -18,16 +18,19 @@ export default {
     return axios.post('/api/users', user);
   },
   getProductsByRetailerId: function(id) {
-    return axios.get('/api/products/retailer_id/' + id)
+    return axios.get('/api/products/retailer_id/' + id);
   },
   updateProducts: function(id, body) {
     return axios({
       method: 'patch',
       url: ('api/products/' + id),
       data: body
-    })
+    });
   },
   findByRetailerId: function(id) {
-    return axios.get('/api/orders/retailer_id/' + id)
+    return axios.get('/api/orders/retailer_id/' + id);
+  },
+  getUserName: function(id) {
+    return axios.get('/api/users/' + id);
   }
 };

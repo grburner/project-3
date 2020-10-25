@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const Editable = ({
   text,
@@ -18,12 +18,12 @@ const Editable = ({
 
   const handleKeyDown = (event, type) => {
     const { key } = event;
-    const keys = ["Escape", "Tab"];
-    const enterKey = "Enter";
+    const keys = ['Escape', 'Tab'];
+    const enterKey = 'Enter';
     const allKeys = [...keys, enterKey];
     if (
-      (type === "textarea" && keys.indexOf(key) > -1) ||
-      (type !== "textarea" && allKeys.indexOf(key) > -1)
+      (type === 'textarea' && keys.indexOf(key) > -1) ||
+      (type !== 'textarea' && allKeys.indexOf(key) > -1)
     ) {
       setEditing(false);
     }
@@ -43,7 +43,7 @@ const Editable = ({
           onClick={() => setEditing(true)}
         >
           <span>
-            {text || placeholder || "Editable content"}
+            {text || placeholder || 'Editable content'}
           </span>
         </div>
       )}
