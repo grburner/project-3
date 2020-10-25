@@ -3,7 +3,7 @@ import './style.css';
 
 function Headline(){
   return (
-    <h1 className="headline">WineHub</h1>
+    <h1 className="headline"><a href="/">WineHub</a></h1>
   );
 }
   

@@ -8,7 +8,14 @@ import Button from '../../atoms/Button/Button';
 
 function Item(props){
   const link = '/product/' + props.value._id;
-  const image = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
+  let image = '';
+  console.log(props.value.image)
+  if(props.value.image === undefined){
+    image = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
+  } else {
+    image = props.value.image
+  }
+  
   return (
     <a href={link} className="item-link">
       <div className="item">

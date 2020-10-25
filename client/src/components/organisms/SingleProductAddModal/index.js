@@ -7,6 +7,10 @@ import Form from 'react-bootstrap/Form';
 
 import API from '../../../utils/API';
 
+import ImageUpload from '../../organisms/ImageUpload/index'
+
+import './style.css';
+
 const SingleProductAddModal = () => {
   const globalState = useContext(store);
   const [user, setUser] = useState('5f90df97d56aef06bcb010d3');
@@ -21,7 +25,8 @@ const SingleProductAddModal = () => {
     type2: '',
     size: '',
     grapes: '',
-    tags: []
+    tags: [],
+    image: ''
   });
 
   const testUser = {
@@ -51,7 +56,8 @@ const SingleProductAddModal = () => {
       'size': product.size,
       'grape_blend': product.grapes,
       'units': 0,
-      'price': 0
+      'price': 0,
+      'image': product.image
     };
 
     API.createProduct(productToAdd)
@@ -59,6 +65,16 @@ const SingleProductAddModal = () => {
         //console.log(res);
       })
       .catch(err => console.log(err));
+  }
+
+  const imageUpload = (resultEvent) => {
+    if (resultEvent.event === 'success') {
+      console.log(resultEvent.info.secure_url)
+      setProduct({
+        ...product,
+        image: resultEvent.info.secure_url
+      });
+    }
   }
 
   return (
@@ -171,6 +187,9 @@ const SingleProductAddModal = () => {
             <option>Bold</option>
           </Form.Control>
         </Form>
+        <div style={{padding:"10px 0"}}>
+        <ImageUpload imageUpload={imageUpload}/>
+        </div>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
             Close
@@ -182,7 +201,9 @@ const SingleProductAddModal = () => {
             Submit
           </Button>
         </Modal.Footer>
+        
       </Modal>
+     
     </>
   );
 };

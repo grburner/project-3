@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container';
 import Button from '../../atoms/Button/Button';
 
 import ProductContext from '../../../utils/ProductContext';
+import { store } from '../../../utils/GlobalRetailerState';
+import API from '../../../utils/API';
 
 function Filters(props){
 
@@ -15,19 +17,43 @@ function Filters(props){
 
   const [maxPrice, setMaxPrice] = useState({});
 
+  const [retailers, setRetailers] = useState([]);
+
+  let stores = [];
+
   useEffect(() => {
-    // Find max price from products
+    // Find max price and array of stores from products table return
     if(products.length >= 1) {
       let max = 0;
+      let tempArray = [];
       for(let i = 0; i < products.length; i++){
+        // Get max price
         if(products[i].price > max){
           max = products[i].price;
         }
+
+        // Get array of retailers
+        if(!stores.includes(products[i])){
+          tempArray.push(products[i].retailer_id)
+        }
       }
+      // Set max price
       setMaxPrice({
         maxPrice: Math.round(max)
       });
+
+      // Set retailers array
+      for(let i = 0; i < tempArray.length; i++){
+        // console.log(tempArray[i])
+        API.findRetailerById(tempArray[i])
+        .then(res => {
+          // This returns HTML, not a retailer
+          console.log(res)
+        })
+        .catch(err => console.log(err));
+      }
     }
+    // Find store
   },[products]);
 
 

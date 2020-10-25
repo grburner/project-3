@@ -1,4 +1,4 @@
-// const summaryStatsAPI = () => new Promise(function(resolve) {
+// export const summaryStatsAPI = new Promise(function(resolve) {
 //   resolve(
 //     [
 //       {'title': 'Products Listed', 'data': 23},

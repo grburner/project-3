@@ -19,8 +19,8 @@ const productSchema = new Schema({
   grape_blend: String,
   tags: [String],
   units: Number,
-  price: Number
-  //, image: mime
+  price: Number,
+  image: ""
 });
 
 const Product = mongoose.model('Product', productSchema);

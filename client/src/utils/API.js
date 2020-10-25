@@ -32,5 +32,8 @@ export default {
   },
   getUserName: function(id) {
     return axios.get('/api/users/' + id);
+  },
+  findRetailerById: function(id) {
+    return axios.get('/api/retailers/' + id);
   }
 };
