@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { store } from '../../../utils/GlobalRetailerState';
+import OrderDetail from '../../organisms/OrderDetail';
 
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
 
 const OrdersTable = () => {
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState("5f90df97d56aef06bcb010d3")
+  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
+  const [showDetail, setShowDetail] = useState(false);
+  const [prodDetail, setProdDetail] = useState({});
 
   useEffect(() => {
     API.findByRetailerId(retailerId).then(data => {
@@ -14,21 +18,42 @@ const OrdersTable = () => {
   }, []);
 
   const getTotal = (elem) => {
-    let total = 0 
+    let total = 0; 
     elem.detail.forEach(e => {
-      // console.log(e.quantity, e.price)
-        const itemTotal = e.quantity * e.price
-        total += itemTotal
-    })
-    console.log(total)
-    return total
-  }
-  
+      const itemTotal = e.quantity * e.price;
+      total += itemTotal;
+    });
+    return total;
+  };
+
+  const passProdDetail = (e) => {
+    let index = e.target.dataset.index;
+    let passObj = {};
+    let details = [];
+
+    // let custName
+    // API.getUserName(chartData[index].user_id).then(value => { custName = value.data.name })
+
+    chartData[index].detail.map(elem => {
+      details.push(
+        {
+          name: elem.product_id, 
+          quantity: elem.quantity, 
+          cost: elem.price * elem.quantity
+        });
+    });
+    passObj.products = details;
+    passObj.custId = chartData[index].user_id;
+    passObj.stats = chartData[index].status;
+    passObj.orderDate = chartData[index].date;
+    setProdDetail(passObj);
+    setShowDetail(true);
+  };
   
   const renderProductRow = (element, index) => {
     return (
       <tr key={index}>
-        <td onClick={() => console.log('item detail clicked')}>@</td>
+        <td onClick={e => passProdDetail(e)} data-index={index}>@</td>
         <td>{element._id}</td>
         <td>{element.user_id}</td>
         <td>{element.date}</td>
@@ -39,23 +64,25 @@ const OrdersTable = () => {
   };
 
   return (
-
-    <Table striped bordered hover size="sm">
-      <caption>Products</caption>
-      <thead>
-        <tr>
-          <th>@</th>
-          <th>Order ID</th>
-          <th>User Id</th>
-          <th>Date</th>
-          <th>Total</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {chartData.map(renderProductRow)}
-      </tbody>
-    </Table>
+    <div>
+      <Table striped bordered hover size="sm">
+        <caption>Products</caption>
+        <thead>
+          <tr>
+            <th>@</th>
+            <th>Order ID</th>
+            <th>User Id</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {chartData.map(renderProductRow)}
+        </tbody>
+      </Table>
+      {showDetail ? <OrderDetail data={prodDetail}></OrderDetail> : ''}
+    </div>
   );
 };
 

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import SummaryStat from '../../molecules/SummaryStat';
 import CardDeck from 'react-bootstrap/CardDeck';
-import * as API from '../../../utils/mockAPI';
+import summaryStatsAPI from '../../../utils/mockAPI';
 
 const SummaryStats = () => {
   const [summaryState, setSummaryState] = useState([]);
 
   useEffect(() => {
-    API.summaryStatsAPI.then((data) => {
+    summaryStatsAPI.then((data) => {
       setSummaryState(data);
     });
   }, []);

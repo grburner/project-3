@@ -6,15 +6,15 @@ import Button from '../../atoms/Button/Button.js';
 
 const ProductsTable = () => {
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState("5f90df97d56aef06bcb010d3")
-  const [inputData, setInputData] = useState('')
+  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
+  const [inputData, setInputData] = useState('');
   const inputRef = useRef();
 
 
   useEffect(() => {
     API.getProductsByRetailerId(retailerId).then(data => {
       setChartData(data.data);
-    })
+    });
   }, []);
 
   const changeState = (field, index, value) => {
@@ -25,38 +25,38 @@ const ProductsTable = () => {
       return d;
     });
     setChartData(newData);
-  }
+  };
 
   const toggleStatus = e => {
-    const id = e.target.dataset.id
+    const id = e.target.dataset.id;
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
-        elem.status ? changeState("status", index, false) : changeState("status", index, true)
+        elem.status ? changeState('status', index, false) : changeState('status', index, true);
       }
-    })
-  }
+    });
+  };
 
   const changeInput = (e, field) => {
-    const id = e.target.dataset.id
-    const value = e.target.value
+    const id = e.target.dataset.id;
+    const value = e.target.value;
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
-        changeState(field, index , value)
+        changeState(field, index , value);
       }
-    })
-  }
+    });
+  };
 
   const sendData = () => {
     chartData.forEach(elem => {
       const body = 
       {
-        "price": parseInt(elem.price),
-        "units": parseInt(elem.units),
-        "status": elem.status
-      }
-      API.updateProducts(elem._id, body)
-    })
-  }
+        'price': parseInt(elem.price),
+        'units': parseInt(elem.units),
+        'status': elem.status
+      };
+      API.updateProducts(elem._id, body);
+    });
+  };
   
   const renderProductRow = (element, index) => {
     return (
@@ -65,11 +65,11 @@ const ProductsTable = () => {
         <td data-id={element._id} >{element.name}</td>
         <td data-id={element._id}>
           <Editable
-              text={inputData}
-              placeholder={element.price}
-              childRef={inputRef}
-              type='input'
-            >
+            text={inputData}
+            placeholder={element.price}
+            childRef={inputRef}
+            type='input'
+          >
             <input 
               ref={inputRef}
               data-value={element.price} 
@@ -84,11 +84,11 @@ const ProductsTable = () => {
         </td>
         <td data-id={element._id}>
           <Editable
-              text={inputData}
-              placeholder={element.units}
-              childRef={inputRef}
-              type='input'
-            >
+            text={inputData}
+            placeholder={element.units}
+            childRef={inputRef}
+            type='input'
+          >
             <input 
               ref={inputRef}
               data-value={element.units} 
@@ -101,7 +101,7 @@ const ProductsTable = () => {
             />
           </Editable>
         </td>
-        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status ? "Live" : "Paused"}</td>
+        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status ? 'Live' : 'Paused'}</td>
       </tr>
     );
   };

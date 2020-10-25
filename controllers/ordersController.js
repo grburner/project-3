@@ -35,8 +35,8 @@ module.exports = {
   },
   findByRetailerId: function(req, res) {
     db.Order
-      .find({"retailer_id": req.params.retailer_id})
+      .find({'retailer_id': req.params.retailer_id})
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+      .catch(err => res.status(422).json(err));
   }
 };
