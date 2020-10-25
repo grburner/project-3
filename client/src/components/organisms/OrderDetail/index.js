@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import DateFormatter from '../../../utils/DateFormatter';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
-
+  console.log(data)
   useEffect(() => {
     API.getUserName(data.custId)
       .then(data => setCustName(data.data.name));
@@ -37,19 +39,31 @@ const OrderDetail = (props) => {
     );
   };
   return (
-    <tr>
-      <Row>
-        <Col>{custName ? custName : ''}</Col>
-        <Col>{DateFormatter(data.orderDate)}</Col>
-        <Col>{data.stats}</Col>
-      </Row>
-      <Table>
-        <tbody>
-          {data.products.map(renderProductRow)}
-        </tbody>
-      </Table>
-    </tr>
-
+    <Card>
+      <Card.Header>
+        <Row  className="align-items-center">
+          <Col>{custName ? custName : ''}</Col>
+          <Col>{DateFormatter(data.orderDate)}</Col>
+          <Col><Badge pill variant={(data.status == "open" ? "danger" : "success")}>{data.status}</Badge></Col>
+        </Row>
+      </Card.Header>
+      <Card.Body>
+        <Table>
+          <tbody>
+            {data.products.map(renderProductRow)}
+          </tbody>
+        </Table>
+        <Row className="border-top border-dark">
+          <Col className="mt-2">
+            <Row className="d-flex justify-content-center">Ship By:</Row>
+            <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
+          </Col>
+          <Col className="mt-2">
+            <Button onClick={() => console.log('ship me clicked')}>Ship Now</Button>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
   );
 };
 
