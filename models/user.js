@@ -7,7 +7,7 @@ const userSchema = new Schema({
     type: String, 
     required: true 
   },
-  email: { 
+  username: { 
     type: String, 
     required: true 
   },
@@ -22,17 +22,17 @@ const userSchema = new Schema({
 
   //retailer
   company_name: String, 
-  ships_to: [String],
+  // ships_to: [String],
   cc_processing: String, //bcrypt.String,
   bio: String,
 
   //consumer
   birth_date: { 
     type: Date,
-    validate: function(input) {
-      return typeof new Date(input) === 'date' && new Date(input) >= Date.now - (21*365*24*60*60*1000);
-    },
-    message: input => 'You must be 21 to register!'
+    // validate: function(input) {
+    //   return typeof new Date(input) === 'date' && new Date(input) >= Date.now - (21*365*24*60*60*1000);
+    // },
+    // message: input => 'You must be 21 to register!'
   },
   cc_on_file: [{
     cc_number: String, //bcrypt.String,
