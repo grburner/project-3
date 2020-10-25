@@ -7,7 +7,7 @@ import API from '../../../utils/API';
 
 const OrdersTable = () => {
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
+  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d4');
   const [showDetail, setShowDetail] = useState(false);
   const [prodDetail, setProdDetail] = useState({});
 
@@ -51,12 +51,18 @@ const OrdersTable = () => {
   };
   
   const renderProductRow = (element, index) => {
+    let date = new Date(element.date)
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let dt = date.getDate();
+
     return (
       <tr key={index}>
         <td onClick={e => passProdDetail(e)} data-index={index}>@</td>
         <td>{element._id}</td>
         <td>{element.user_id}</td>
-        <td>{element.date}</td>
+        <td>{year+'-' + month + '-'+ dt}</td>
+        <td>{year+'-' + month + '-' + (dt + 7)}</td>
         <td>{getTotal(element)}</td>
         <td>{element.status}</td>
       </tr>
@@ -72,7 +78,8 @@ const OrdersTable = () => {
             <th>@</th>
             <th>Order ID</th>
             <th>User Id</th>
-            <th>Date</th>
+            <th>Order Date</th>
+            <th>Ship By Date</th>
             <th>Total</th>
             <th>Status</th>
           </tr>
