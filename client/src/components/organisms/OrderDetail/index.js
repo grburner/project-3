@@ -11,23 +11,27 @@ import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
+  const [passedData, setPassedData] = useState(data)
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
 
-  useEffect(() => {
-    API.getUserName(data.custId)
-      .then(data => setCustName(data.data.name));
-  }, [custName, prodNames]);
-  // this is a hackjob and needs fixed
+  const getUserName = (id) => {
+    API.getUserName(id).then((data) => {setCustName(data.data.name)})
+  }
 
   useEffect(() => {
-    let prodsArray = [];
-    data.products.forEach((elem) => {
-      API.getProductsID(elem.name)
-        .then(data => prodsArray.push(data.data.name));
+    // let prodsArray = [];
+    let promises = [];
+
+    const userName = getUserName(data.custId)
+    const prodsList = data.products.forEach((elem) => {
+      promises.push(
+        API.getProductsID(elem.name)
+          .then(data => {return data.data.name})
+        );
     });
-    setProdNames(prodsArray);
-  }, []);
+    Promise.all(promises).then((values) => {setProdNames(values)})
+  }, [passedData]);
 
   const renderProductRow = (element, index) => {
     return (
