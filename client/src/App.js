@@ -11,6 +11,7 @@ import { StateProvider } from './utils/GlobalRetailerState';
 // Pages
 import Home from './components/pages/Home/Home';
 import Signup from './components/pages/Signup/Signup';
+import Login from './components/pages/Login/Login';
 import Consumer from './components/pages/Consumer/Consumer';
 import Retailer from './components/pages/Retailer/Retailer';
 import Product from './components/pages/Product/Product';
@@ -30,6 +31,9 @@ function App() {
           <Switch>
             <Route path="/signup">
               <Signup />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
             <Route path="/consumer">
               <Consumer />

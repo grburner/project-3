@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
@@ -19,40 +20,36 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('handleSubmit')
+    e.preventDefault();
+    console.log('handleSubmit');
 
-    API.axios
-      .post('/user/login', {
-        username: userState.username,
-        password: userState.password
-      })
+    API.getUser(userState)
       .then(response => {
-        console.log('login response: ')
-        console.log(response)
+        console.log('login response: ');
+        console.log(response);
         if (response.status === 200) {
           // update App.js state
-          this.props.updateUser({
+          setUserState({
             loggedIn: true,
             username: response.data.username
-          })
+          });
           // update the state to redirect to home
-          setState({
+          setUserState({
             redirectTo: '/'
-          })
+          });
         }
       }).catch(error => {
-        console.log('login error: ')
+        console.log('login error: ');
         console.log(error);
                 
-      })
-  }
+      });
+  };
 
 
 
 
   if (userState.redirectTo) {
-    return <Redirect to={{ pathname: userState.redirectTo }} />
+    return <Redirect to={{ pathname: userState.redirectTo }} />;
   } else {
     return (
       <div>
@@ -97,7 +94,7 @@ function Login() {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
