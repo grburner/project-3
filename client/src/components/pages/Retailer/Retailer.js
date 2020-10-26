@@ -30,9 +30,6 @@ const Retailer = () => {
       <Row>
         <ProductTable />
       </Row>
-      <Row>
-        <h1>Products</h1>
-      </Row>
     </Container>
   );
 };

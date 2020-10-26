@@ -19,13 +19,13 @@ const SingleProductAddModal = () => {
   const [product, setProduct] = useState({
     text: '',
     description: '',
-    country: '',
-    region: '',
-    type1: '',
-    type2: '',
-    size: '',
-    grapes: '',
-    tags: [],
+    country: 'United States',
+    region: 'Napa Valley',
+    type1: 'Red',
+    type2: 'Still',
+    size: '750mL',
+    grapes: 'Syrah',
+    tags: ["Natural"],
     image: ''
   });
 
@@ -47,7 +47,7 @@ const SingleProductAddModal = () => {
   function addProduct(product){
     const productToAdd = {
       'retailer_id': user,
-      'name': product.text,
+      'name': product.text.toUpperCase(),
       'description': product.description,
       'country': product.country,
       'geo2': product.region,
@@ -109,6 +109,7 @@ const SingleProductAddModal = () => {
             as="select"
             onChange={updateProduct}
             value={product.description}
+            defaultValue="United States"
             name="country">
             <option>United States</option>
             <option>France</option>
@@ -136,6 +137,7 @@ const SingleProductAddModal = () => {
             as="select"
             onChange={updateProduct}
             value={product.type1}
+            defaultValue="Red"
             name="type1">
             <option>Red</option>
             <option>White</option>
@@ -147,6 +149,7 @@ const SingleProductAddModal = () => {
             as="select"
             onChange={updateProduct}
             value={product.type2}
+            defaultValue="Still"
             name="type2">
             <option>Still</option>
             <option>Sparkling</option>
@@ -157,6 +160,7 @@ const SingleProductAddModal = () => {
             as="select"
             onChange={updateProduct}
             value={product.size}
+            defaultValue={"mail@example.com"}
             name="size">
             <option>750mL</option>
             <option>1500mL</option>
@@ -194,9 +198,10 @@ const SingleProductAddModal = () => {
           <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={() => 
-            addProduct(product)
-          //dispatch({ type: 'HIDEsProdModalinView'})
+          <Button variant="primary" type="submit" onClick={() => {
+            addProduct(product);
+            dispatch({ type: 'HIDEsProdModalinView'})
+          }
           }>
             Submit
           </Button>

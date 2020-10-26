@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
 import Editable from '../../../utils/Editable.js';
 import Button from '../../atoms/Button/Button.js';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 const ProductsTable = () => {
   const [chartData, setChartData] = useState([]);
@@ -61,7 +63,7 @@ const ProductsTable = () => {
   const renderProductRow = (element, index) => {
     return (
       <tr key={index} data-id={element._id}>
-        <td  data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
+        <td data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
         <td data-id={element._id} >{element.name}</td>
         <td data-id={element._id}>
           <Editable
@@ -109,6 +111,19 @@ const ProductsTable = () => {
   return (
 
     <div>
+      <div className="mb-3">
+      <Navbar bg="light" expand="lg" className="w-100">
+        <Navbar.Brand href="#home"><h5>Your Products</h5></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Button onClick={sendData}>
+              Save
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      </div>
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
@@ -123,9 +138,6 @@ const ProductsTable = () => {
           {chartData ? chartData.map(renderProductRow) : 'waiting...'}
         </tbody>
       </Table>
-      <Button onClick={sendData}>
-        Save
-      </Button>
     </div>
   );
 };
@@ -133,7 +145,7 @@ const ProductsTable = () => {
 export default function ProductTable() {
 
   return (
-    <div className="App table-wrapper-scroll-y my-custom-scrollbar">
+    <div className="App table-wrapper-scroll-y my-custom-scrollbar w-100">
       <ProductsTable />
     </div>
   );
