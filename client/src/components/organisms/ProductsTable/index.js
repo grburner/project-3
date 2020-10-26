@@ -61,7 +61,7 @@ const ProductsTable = () => {
   const renderProductRow = (element, index) => {
     return (
       <tr key={index} data-id={element._id}>
-        <td  data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
+        <td data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
         <td data-id={element._id} >{element.name}</td>
         <td data-id={element._id}>
           <Editable
