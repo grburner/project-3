@@ -20,7 +20,6 @@ const OrderDetail = (props) => {
   }
 
   useEffect(() => {
-    // let prodsArray = [];
     let promises = [];
 
     const userName = getUserName(data.custId)
@@ -43,6 +42,7 @@ const OrderDetail = (props) => {
     );
   };
   return (
+
     <Card>
       <Card.Header>
         <Row  className="align-items-center">
