@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, {useState} from 'react';
+//import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
 
@@ -9,7 +10,7 @@ function Signup(){
     username: '',
     password: '',
     confirmPassword: '',
-    role: '',
+    role: 'consumer',
     name: '',
     address_street1: '',
     address_street2: '',

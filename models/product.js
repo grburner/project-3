@@ -6,6 +6,7 @@ const productSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  retailer_name: String,
   name: { 
     type: String, 
     required: true 
