@@ -37,7 +37,6 @@ const OrdersTable = () => {
     let index = e.target.dataset.index;
     let passObj = {};
     let details = [];
-    console.log(index)
 
     chartData[index].detail.map(elem => {
       details.push(
@@ -49,8 +48,9 @@ const OrdersTable = () => {
     });
     passObj.products = details;
     passObj.custId = chartData[index].user_id;
-    passObj.stats = chartData[index].status;
+    passObj.status = chartData[index].status;
     passObj.orderDate = chartData[index].date;
+    passObj.shipByDate = DateFormatter(chartData[index].date, 14)
     setProdDetail(passObj);
     setDetailIndex(index)
     setShowDetail(true);
@@ -80,7 +80,7 @@ const OrdersTable = () => {
 
   return (
     <div>
-      <Row>
+      <Row className="mt-2">
         <Col sm={showDetail ? 8 : 12}>
           <Table>
             <thead>
