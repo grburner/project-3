@@ -1,18 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './style.css';
-import Button from '../../atoms/Button/Button'
+import Button from '../../atoms/Button/Button';
+import { store } from '../../../utils/GlobalState';
 import API from '../../../utils/API';
 
 
 
 function Product(){
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
 
   let { id } = useParams();
+  let userId = "5f90df97d56aef06bcb010cb"
 
   const [product, setProduct] = useState({});
-
-  const productData = '';
 
   const getProductDatabyId = () => {
     API.getProductsID(id)
@@ -23,8 +25,17 @@ function Product(){
       .catch(err => console.log(err));
   };
 
+  const setUser = (userId) => {
+    dispatch({ type: 'SETcurrentUser', payload: userId})
+  }
+
+  const addProductToCart = () => {
+    console.log('add product to cart here')
+  }
+
   useEffect(() => {
     getProductDatabyId();
+    setUser(userId)
   }, []);
 
   let defaultImage = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
@@ -51,7 +62,7 @@ function Product(){
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button>Buy Now</Button>
+              <Button onClick={() => addProductToCart()}>Buy Now</Button>
            </ul>
         </div>
          

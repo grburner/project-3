@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { store } from '../../../utils/GlobalRetailerState';
+import { store } from '../../../utils/GlobalState';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

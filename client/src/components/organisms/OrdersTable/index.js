@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { store } from '../../../utils/GlobalRetailerState';
+import { store } from '../../../utils/GlobalState';
 import OrderDetail from '../../organisms/OrderDetail';
 import DateFormatter from '../../../utils/DateFormatter';
 import Badge from 'react-bootstrap/Badge';

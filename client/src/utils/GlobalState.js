@@ -5,7 +5,9 @@ const initialState = {
   sProdModalinView: false,
   bProdModalinView: false,
   sInvModalinView: false,
-  bInvModalinView: false
+  bInvModalinView: false,
+  currentUser: '',
+  userCart: []
 };
 
 const store = createContext(initialState);
@@ -34,6 +36,11 @@ const StateProvider = ( { children } ) => {
         ...initialState,
         bProdModalinView: false
       };
+    case 'SETcurrentUser':
+      return {
+        ...initialState,
+        currentUser: action.payload
+      }
     default:
       throw new Error();
     }

@@ -6,7 +6,32 @@ const db = require('../models');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/marketplace');
 
 const userSeed = [
-  { _id: mongoose.Types.ObjectId('5f90df97d56aef06bcb010cb'), name: 'Mattie Poquette', username: 'mattie@aol.com', role: 'consumer', password: 'password', address_street1: '73 State Road 434 E', address_street2: '1st floor', address_city: 'Phoenix', address_state: 'AZ', address_zip: '85013', phone_number: '602-277-4385', birth_date: '12/1/1995', favorites: [{product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22785')},  {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22786')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22788')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2279d')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca227aa')}] },
+  { _id: mongoose.Types.ObjectId('5f90df97d56aef06bcb010cb'), 
+    name: 'Mattie Poquette', 
+    username: 'mattie@aol.com', 
+    role: 'consumer', 
+    password: 'password', 
+    address_street1: '73 State Road 434 E', 
+    address_street2: '1st floor', 
+    address_city: 'Phoenix', 
+    address_state: 'AZ', 
+    address_zip: '85013', 
+    phone_number: '602-277-4385', 
+    birth_date: '12/1/1995', 
+    favorites: [
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22785')},  
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22786')}, 
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22788')}, 
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2279d')}, 
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca227aa')}],
+    cart: [
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22799')},
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22794')},
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22795')},
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2279a')},
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22792')},
+      {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22784')},
+    ] },
   { _id: mongoose.Types.ObjectId('5f90df97d56aef06bcb010cc'), name: 'Meaghan Garufi', username: 'meaghan@hotmail.com', role: 'consumer', password: 'password', address_street1: '69734 E Carrillo St', address_street2: '', address_city: 'Mc Minnville', address_state: 'TN', address_zip: '37110', phone_number: '931-313-9635', birth_date: '10/10/1999', favorites: [{product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22789')},  {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2278f')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2278a')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22785')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22784')}] },
   { _id: mongoose.Types.ObjectId('5f90df97d56aef06bcb010cd'), name: 'Gladys Rim', username: 'gladys.rim@rim.org', role: 'consumer', password: 'password', address_street1: '322 New Horizon Blvd', address_street2: 'Apt C', address_city: 'Milwaukee', address_state: 'WI', address_zip: '53207', phone_number: '414-661-9598', birth_date: '4/1/1948', favorites: [{product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22792')},  {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22787')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22793')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22795')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22797')}] },
   { _id: mongoose.Types.ObjectId('5f90df97d56aef06bcb010ce'), name: 'Yuki Whobrey', username: 'yuki_whobrey@aol.com', role: 'consumer', password: 'password', address_street1: '1 State Route 27', address_street2: '', address_city: 'Taylor', address_state: 'MI', address_zip: '48180', phone_number: '313-288-7937', birth_date: '5/5/1992', favorites: [{product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22789')},  {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2278e')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca2278c')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22794')}, {product_id: mongoose.Types.ObjectId('5f90e02f0f4cef1b1ca22785')}] },

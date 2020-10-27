@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 import Button from '../../atoms/Button/Button';
 
 import ProductContext from '../../../utils/ProductContext';
-import { store } from '../../../utils/GlobalRetailerState';
 import API from '../../../utils/API';
 
 function Filters(props){

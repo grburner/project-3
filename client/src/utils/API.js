@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default {
   getProducts: function(){
-    return axios.get('/api/products');
+    return axios.get('/api/products/');
   },
   getProductsID: function(id){
     return axios.get('/api/products/' + id);
@@ -38,5 +38,8 @@ export default {
   },
   findRetailerById: function(id) {
     return axios.get('/api/retailers/' + id);
+  },
+  updateCart: function(id) {
+    return axios.get('api/cart' + id);
   }
 };

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { store } from '../../../utils/GlobalRetailerState';
+import { store } from '../../../utils/GlobalState';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';

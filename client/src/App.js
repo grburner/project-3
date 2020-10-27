@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import { StateProvider } from './utils/GlobalRetailerState';
+import { StateProvider } from './utils/GlobalState';
 
 // Pages
 import Home from './components/pages/Home/Home';
@@ -25,34 +25,34 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Router>
-        <div>
-          <Switch>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/consumer">
-              <Consumer />
-            </Route>
-            <Route path="/retailer">
-              <StateProvider>
-                <Retailer />
-              </StateProvider>
-            </Route>
-            <Route path="/product/:id">
-              <Product />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-      <Footer />
+      <StateProvider>
+        <Header />
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/signup">
+                <Signup />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/consumer">
+                <Consumer />
+              </Route>
+              <Route path="/retailer">
+                  <Retailer />
+              </Route>
+              <Route path="/product/:id">
+                <Product />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+        <Footer />
+      </StateProvider>
     </div>
   );
 }

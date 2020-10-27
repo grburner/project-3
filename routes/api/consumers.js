@@ -13,4 +13,8 @@ router
   .put(consumersController.update)
   .delete(consumersController.remove);
 
+router 
+  .route('/cart/:id')
+  .patch(consumersController.addIdToCart);
+
 module.exports = router;
