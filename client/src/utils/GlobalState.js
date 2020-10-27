@@ -8,7 +8,8 @@ const initialState = {
   sInvModalinView: false,
   bInvModalinView: false,
   currentUser: '',
-  userCart: []
+  userCart: [],
+  toastState: false
 };
 
 const store = createContext(initialState);
@@ -47,6 +48,16 @@ const StateProvider = ( { children } ) => {
         ...state,
         userCart: action.payload
       };
+    case 'ADDtoCart':
+      return {
+        ...state,
+        userCart: action.payload
+      };
+    case 'TOGGLEtoast':
+      return {
+        ...state,
+        toastState: !state.toastState
+      }
     default:
       throw new Error();
     }

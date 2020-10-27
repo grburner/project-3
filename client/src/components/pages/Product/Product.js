@@ -24,22 +24,46 @@ function Product(){
       .catch(err => console.log(err));
   };
 
-  const setCart = (id) => {
-    API.getUser(id)
-      .then(res => dispatch({ type: 'SETuserCart', payload: res.data.cart })
-  )}
+  const addToCart = (id) => {
+    let cart = globalState.state.userCart
 
-  const setUser = (userId) => {
-    const newUser = new Promise((res, rej) => {
-      res(dispatch({ type: 'SETcurrentUser', payload: userId}))
-      rej(console.log('setUser rejected'))
-    })
-    newUser.then(setCart(userId))
+    if (cart.indexOf(id) === -1 ) {
+      cart.push(id)
+      dispatch({ type: 'ADDtoCart', payload: cart})
+      let cartBody = []
+      globalState.state.userCart.forEach(item => {
+        cartBody.push({"product_id": item})
+      })
+      const body = {"cart": cartBody}
+      API.updateCart(userId, body)
+    }
   }
+
+  // const setCart = (id) => {
+  //   if (globalState.state.userCart.length === 0) {
+  //     console.log('into set cart')
+  //     let cartArray = []
+  //     API.getUser(id)
+  //       .then(res => res.data.cart.forEach(elem => {
+  //         cartArray.push(elem.product_id)
+  //       }))
+  //       .then(res => dispatch({ type: 'SETuserCart', payload: cartArray })
+  //       )
+  //     }
+  //   }
+
+  // const setUser = (userId) => {
+  //   const newUser = new Promise((res, rej) => {
+  //     res(dispatch({ type: 'SETcurrentUser', payload: userId}))
+  //       .then(setCart(userId))
+  //     rej(console.log('setUser rejected'))
+  //   })
+  //   newUser.then(setCart(userId))
+  // }
 
   useEffect(() => {
     getProductDatabyId();
-    setUser(userId)
+    // setUser(userId)
   }, []);
 
   let defaultImage = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
@@ -66,7 +90,7 @@ function Product(){
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button onClick={() => setCart()}>Buy Now</Button>
+              <Button onClick={() => addToCart(id)}>Buy Now</Button>
            </ul>
         </div>
          

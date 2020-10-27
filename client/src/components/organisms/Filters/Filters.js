@@ -47,7 +47,6 @@ function Filters(props){
         API.findRetailerById(tempArray[i])
         .then(res => {
           // This returns HTML, not a retailer
-          console.log(res)
         })
         .catch(err => console.log(err));
       }

@@ -13,4 +13,9 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
+// Matches with "/api/users/cart/:id"
+router
+  .route('/cart/:id')
+  .patch(usersController.updateCart);
+
 module.exports = router;

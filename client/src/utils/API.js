@@ -24,6 +24,7 @@ export default {
     return axios.get('/api/products/retailer_id/' + id);
   },
   updateProducts: function(id, body) {
+    console.log(body)
     return axios({
       method: 'patch',
       url: ('api/products/' + id),
@@ -39,7 +40,12 @@ export default {
   findRetailerById: function(id) {
     return axios.get('/api/retailers/' + id);
   },
-  updateCart: function(id) {
-    return axios.get('api/cart' + id);
+  updateCart: function(id, body) {
+    console.log('into API update cart')
+    return axios({
+      method: 'patch',
+      url: ('api/users/cart/' + id),
+      data: body
+    });
   }
 };

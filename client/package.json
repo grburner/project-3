@@ -2,7 +2,7 @@
   "name": "mern",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost:8000/",
   "dependencies": {
     "bootstrap": "^4.5.3",
     "cloudinary": "^1.23.0",
