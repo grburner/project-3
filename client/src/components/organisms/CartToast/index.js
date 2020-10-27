@@ -49,14 +49,14 @@ const CartToast = () => {
       };
 
     const createOrder = () => {
-        let orders = [{"retailer_id": "5f90df97d56aef06bcb010d3"}]
+        let orders = ["5f90df97d56aef06bcb010d3"]
         cartData.forEach(elem => {
             let id = elem.retailer_id
             orders.forEach(order => {
-                if (order.retailer_id === id) {
+                if (order === id) {
                     console.log('matches' + id)
                 } else {
-                    orders.push(id)
+                    consoo
                 }
             })
         })
