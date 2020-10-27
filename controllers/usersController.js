@@ -1,5 +1,5 @@
 const db = require('../models');
-// const passport = require('../passport');
+const passport = require('../passport');
 
 // Defining methods for the usersController
 module.exports = {
@@ -15,28 +15,30 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findOne: function(req, res, next) {
+    console.log(req.body);
+    next();
+  },
   create: function(req, res) {
     db.User
-      //   .findOne({ username: username }, (err, user) => {
-      //     if (err) {
-      //         console.log('User.js post error: ', err)
-      //     } else if (user) {
-      //         res.json({
-      //             error: `Sorry, already a user with the username: ${username}`
-      //         })
-      //     }
-      //     else {
-      //         const newUser = new User({
-      //             username: username,
-      //             password: password
-      //         })
-      //         newUser.save((err, savedUser) => {
-      //             if (err) return res.json(err)
-      //             res.json(savedUser)
-      //         })
-      //     }
-      // })
-      .create(req.body)
+        .findOne({ username: req.body.username }, (err, user) => {
+          if (err) {
+              console.log('User.js post error: ', err)
+          } else if (user) {
+            res.json({
+                  error: `Sorry, already a user with the username: ${username}`
+              })
+          }
+          else {
+              console.log('user being created: ', req.body);
+              const newUser = new db.User(req.body)
+              newUser.save((err, savedUser) => {
+                  if (err) return res.json(err)
+                  res.json(savedUser)
+              })
+          }
+      })
+      //.create(req.body)
 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

@@ -8,6 +8,7 @@ const routes = require('./routes');
 const user = require('./routes/api/users');
 const session = require('express-session');
 const passport = require('./passport');
+const morgan = require('morgan');
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -15,17 +16,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.json());
+app.use(morgan());
 
-app.use(routes);
-// Connect to the Mongo DB
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/marketplace", {
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/marketplace', {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls serializeUser and deserializeUser
 
-// --passport
-app.use('/users', user);
 //sessions
 app.use(
   session({
@@ -38,16 +34,23 @@ app.use( (req, res, next) => {
   console.log('req.session', req.session);
   return next();
 });
+
+app.use(routes);
+// Connect to the Mongo DB
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/marketplace", {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/marketplace', {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
+
+// --passport
+app.use('/users', user);
+
 app.post('/users', (req, res) => {
   console.log('user signup');
   req.session.username = req.body.username;
   res.end()
 });
-// Passport
-app.use(passport.initialize())
-app.use(passport.session()) // calls serializeUser and deserializeUser
-
-
 
 // Send every request to the React app
 // Define any API routes before this runs

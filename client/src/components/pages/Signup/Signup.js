@@ -43,11 +43,11 @@ function Signup(){
     API.createUser(userState)
       .then(response => {
         console.log(response);
-        if (!response.data.errmsg) {
+        if (!response.data.error) {
           console.log('successful signup');
-          // setUserState({ //redirect to login page
-          //   redirectTo: '/login'
-          // });
+          setUserState({ //redirect to login page
+            redirectTo: '/login'
+          });
         } else {
           console.log('username already taken');
         }
