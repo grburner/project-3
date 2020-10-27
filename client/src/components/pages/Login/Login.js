@@ -23,7 +23,7 @@ function Login() {
     e.preventDefault();
     console.log('handleSubmit');
 
-    API.getUser(userState)
+    API.getUserLogin(userState)
       .then(response => {
         console.log('login response: ');
         console.log(response);
