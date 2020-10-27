@@ -19,7 +19,6 @@ function Product(){
   const getProductDatabyId = () => {
     API.getProductsID(id)
       .then(res => {
-        console.log(res.data);
         setProduct(res.data);
       })
       .catch(err => console.log(err));
@@ -29,9 +28,10 @@ function Product(){
     dispatch({ type: 'SETcurrentUser', payload: userId})
   }
 
-  const addProductToCart = () => {
-    console.log('add product to cart here')
-  }
+  const addProductToCart = (id) => {
+    API.getUser(id)
+      .then(res => dispatch({ type: 'SETuserCart', payload: res.data.cart })
+  )}
 
   useEffect(() => {
     getProductDatabyId();
@@ -62,7 +62,7 @@ function Product(){
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button onClick={() => addProductToCart()}>Buy Now</Button>
+              <Button onClick={() => addProductToCart(globalState.state.currentUser)}>Buy Now</Button>
            </ul>
         </div>
          

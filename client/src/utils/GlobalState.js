@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import API from '../utils/API';
 
 
 const initialState = {
@@ -40,7 +41,12 @@ const StateProvider = ( { children } ) => {
       return {
         ...initialState,
         currentUser: action.payload
-      }
+      };
+    case 'SETuserCart':
+      return {
+        ...state,
+        userCart: action.payload
+      };
     default:
       throw new Error();
     }
