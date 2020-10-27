@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { on } from 'nodemon';
 
-const CartDetail = ({ data }) => {
-    const [orderQuant, setOrderQuant] = useState(data)
+const CartDetail = (props) => {
+    const [orderQuant, setOrderQuant] = useState(props.data)
 
     const changeQuant = (delta) => {
         setOrderQuant({
@@ -14,24 +13,16 @@ const CartDetail = ({ data }) => {
         console.log(orderQuant)
     }
 
+    const handleChange = (e, name) => {
+        props.onChange(e, props.data.name)
+    }
+
     return(
         <Row>
-            <Col>{data.name}</Col>
-            <Col>{data.price}</Col>
+            <Col>{props.data.name}</Col>
+            <Col>{props.data.price}</Col>
             <Col>
-            <span onClick={() => {changeQuant(1)}}>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bag-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H2z"/>
-                    <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"/>
-                </svg>
-            </span>
-            <p>{orderQuant.order_units}</p>
-            <span onClick={() => {changeQuant(-1)}}>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bag-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 1a2.5 2.5 0 0 0-2.5 2.5V4h5v-.5A2.5 2.5 0 0 0 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5H2z"/>
-                    <path fill-rule="evenodd" d="M5.5 10a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-                </svg>
-            </span>
+                <input data-id={props.key} value={props.value} onChange={(e) => handleChange(e)}></input>
             </Col>
         </Row>
     )

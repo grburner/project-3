@@ -35,35 +35,36 @@ function Product(){
         cartBody.push({"product_id": item})
       })
       const body = {"cart": cartBody}
+      console.log(body)
       API.updateCart(userId, body)
     }
   }
 
-  // const setCart = (id) => {
-  //   if (globalState.state.userCart.length === 0) {
-  //     console.log('into set cart')
-  //     let cartArray = []
-  //     API.getUser(id)
-  //       .then(res => res.data.cart.forEach(elem => {
-  //         cartArray.push(elem.product_id)
-  //       }))
-  //       .then(res => dispatch({ type: 'SETuserCart', payload: cartArray })
-  //       )
-  //     }
-  //   }
+  const setCart = (id) => {
+    if (globalState.state.userCart.length === 0) {
+      console.log('into set cart')
+      let cartArray = []
+      API.getUser(id)
+        .then(res => res.data.cart.forEach(elem => {
+          cartArray.push(elem.product_id)
+        }))
+        .then(res => dispatch({ type: 'SETuserCart', payload: cartArray })
+        )
+      }
+    }
 
-  // const setUser = (userId) => {
-  //   const newUser = new Promise((res, rej) => {
-  //     res(dispatch({ type: 'SETcurrentUser', payload: userId}))
-  //       .then(setCart(userId))
-  //     rej(console.log('setUser rejected'))
-  //   })
-  //   newUser.then(setCart(userId))
-  // }
+  const setUser = (userId) => {
+    const newUser = new Promise((res, rej) => {
+      res(dispatch({ type: 'SETcurrentUser', payload: userId}))
+        // .then(setCart(userId))
+      rej(console.log('setUser rejected'))
+    })
+    newUser.then(setCart(userId))
+  }
 
   useEffect(() => {
     getProductDatabyId();
-    // setUser(userId)
+    setUser(userId)
   }, []);
 
   let defaultImage = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';

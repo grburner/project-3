@@ -29,6 +29,40 @@ const CartToast = () => {
         Promise.all(promises).then((values) => {setCartData(values)})
     }, [globalState]);
 
+    const handleChange = (e, name) => {
+        const value = e.target.value;
+        cartData.forEach((elem, index) => {
+            if (name === elem.name) {
+            changeState('order_units', name , value);
+            }
+        });
+    };
+
+    const changeState = (field, name, value) => {
+        const newData = cartData.map((d, i) => {
+          if (name === d.name) {
+            d[field] = value;
+          }
+          return d;
+        });
+        setCartData(newData);
+      };
+
+    const createOrder = () => {
+        let orders = [{"retailer_id": "5f90df97d56aef06bcb010d3"}]
+        cartData.forEach(elem => {
+            let id = elem.retailer_id
+            orders.forEach(order => {
+                if (order.retailer_id === id) {
+                    console.log('matches' + id)
+                } else {
+                    orders.push(id)
+                }
+            })
+        })
+        console.log(orders)
+    }
+
     return(
         <Modal 
             show={globalState.state.toastState} 
@@ -40,11 +74,12 @@ const CartToast = () => {
                 <strong className="mr-auto">Cart</strong>
             </Modal.Header>
             <Modal.Body>
+                <div>{'test'}</div>
                     {cartData ? cartData.map((elem, index) => (
-                        <CartDetail key={index} data={elem}></CartDetail>
+                        <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
                     )): ''}
             </Modal.Body>
-            <Button>Checkout</Button>
+            <Button onClick={() => createOrder()}>Checkout</Button>
         </Modal>
     )
 }
