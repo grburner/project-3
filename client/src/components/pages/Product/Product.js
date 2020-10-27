@@ -24,14 +24,18 @@ function Product(){
       .catch(err => console.log(err));
   };
 
-  const setUser = (userId) => {
-    dispatch({ type: 'SETcurrentUser', payload: userId})
-  }
-
-  const addProductToCart = (id) => {
+  const setCart = (id) => {
     API.getUser(id)
       .then(res => dispatch({ type: 'SETuserCart', payload: res.data.cart })
   )}
+
+  const setUser = (userId) => {
+    const newUser = new Promise((res, rej) => {
+      res(dispatch({ type: 'SETcurrentUser', payload: userId}))
+      rej(console.log('setUser rejected'))
+    })
+    newUser.then(setCart(userId))
+  }
 
   useEffect(() => {
     getProductDatabyId();
@@ -62,7 +66,7 @@ function Product(){
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i class="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button onClick={() => addProductToCart(globalState.state.currentUser)}>Buy Now</Button>
+              <Button onClick={() => setCart()}>Buy Now</Button>
            </ul>
         </div>
          

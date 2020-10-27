@@ -18,10 +18,7 @@ export default {
     return axios.post('/api/users/', user);
   },
   getUser: function(user) {
-    return axios ({
-      method: 'GET',
-      url: '/api/users/' + user
-    })
+      return axios.get('/api/users/' + user);
   },
   getProductsByRetailerId: function(id) {
     return axios.get('/api/products/retailer_id/' + id);
