@@ -20,6 +20,9 @@ export default {
   getUser: function(user) {
     return axios.get('/api/users/', user);
   },
+  getUserLogin: function(user) {
+    return axios.post('/api/users/login', user);
+  },
   getProductsByRetailerId: function(id) {
     return axios.get('/api/products/retailer_id/' + id);
   },
