@@ -54,11 +54,13 @@ const CartToast = () => {
             let id = elem.retailer_id
             orders.forEach(order => {
                 if (order === id) {
-                    console.log('matches' + id)
+                    console.log('matches ' + id)
                 } else {
-                    consoo
+                    orders.push(id)
+                    return
                 }
             })
+            return
         })
         console.log(orders)
     }
