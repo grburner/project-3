@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import DateFormatter from '../../../utils/DateFormatter';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
@@ -10,29 +10,29 @@ import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
-  const [passedData, setPassedData] = useState(data)
+  const [passedData, setPassedData] = useState(data);
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
 
   // useEffect(() => {
   //   setPassedData(data)
   // }, [])
-  console.log(data)
+  console.log(data);
 
   const getUserName = (id) => {
-    API.getUserName(id).then((data) => {setCustName(data.data.name)})
-  }
+    API.getUserName(id).then((data) => {setCustName(data.data.name);});
+  };
   useEffect(() => {
     let promises = [];
-    getUserName(data.custId)
+    getUserName(data.custId);
 
     const prodsList = data.products.forEach((elem) => {
       promises.push(
         API.getProductsID(elem.name)
-          .then(data => {return data.data.name})
-        );
+          .then(data => {return data.data.name;})
+      );
     });
-    Promise.all(promises).then((values) => {setProdNames(values)})
+    Promise.all(promises).then((values) => {setProdNames(values);});
   }, [data]);
 
   const renderProductRow = (element, index) => {
@@ -51,7 +51,7 @@ const OrderDetail = (props) => {
         <Row  className="align-items-center">
           <Col>{custName ? custName : ''}</Col>
           <Col>{DateFormatter(data.orderDate)}</Col>
-          <Col><Badge pill variant={(data.status == "open" ? "danger" : "success")}>{data.status}</Badge></Col>
+          <Col><Badge pill variant={(data.status == 'open' ? 'danger' : 'success')}>{data.status}</Badge></Col>
         </Row>
       </Card.Header>
       <Card.Body>

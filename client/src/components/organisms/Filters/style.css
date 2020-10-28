@@ -3,9 +3,18 @@
     box-shadow:3px 4px 5px #666;
     padding:10px;
     margin-bottom:10px;
+    position:sticky;
 }
 
 .filter-header{
    color: #930045;
    font-weight:bold;
 }
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:99999;
+  }

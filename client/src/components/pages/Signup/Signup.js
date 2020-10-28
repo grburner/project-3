@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react';
 import './style.css';
 import API from '../../../utils/API';
 
+import Button from '../../atoms/Button/Button';
 
 function Signup(){
   const [userState, setUserState] = useState({
@@ -25,35 +26,61 @@ function Signup(){
 
   });
 
+  const [role, setRole] = useState({
+    role: ''
+  });
+
+  const [error, setError] = useState({
+    message: ''
+  });
+
   const handleChange = (e) => {
     const {name, value} = e.target;
     setUserState({
       ...userState,
-      [name]: value,
-      
+      [name]: value,  
     });
-    console.log(userState);
+    // console.log(userState);
+    if(value === 'consumer'){
+      setRole({
+        role: 'consumer'
+      });
+    }
+    if(value === 'retailer'){
+      setRole({
+        role: 'retailer'
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     console.log(userState);
     e.preventDefault();
+    if(userState.password && userState.role && userState.username && userState.name){
+      //request to server to add a new username/password
+      API.createUser(userState)
+        .then(response => {
+          console.log(response);
+          if (!response.data.error) {
+            console.log('successful signup');
+            window.location.href = '/login';
+          } else {
+            console.log('username already taken');
+            setError({
+              message: 'Username already taken'
+            });
+          }
+        }).catch(error => {
+          console.log('signup error: ');
+          console.log(error);
 
-    //request to server to add a new username/password
-    API.createUser(userState)
-      .then(response => {
-        console.log(response);
-        if (!response.data.error) {
-          console.log('successful signup');
-          window.location.href = "/login"
-        } else {
-          console.log('username already taken');
-        }
-      }).catch(error => {
-        console.log('signup error: ');
-        console.log(error);
-
+        });
+    } else {
+      setError({
+        message: 'Fill out all required fields!'
       });
+    }
+    
 
   };
 
@@ -63,9 +90,11 @@ function Signup(){
   // }, [userState]);
 
   return (
-    <div className="container">
+    <div className="container signup-page">
+      <h2 style={{color:'#930045', marginTop:'20px'}}>Sign Up:</h2>
+      {error.message.length <= 0 ? <div></div> : <div className="error-message">{error.message}</div>}
       <div className="signup-form">
-        <label htmlFor="role">User Type: </label>
+        <label htmlFor="role">User Type: <strong style={{color:'#930045'}}>*</strong></label>&nbsp;&nbsp;
         <select 
           id="role" 
           name="role" 
@@ -75,16 +104,16 @@ function Signup(){
           <option id="retailer" value="retailer">I want to sell wine!</option>
         </select>
         <br />
-        Email (Username): <input 
+        Email (Username): <strong style={{color:'#930045'}}>*</strong> <input 
           name="username" 
           value={userState.username}
           onChange={handleChange}></input><br />
-        Password: <input 
+        Password: <strong style={{color:'#930045'}}>*</strong><input 
           name="password"
           type="password" 
           value={userState.password}
           onChange={handleChange}></input><br />
-        Name: <input 
+        Name: <strong style={{color:'#930045'}}>*</strong><input 
           name="name"
           value={userState.name}
           onChange={handleChange}></input><br />
@@ -99,11 +128,6 @@ function Signup(){
           value={userState.birth_date}
           onChange={handleChange}></input><br />
         <br />
-        {/* Company Name = retailer only */}
-        Company Name: <input 
-          name="company_name"
-          value={userState.company_name}
-          onChange={handleChange}></input><br />
         Address Line 1: <input 
           name="address_street1"
           value={userState.address_street1}
@@ -126,12 +150,24 @@ function Signup(){
           onChange={handleChange}></input><br />
         <br />
         {/* Company Bio and Ship To States = retailer only */}
-        <label htmlFor="bio" >Company Bio: </label><br />
-        <textarea 
-          name="bio" 
-          value={userState.bio}
-          onChange={handleChange}></textarea>
-        <br />
+        {role.role === 'retailer' 
+          ? 
+          <div>
+          Company Name: <input 
+              name="company_name"
+              value={userState.company_name}
+              onChange={handleChange}></input><br />
+          Company Bio:
+            <textarea 
+              name="bio" 
+              value={userState.bio}
+              style={{width:'100%'}}
+              onChange={handleChange}></textarea>
+            <br />
+          </div> 
+          : 
+          <div></div>}
+        
         {/* <label htmlFor="ships_to">Select States You Can Ship To: </label>
         <select 
           id="ships_to" 
@@ -193,8 +229,7 @@ function Signup(){
         </select><br />
         (Hold down the ctrl key and click to select multiple states)
         <br /> */}
-        <button onClick={handleSubmit}
-          type="submit">Submit</button>
+        <Button onClick={handleSubmit}>Sign Up</Button>
       </div>
     </div>
   );

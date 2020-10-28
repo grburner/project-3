@@ -112,17 +112,17 @@ const ProductsTable = () => {
 
     <div>
       <div className="mb-3">
-      <Navbar bg="light" expand="lg" className="w-100">
-        <Navbar.Brand href="#home"><h5>Your Products</h5></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Button onClick={sendData}>
+        <Navbar bg="light" expand="lg" className="w-100">
+          <Navbar.Brand href="#home"><h5>Your Products</h5></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Button onClick={sendData}>
               Save
-            </Button>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+              </Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
       <Table striped bordered hover size="sm">
         <thead>
