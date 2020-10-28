@@ -32,6 +32,14 @@ function Marketplace(props){
     seed = newArray;
   }
 
+  if(props.filters.store !== '') {
+    console.log(seed)
+    // let newArray = seed.filter(function(num){
+    //   return num.store.toUpperCase() === props.filters.store.toUpperCase();
+    // });
+    // seed = newArray;
+  }
+
   if(props.filters.type !== '') {
     let newArray = seed.filter(function(num){
       return num.type1.toUpperCase() === props.filters.type.toUpperCase();

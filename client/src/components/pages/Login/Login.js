@@ -37,6 +37,12 @@ function Login() {
           setUserState({
             redirectTo: '/'
           });
+          // Todo: use global user state
+          // if(consumer) {
+          //   window.location.href = "/consumer"
+          // } else if (retailer) {
+          //   window.location.href = "/retailer"
+          // }
         }
       }).catch(error => {
         console.log('login error: ');
