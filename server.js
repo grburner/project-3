@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 
 const user = require('./routes/api/users');
-const retailer = require('./routes/api/retailers');
 const session = require('express-session');
 const passport = require('./passport');
 const morgan = require('morgan');
