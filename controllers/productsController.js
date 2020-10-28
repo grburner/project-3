@@ -5,7 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Product
       .find(req.query)
-      .limit(20)
+      // .limit(20)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -53,5 +53,5 @@ module.exports = {
       .then(dbModel => 
         res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
 };

@@ -8,29 +8,29 @@ function Stores(props){
   const products = useContext(ProductContext);
   const [retailers, setRetailers] = useState(['Test']);
 
-    // Set retailers array
-    let retailerArray = [];
-    for(let i = 0; i < props.products.length; i++){
+  // Set retailers array
+  let retailerArray = [];
+  for(let i = 0; i < props.products.length; i++){
     API.findRetailerById(props.products[i].retailer_id)
-    .then(res => {
-        retailerArray.push(res.data.company_name)
+      .then(res => {
+        retailerArray.push(res.data.company_name);
         // setRetailers(retailerArray)
-    })
-    .catch(err => console.log(err));
-    }
-    // Promise.all(retailerArray).then((values) => {setRetailers(values)})
-    // console.log("SETTING RETAILER ARRAY")
-    // console.log(retailerArray)
-    setRetailers(retailerArray)
+      })
+      .catch(err => console.log(err));
+  }
+  // Promise.all(retailerArray).then((values) => {setRetailers(values)})
+  // console.log("SETTING RETAILER ARRAY")
+  // console.log(retailerArray)
+  setRetailers(retailerArray);
 
   return (
-       <select name="store"  id="itemsStore" onChange={props.filterChange}>
-               {retailers.map((x, i)=>{
-                console.log(x)
-                return <option value={x}>{retailers[i]}</option>
-              })}
-      </select> 
-  )
+    <select name="store"  id="itemsStore" onChange={props.filterChange}>
+      {retailers.map((x, i)=>{
+        console.log(x);
+        return <option value={x}>{retailers[i]}</option>;
+      })}
+    </select> 
+  );
     
 
 }

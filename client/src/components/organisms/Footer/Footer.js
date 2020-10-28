@@ -10,7 +10,7 @@ function Footer(){
 
   return (
     <footer>
-      &copy; 2020
+      &copy; 2020 | <a href="https://github.com/grburner/project-3" target="_blank">GitHub</a>
     </footer>
   );
 }
