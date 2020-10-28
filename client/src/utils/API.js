@@ -40,7 +40,7 @@ export default {
     return axios.get('/api/users/' + id);
   },
   findRetailerById: function(id) {
-    return axios.get('/api/retailers/' + id);
+    return axios.get('/api/users/' + id);
   },
   updateCart: function(id) {
     return axios.get('api/cart' + id);

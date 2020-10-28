@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 
 const user = require('./routes/api/users');
+const retailer = require('./routes/api/retailers');
 const session = require('express-session');
 const passport = require('./passport');
 const morgan = require('morgan');
@@ -51,6 +52,9 @@ app.post('/users', (req, res) => {
   req.session.username = req.body.username;
   res.end()
 });
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls serializeUser and deserializeUser
 
 // Send every request to the React app
 // Define any API routes before this runs

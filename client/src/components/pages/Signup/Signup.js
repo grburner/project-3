@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import React, {useState} from 'react';
-//import { Redirect } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+// import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
 
@@ -45,9 +45,7 @@ function Signup(){
         console.log(response);
         if (!response.data.error) {
           console.log('successful signup');
-          setUserState({ //redirect to login page
-            redirectTo: '/login'
-          });
+          window.location.href = "/login"
         } else {
           console.log('username already taken');
         }
@@ -56,7 +54,13 @@ function Signup(){
         console.log(error);
 
       });
+
   };
+
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+    
+  // }, [userState]);
 
   return (
     <div className="container">

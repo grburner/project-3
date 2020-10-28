@@ -10,21 +10,24 @@ import Button from '../../atoms/Button/Button';
 import ProductContext from '../../../utils/ProductContext';
 import API from '../../../utils/API';
 
+import Stores from '../../atoms/Stores/index'
+
 function Filters(props){
 
   const products = useContext(ProductContext);
 
   const [maxPrice, setMaxPrice] = useState({});
 
-  const [retailers, setRetailers] = useState([]);
+  const [retailers, setRetailers] = useState(['Test']);
 
   let stores = [];
 
   useEffect(() => {
+    let tempArray = [];
     // Find max price and array of stores from products table return
     if(products.length >= 1) {
       let max = 0;
-      let tempArray = [];
+      
       for(let i = 0; i < products.length; i++){
         // Get max price
         if(products[i].price > max){
@@ -40,21 +43,26 @@ function Filters(props){
       setMaxPrice({
         maxPrice: Math.round(max)
       });
-
+      
       // Set retailers array
+      let retailerArray = [];
       for(let i = 0; i < tempArray.length; i++){
-        // console.log(tempArray[i])
         API.findRetailerById(tempArray[i])
         .then(res => {
-          // This returns HTML, not a retailer
-          console.log(res)
+          console.log(res);
+          if(!retailerArray.includes(res.data.company_name)){
+            retailerArray.push(res.data.company_name)
+          }
+            props.filterReset();
         })
         .catch(err => console.log(err));
       }
+      setRetailers(retailerArray)
+    //  Promise.all(retailerArray).then(() => {props.filterReset();})
     }
-    // Find store
   },[products]);
 
+  useEffect(() => {console.log(retailers)},[retailers])
 
   return (
     
@@ -67,14 +75,17 @@ function Filters(props){
             <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
           </Col>
           <Col md>
-            <label htmlFor="items">Store: {props.filters.type}</label><br/>
-            <select name="store"  id="items" onChange={props.filterChange}>
-              <option value="">   </option>
+            <label htmlFor="itemsStore">Store: {props.filters.type}</label><br/>
+            <select name="store"  id="itemsStore" onChange={props.filterChange}>
+               {retailers.map((x, i)=>{
+                console.log(x)
+                return <option value={x}>{retailers[i]}</option>
+              })}
             </select>
           </Col>
           <Col md>
-            <label htmlFor="items">Type: {props.filters.type}</label><br/>
-            <select name="type"  id="items" onChange={props.filterChange}>
+            <label htmlFor="itemsType">Type: {props.filters.type}</label><br/>
+            <select name="type"  id="itemsType" onChange={props.filterChange}>
               <option value="">   </option>
               <option value="Red">Red</option>
               <option value="White">White</option>
@@ -83,8 +94,8 @@ function Filters(props){
             </select>
           </Col>
           <Col md>
-            <label htmlFor="items">Style: {props.filters.style}</label><br/>
-            <select  name="style" id="items" onChange={props.filterChange}>
+            <label htmlFor="itemsStyle">Style: {props.filters.style}</label><br/>
+            <select  name="style" id="itemsStyle" onChange={props.filterChange}>
               <option value="">   </option>
               <option value="Sparkling">Sparkling</option>
               <option value="Still">Still</option>
