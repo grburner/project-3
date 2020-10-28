@@ -26,7 +26,7 @@ module.exports = {
               console.log('User.js post error: ', err)
           } else if (user) {
             res.json({
-                  error: `Sorry, already a user with the username: ${username}`
+                  error: `Sorry, already a user with the username: ${req.body.username}`
               })
           }
           else {
@@ -39,8 +39,7 @@ module.exports = {
           }
       })
       //.create(req.body)
-
-      .then(dbModel => res.json(dbModel))
+      // .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -55,5 +54,11 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  findAllById: function(req, res) {
+    db.User
+      .find({_id: req.params.id})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };
