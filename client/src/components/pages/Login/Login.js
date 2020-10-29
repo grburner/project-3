@@ -25,7 +25,7 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    API.getUserByName(encodeURI('api/users/name/' + userState.username))
+    API.getUserByName(encodeURI(userState.username))
       .then(res => {
         console.log(res)
           dispatch({ type: 'SETuser', payload: {userId: res.data[0]._id, userRole: res.data[0].role}})
@@ -38,7 +38,6 @@ function Login() {
         console.log(response);
         if (response.status === 200) {
           // SET GLOBAL STATE HERE
-          dispatch({ type: 'SETuser', payload: {userId: userState.username, userRole: userState.role}})
           // update App.js state
           setUserState({
             loggedIn: true,
