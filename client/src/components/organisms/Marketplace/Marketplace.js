@@ -20,7 +20,9 @@ function Marketplace(props){
 
   const loadProducts = () => {
     for(let i = 0; i < products.length; i++){
-      seed.push(products[i]);
+      if (products[i].status === 'live') {
+        seed.push(products[i]);
+      }
     }
   };
 
