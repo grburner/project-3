@@ -52,9 +52,8 @@ const ProductsTable = () => {
     chartData.forEach(elem => {
       const body = 
       {
-        'price': parseInt(elem.price),
-        'units': parseInt(elem.units),
-        'status': elem.status
+        'price': Number(elem.price),
+        'units': Number(elem.units),
       };
       API.updateProducts(elem._id, body);
     });
