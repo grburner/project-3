@@ -49,7 +49,6 @@ function Filters(props){
       for(let i = 0; i < tempArray.length; i++){
         API.findRetailerById(tempArray[i])
           .then(res => {
-            console.log(res);
             if(!retailerArray.includes(res.data.company_name + '*' + res.data._id)){
               retailerArray.push(res.data.company_name + '*' + res.data._id);
             }
@@ -62,7 +61,7 @@ function Filters(props){
     }
   },[products]);
 
-  useEffect(() => {console.log(retailers);},[retailers]);
+  // useEffect(() => {console.log(retailers);},[retailers]);
 
   // Sticky Header
   var header = '';

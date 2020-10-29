@@ -26,7 +26,6 @@ function Stores(props){
   return (
     <select name="store"  id="itemsStore" onChange={props.filterChange}>
       {retailers.map((x, i)=>{
-        console.log(x);
         return <option value={x}>{retailers[i]}</option>;
       })}
     </select> 

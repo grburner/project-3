@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 // import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
-
 import Button from '../../atoms/Button/Button';
 
 function Signup(){
+
   const [userState, setUserState] = useState({
     username: '',
     password: '',
@@ -54,7 +54,7 @@ function Signup(){
   };
 
   const handleSubmit = (e) => {
-    console.log(userState);
+    // console.log(userState);
     e.preventDefault();
     if(userState.password && userState.role && userState.username && userState.name){
       //request to server to add a new username/password

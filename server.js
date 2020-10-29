@@ -8,7 +8,7 @@ const routes = require('./routes');
 const user = require('./routes/api/users');
 const session = require('express-session');
 const passport = require('./passport');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.json());
-app.use(morgan());
+// app.use(morgan());
 
 // Passport
 app.use(passport.initialize());
@@ -31,7 +31,7 @@ app.use(
   })
 );
 app.use( (req, res, next) => {
-  console.log('req.session', req.session);
+  // console.log('req.session', req.session);
   return next();
 });
 
@@ -47,7 +47,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/marketplace', {
 app.use('/users', user);
 
 app.post('/users', (req, res) => {
-  console.log('user signup');
   req.session.username = req.body.username;
   res.end();
 });

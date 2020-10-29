@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
+import { store } from '../../../utils/GlobalState';
 import Button from '../../atoms/Button/Button';
+import axios from 'axios';
 
 function Login() {
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
   const [userState, setUserState] = useState({
     username: '',
     password: '',
@@ -21,14 +25,20 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
+    API.getUserByName(encodeURI('api/users/name/' + userState.username))
+      .then(res => {
+        console.log(res)
+          dispatch({ type: 'SETuser', payload: {userId: res.data[0]._id, userRole: res.data[0].role}})
+      })
     e.preventDefault();
-    console.log('handleSubmit');
 
     API.getUserLogin(userState)
       .then(response => {
         console.log('login response: ');
         console.log(response);
         if (response.status === 200) {
+          // SET GLOBAL STATE HERE
+          dispatch({ type: 'SETuser', payload: {userId: userState.username, userRole: userState.role}})
           // update App.js state
           setUserState({
             loggedIn: true,
@@ -38,12 +48,11 @@ function Login() {
           setUserState({
             redirectTo: '/'
           });
-          // Todo: use global user state
-          // if(consumer) {
-          //   window.location.href = "/consumer"
-          // } else if (retailer) {
-          //   window.location.href = "/retailer"
-          // }
+          if(globalState.userRole === "consumer") {
+            window.location.href = "/consumer"
+          } else if (globalState.userRole === "retailer") {
+            window.location.href = "/retailer"
+          }
         }
       }).catch(error => {
         console.log('login error: ');
