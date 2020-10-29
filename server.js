@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 
 const user = require('./routes/api/users');
-const retailer = require('./routes/api/retailers');
 const session = require('express-session');
 const passport = require('./passport');
 const morgan = require('morgan');
@@ -20,15 +19,15 @@ app.use(express.json());
 app.use(morgan());
 
 // Passport
-app.use(passport.initialize())
-app.use(passport.session()) // calls serializeUser and deserializeUser
+app.use(passport.initialize());
+app.use(passport.session()); // calls serializeUser and deserializeUser
 
 //sessions
 app.use(
   session({
-  secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
-  resave: false, //required
-  saveUninitialized: false //required
+    secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
+    resave: false, //required
+    saveUninitialized: false //required
   })
 );
 app.use( (req, res, next) => {
@@ -50,11 +49,11 @@ app.use('/users', user);
 app.post('/users', (req, res) => {
   console.log('user signup');
   req.session.username = req.body.username;
-  res.end()
+  res.end();
 });
 // Passport
-app.use(passport.initialize())
-app.use(passport.session()) // calls serializeUser and deserializeUser
+app.use(passport.initialize());
+app.use(passport.session()); // calls serializeUser and deserializeUser
 
 // Send every request to the React app
 // Define any API routes before this runs

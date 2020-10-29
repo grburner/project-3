@@ -1,4 +1,24 @@
 .signup-form{
-    border:1px solid black;
+    border-radius:10px;
+    border:2px solid #930045;
     padding:50px;
+    text-align:left;
+    max-width:600px;
+    margin:0 auto 50px auto;
+    font-weight:bold;
+}
+
+.signup-form input{
+    width:100%;
+}
+
+.error-message{
+    max-width:600px;
+    padding:10px;
+    margin:20px auto;
+    font-weight:bold;
+    color:black;
+    background-color:#FFE0EE;
+    border:2px solid #930045;
+    border-radius:5px;
 }

@@ -1,16 +1,20 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import './style.css';
 
 import Item from '../../organisms/Item/Item';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import API from '../../../utils/API';
+import API from '../../../utils/API';
 
 import ProductContext from '../../../utils/ProductContext';
 
 function Marketplace(props){
 
   const products = useContext(ProductContext);
+  
+  const [limit, setLimit] = useState({
+    value: 20
+  });
 
   let seed = [];
 
@@ -33,11 +37,10 @@ function Marketplace(props){
   }
 
   if(props.filters.store !== '') {
-    console.log(seed)
-    // let newArray = seed.filter(function(num){
-    //   return num.store.toUpperCase() === props.filters.store.toUpperCase();
-    // });
-    // seed = newArray;
+    let newArray = seed.filter(function(x){
+      return x.store === props.filters.store;
+    });
+    seed = newArray;
   }
 
   if(props.filters.type !== '') {
@@ -60,11 +63,13 @@ function Marketplace(props){
       <Row>
         {seed.map((x,i)=>{
           // console.log(x)
-          return (
-            <Col lg={3} md={6} sm={12} style={{marginBottom: '20px'}}>
-              <Item value={x}/>
-            </Col>
-          );
+          if(i < limit.value){
+            return (
+              <Col lg={3} md={6} sm={12} style={{marginBottom: '20px'}}>
+                <Item value={x}/>
+              </Col>
+            );
+          }
         })}
       </Row>
     </div>

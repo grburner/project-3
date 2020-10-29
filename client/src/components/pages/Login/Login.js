@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
+import Button from '../../atoms/Button/Button';
 
 function Login() {
   const [userState, setUserState] = useState({
@@ -59,13 +60,13 @@ function Login() {
   } else {
     return (
       <div>
-        <h4>Login</h4>
-        <form className="form-horizontal">
+        <h2 style={{color:'#930045', marginTop:'20px'}}>Login</h2>
+        <form className="form-horizontal login-form">
           <div className="form-group">
-            <div className="col-1 col-ml-auto">
+            <div className="col-12">
               <label className="form-label" htmlFor="username">Username</label>
             </div>
-            <div className="col-3 col-mr-auto">
+            <div className="col-12">
               <input className="form-input"
                 type="text"
                 id="username"
@@ -77,10 +78,10 @@ function Login() {
             </div>
           </div>
           <div className="form-group">
-            <div className="col-1 col-ml-auto">
+            <div className="col-12">
               <label className="form-label" htmlFor="password">Password: </label>
             </div>
-            <div className="col-3 col-mr-auto">
+            <div className="col-12">
               <input className="form-input"
                 placeholder="password"
                 type="password"
@@ -91,12 +92,7 @@ function Login() {
             </div>
           </div>
           <div className="form-group ">
-            <div className="col-7"></div>
-            <button
-              className="btn btn-primary col-1 col-mr-auto"
-                               
-              onClick={handleSubmit}
-              type="submit">Login</button>
+            <Button onClick={handleSubmit}>Login</Button>
           </div>
         </form>
       </div>

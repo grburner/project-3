@@ -10,7 +10,7 @@ import Button from '../../atoms/Button/Button';
 import ProductContext from '../../../utils/ProductContext';
 import API from '../../../utils/API';
 
-import Stores from '../../atoms/Stores/index'
+import Stores from '../../atoms/Stores/index';
 
 function Filters(props){
 
@@ -36,7 +36,7 @@ function Filters(props){
 
         // Get array of retailers
         if(!stores.includes(products[i])){
-          tempArray.push(products[i].retailer_id)
+          tempArray.push(products[i].retailer_id);
         }
       }
       // Set max price
@@ -48,25 +48,47 @@ function Filters(props){
       let retailerArray = [];
       for(let i = 0; i < tempArray.length; i++){
         API.findRetailerById(tempArray[i])
-        .then(res => {
-          console.log(res);
-          if(!retailerArray.includes(res.data.company_name)){
-            retailerArray.push(res.data.company_name)
-          }
+          .then(res => {
+            console.log(res);
+            if(!retailerArray.includes(res.data.company_name + '*' + res.data._id)){
+              retailerArray.push(res.data.company_name + '*' + res.data._id);
+            }
             props.filterReset();
-        })
-        .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
       }
-      setRetailers(retailerArray)
+      setRetailers(retailerArray);
     //  Promise.all(retailerArray).then(() => {props.filterReset();})
     }
   },[products]);
 
-  useEffect(() => {console.log(retailers)},[retailers])
+  useEffect(() => {console.log(retailers);},[retailers]);
+
+  // Sticky Header
+  var header = '';
+  var sticky = '';
+  // When the user scrolls the page, execute myFunction
+  window.onscroll = function() {
+    // Get the header
+    header = document.getElementById('filters');
+
+    // Get the offset position of the navbar
+    sticky = document.getElementById('filters').offsetTop;
+    stickyFilter();
+  };
+
+  // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function stickyFilter() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  }
 
   return (
     
-    <div className="filter-wrapper">
+    <div className="filter-wrapper" id="filters">
       <Container>
         <p className="filter-header">Filter Your Search:</p>
         <Row>
@@ -75,11 +97,11 @@ function Filters(props){
             <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
           </Col>
           <Col md>
-            <label htmlFor="itemsStore">Store: {props.filters.type}</label><br/>
+            <label htmlFor="itemsStore">Store:</label><br/>
             <select name="store"  id="itemsStore" onChange={props.filterChange}>
-               {retailers.map((x, i)=>{
-                console.log(x)
-                return <option value={x}>{retailers[i]}</option>
+              <option value="">   </option>
+              {retailers.map((x, i)=>{
+                return <option value={x.split('*')[1]}>{x.split('*')[0]}</option>;
               })}
             </select>
           </Col>

@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 
 import API from '../../../utils/API';
 
-import ImageUpload from '../../organisms/ImageUpload/index'
+import ImageUpload from '../../organisms/ImageUpload/index';
 
 import './style.css';
 
@@ -25,7 +25,7 @@ const SingleProductAddModal = () => {
     type2: 'Still',
     size: '750mL',
     grapes: 'Syrah',
-    tags: ["Natural"],
+    tags: ['Natural'],
     image: ''
   });
 
@@ -69,13 +69,13 @@ const SingleProductAddModal = () => {
 
   const imageUpload = (resultEvent) => {
     if (resultEvent.event === 'success') {
-      console.log(resultEvent.info.secure_url)
+      console.log(resultEvent.info.secure_url);
       setProduct({
         ...product,
         image: resultEvent.info.secure_url
       });
     }
-  }
+  };
 
   return (
       <>
@@ -160,7 +160,7 @@ const SingleProductAddModal = () => {
             as="select"
             onChange={updateProduct}
             value={product.size}
-            defaultValue={"mail@example.com"}
+            defaultValue={'mail@example.com'}
             name="size">
             <option>750mL</option>
             <option>1500mL</option>
@@ -191,8 +191,8 @@ const SingleProductAddModal = () => {
             <option>Bold</option>
           </Form.Control>
         </Form>
-        <div style={{padding:"10px 0"}}>
-        <ImageUpload imageUpload={imageUpload}/>
+        <div style={{padding:'10px 0'}}>
+          <ImageUpload imageUpload={imageUpload}/>
         </div>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
@@ -200,7 +200,7 @@ const SingleProductAddModal = () => {
           </Button>
           <Button variant="primary" type="submit" onClick={() => {
             addProduct(product);
-            dispatch({ type: 'HIDEsProdModalinView'})
+            dispatch({ type: 'HIDEsProdModalinView'});
           }
           }>
             Submit
