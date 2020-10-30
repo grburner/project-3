@@ -61,7 +61,7 @@ const ProductsTable = () => {
   };
   
   const renderProductRow = (element, index) => {
-    console.log(element)
+    console.log(element);
     return (
       <tr key={index} data-id={element._id}>
         <td data-id={element._id} >{element.name}</td>
@@ -103,7 +103,7 @@ const ProductsTable = () => {
             />
           </Editable>
         </td>
-        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status === "live" ? 'live' : 'paused'}</td>
+        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status === 'live' ? 'live' : 'paused'}</td>
       </tr>
     );
   };

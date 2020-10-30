@@ -1,8 +1,43 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import './style.css';
+import API from '../../../utils/API';
+
+import { store } from '../../../utils/GlobalState';
 
 function Consumer(){
+  const globalState = useContext(store);
+  const [consumer, setConsumer] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: ''
+  });
 
+  useEffect(()=>{
+    console.log(globalState);
+    API.getUser(globalState.state.userId)
+      .then(res => {
+        console.log('FIND USER BY ID');
+        console.log(res);
+        setConsumer({
+          name: res.data.name,
+          email: res.data.username,
+          phone: res.data.phone_number,
+          address1: res.data.address_street1,
+          address2: res.data.address_street2,
+          city: res.data.address_city,
+          state: res.data.address_state,
+          zip: res.data.address_zip
+        });
+      })
+      .catch(err => console.log(err));
+  },[globalState]);
+
+  
   const seed = {
     firstName: 'John',
     lastName: 'Smith',
@@ -17,13 +52,13 @@ function Consumer(){
     <div className="container consumer">
       <h1>Consumer Portal</h1>
       <hr />
-      <p>First Name: {seed.firstName}</p>
-      <p>Last Name: {seed.lastName}</p>
-      <p>Email: {seed.email}</p>
-      <p>Phone: {seed.phone}</p>
-      <p>City: {seed.city}</p>
-      <p>State: {seed.state}</p>
-      <p>Zip: {seed.zip}</p>
+      <p>Name: {consumer.name}</p>
+      <p>Email: {consumer.email}</p>
+      <p>Phone: {consumer.phone}</p>
+      <p>Address: {consumer.address1}, {consumer.address2}</p>
+      <p>City: {consumer.city}</p>
+      <p>State: {consumer.state}</p>
+      <p>Zip: {consumer.name}</p>
     </div>
   );
 }
