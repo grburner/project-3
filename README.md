@@ -1,30 +1,40 @@
 
-# Create React Express App
+# WineHub
 
-## About This Boilerplate
+MERN eCommerce solution for small wine retailers. The application allows retailers to upload / manage product inventory and consumers to search, filter and purchase from a marketplace to find their perfect wine.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+[View Application](https://vast-river-22849.herokuapp.com/)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+[View Project Repo](https://github.com/grburner/project-3)
 
-## Starting the app locally
+![Screenshot](client/public/images/winehub.PNG)
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## How to use
 
-```
-npm install
-```
+- Consumer:
+    * Type in a search and click the search icon
+    * Adjust filters for price, store, type and style
+    * Click a product to view more details
+    * Purchase a product
+- Retailer:
+    * Sign up or login as a retailer to access the portal
+    * Click *+ Add Product* to add inventory. Fill out product details and upload an image
+    * To view and modify your inventory, change the values in the *Your Products* table and click *Save*
+    * View your orders under *Your Orders*. Click the icon under *Info* to view more details about an order
 
-This should install node modules within the server and the client folder.
+## Languages and Frameworks Used:
+- [Mongo](https://www.mongodb.com/) / [Mongoose](https://mongoosejs.com/)
+- [Express](https://expressjs.com/) / [Express Session](https://www.npmjs.com/package/express-session)
+- [React.js](https://reactjs.org/)
+- [Node.js](https://nodejs.org/en/)
+- [Eslint](https://eslint.org/)
+- [Passport / Bcrypt](https://www.npmjs.com/package/passport)
+- [Morgan](https://www.npmjs.com/package/morgan)
+- [Cloudinary Media API](https://cloudinary.com/)
+- [GitHub](https://github.com/) / [Heroku](https://www.heroku.com/) / [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
-After both installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Team
+All members of the team worked together across the full stack application 
+- [James Ravelle](https://github.com/jamesravelle) - Consumer Facing Front End
+- [Gary Burner](https://github.com/grburner) - Retailer Facing Front End
+- [Christina Bayley](https://github.com/cbayley-edu) - Back End and Database

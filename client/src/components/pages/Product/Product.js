@@ -28,7 +28,7 @@ function Product(){
             console.log('FIND RETAILER BY ID');
             console.log(res);
             setRetailer({
-              name: res.data.name
+              name: res.data.company_name
             });
           })
           .catch(err => console.log(err));

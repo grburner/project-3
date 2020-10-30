@@ -46,6 +46,6 @@ export default {
     return axios.get('api/cart' + id);
   },
   getUserByName: function(name) {
-    return axios.get('/api/users/name/' + name)
+    return axios.get('/api/users/name/' + name);
   }
 };

@@ -43,7 +43,7 @@ function Filters(props){
       setMaxPrice({
         maxPrice: Math.round(max)
       });
-      
+
       // Set retailers array
       let retailerArray = [];
       for(let i = 0; i < tempArray.length; i++){
@@ -61,7 +61,10 @@ function Filters(props){
     }
   },[products]);
 
-  useEffect(() => {console.log(retailers);},[retailers]);
+  useEffect(() => {
+    // Set price slider to max when max price is loaded
+    document.getElementById('priceRange').value=maxPrice.maxPrice;
+  },[maxPrice]);
 
   // Sticky Header
   var header = '';
