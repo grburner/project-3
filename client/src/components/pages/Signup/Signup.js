@@ -1,12 +1,16 @@
 /* eslint-disable no-console */
-import React, {useState, useEffect} from 'react';
-// import { Redirect } from 'react-router-dom';
+import React, {useState, useEffect, useContext} from 'react';
 import './style.css';
 import API from '../../../utils/API';
-
 import Button from '../../atoms/Button/Button';
+import { store } from '../../../utils/GlobalState';
+import { useHistory } from "react-router-dom";
 
 function Signup(){
+  let history = useHistory()
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
+
   const [userState, setUserState] = useState({
     username: '',
     password: '',
@@ -53,42 +57,34 @@ function Signup(){
     }
   };
 
-  const handleSubmit = (e) => {
-    console.log(userState);
-    e.preventDefault();
-    if(userState.password && userState.role && userState.username && userState.name){
-      //request to server to add a new username/password
-      API.createUser(userState)
-        .then(response => {
-          console.log(response);
-          if (!response.data.error) {
-            console.log('successful signup');
-            window.location.href = '/login';
-          } else {
-            console.log('username already taken');
-            setError({
-              message: 'Username already taken'
-            });
-          }
-        }).catch(error => {
-          console.log('signup error: ');
-          console.log(error);
-
-        });
-    } else {
-      setError({
-        message: 'Fill out all required fields!'
+const handleSubmit = (e) => {
+  // console.log(userState);
+  e.preventDefault();
+  if(userState.password && userState.role && userState.username && userState.name){
+    //request to server to add a new username/password
+    API.createUser(userState)
+      .then(response => {
+        console.log(response);
+        if (!response.data.error) {
+          console.log('successful signup');
+          dispatch({ type: 'SETuser', payload: {userRole: response.data.role, userId: response.data._id}});
+          history.push('/')
+        } else {
+          console.log('username already taken');
+          setError({
+            message: 'Username already taken'
+          });
+        }
+      }).catch(error => {
+        console.log('signup error: ');
+        console.log(error);
       });
-    }
-    
-
-  };
-
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-    
-  // }, [userState]);
-
+  } else {
+    setError({
+      message: 'Fill out all required fields!'
+    });
+  }
+};
   return (
     <div className="container signup-page">
       <h2 style={{color:'#930045', marginTop:'20px'}}>Sign Up:</h2>
