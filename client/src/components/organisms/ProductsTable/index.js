@@ -33,7 +33,7 @@ const ProductsTable = () => {
     const id = e.target.dataset.id;
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
-        elem.status ? changeState('status', index, false) : changeState('status', index, true);
+        elem.status === 'live' ? changeState('status', index, 'paused') : changeState('status', index, 'live');
       }
     });
   };
@@ -52,8 +52,8 @@ const ProductsTable = () => {
     chartData.forEach(elem => {
       const body = 
       {
-        'price': parseInt(elem.price),
-        'units': parseInt(elem.units),
+        'price': Number(elem.price),
+        'units': Number(elem.units),
         'status': elem.status
       };
       API.updateProducts(elem._id, body);
@@ -61,9 +61,9 @@ const ProductsTable = () => {
   };
   
   const renderProductRow = (element, index) => {
+    console.log(element)
     return (
       <tr key={index} data-id={element._id}>
-        <td data-id={element._id} onClick={() => console.log('product changes saved')}>@</td>
         <td data-id={element._id} >{element.name}</td>
         <td data-id={element._id}>
           <Editable
@@ -103,7 +103,7 @@ const ProductsTable = () => {
             />
           </Editable>
         </td>
-        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status ? 'Live' : 'Paused'}</td>
+        <td data-index={index} data-id={element._id}  data-value={element.status} onClick={toggleStatus}>{element.status === "live" ? 'live' : 'paused'}</td>
       </tr>
     );
   };
@@ -127,7 +127,6 @@ const ProductsTable = () => {
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>@</th>
             <th>Product Name</th>
             <th>Current Price</th>
             <th>Current Inventory</th>

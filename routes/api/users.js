@@ -25,4 +25,8 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
+router
+  .route('/name/:name')
+  .get(usersController.findByName);
+
 module.exports = router;

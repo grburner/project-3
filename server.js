@@ -8,7 +8,7 @@ const routes = require('./routes');
 const user = require('./routes/api/users');
 const session = require('express-session');
 const passport = require('./passport');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.json());
-app.use(morgan());
+// app.use(morgan());
 
 // Passport
 app.use(passport.initialize());

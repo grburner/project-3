@@ -44,5 +44,8 @@ export default {
   },
   updateCart: function(id) {
     return axios.get('api/cart' + id);
+  },
+  getUserByName: function(name) {
+    return axios.get('/api/users/name/' + name)
   }
 };
