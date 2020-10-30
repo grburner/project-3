@@ -44,7 +44,6 @@ function Signup(){
       ...userState,
       [name]: value,  
     });
-    // console.log(userState);
     if(value === 'consumer'){
       setRole({
         role: 'consumer'
@@ -58,17 +57,14 @@ function Signup(){
   };
 
 const handleSubmit = (e) => {
-  // console.log(userState);
   e.preventDefault();
   if(userState.password && userState.role && userState.username && userState.name){
     //request to server to add a new username/password
     API.createUser(userState)
       .then(response => {
-        console.log(response);
         if (!response.data.error) {
           console.log('successful signup');
-          dispatch({ type: 'SETuser', payload: {userRole: response.data.role, userId: response.data._id}});
-          history.push('/')
+          history.push('/login')
         } else {
           console.log('username already taken');
           setError({

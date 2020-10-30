@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
 import Button from '../../atoms/Button/Button';
+import { store } from '../../../utils/GlobalState';
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  let history = useHistory()
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
   const [userState, setUserState] = useState({
     username: '',
     password: '',
@@ -23,34 +28,28 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('handleSubmit');
-
     API.getUserLogin(userState)
       .then(response => {
-        console.log('login response: ');
-        console.log(response);
         if (response.status === 200) {
-          // update App.js state
-          setUserState({
-            loggedIn: true,
-            username: response.data.username
-          });
-          // update the state to redirect to home
-          setUserState({
-            redirectTo: '/'
-          });
-          // Todo: use global user state
-          // if(consumer) {
-          //   window.location.href = "/consumer"
-          // } else if (retailer) {
-          //   window.location.href = "/retailer"
-          // }
+          API.getUserByName(response.data.username).then(res => {
+            if (!res.data.error) {
+              dispatch({ type: 'SETuser', payload: { userRole: res.data[0].role, userId: res.data[0]._id }});
+              if (res.data[0].role === 'consumer') {
+                history.push('/')
+              } else if (res.data[0].role === 'retailer') {
+                history.push('/retailer')
+              }
+            } else {
+              console.log('error signing up')
+            }
+          })
         }
       }).catch(error => {
         console.log('login error: ');
         console.log(error);
                 
       });
-  };
+    };
 
 
 
