@@ -8,7 +8,9 @@ const initialState = {
   sInvModalinView: false,
   bInvModalinView: false,
   currentUser: '',
-  userCart: []
+  userCart: [],
+  userRole: '',
+  userId: ''
 };
 
 const store = createContext(initialState);
@@ -46,6 +48,12 @@ const StateProvider = ( { children } ) => {
       return {
         ...state,
         userCart: action.payload
+      };
+    case 'SETuser':
+      return {
+        ...state,
+        userRole: action.payload.userRole,
+        userId: action.payload.userId
       };
     default:
       throw new Error();
