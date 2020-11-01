@@ -22,11 +22,16 @@ router.route('/login')
 router
   .route('/:id')
   .get(usersController.findById)
-  .put(usersController.update)
+  // .put(usersController.update)
   .delete(usersController.remove);
 
+// Matches with "/api/users/name/:name"
 router
   .route('/name/:name')
   .get(usersController.findByName);
 
+// Matches with "/api/users/cart/:id"
+router
+  .route('/cart/:id')
+  .patch(usersController.update)
 module.exports = router;
