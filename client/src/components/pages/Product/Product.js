@@ -4,7 +4,7 @@ import './style.css';
 import Button from '../../atoms/Button/Button';
 import { store } from '../../../utils/GlobalState';
 import API from '../../../utils/API';
-
+import CartToast from '../../organisms/ CartToast/';
 
 
 function Product(){
@@ -69,6 +69,10 @@ function Product(){
     .then(res => console.log(res))
     };
 
+  const showCart = () => {
+    dispatch({ type: 'TOGGLEtoastSHOW' })
+  }
+
   useEffect(() => {
     getProductDatabyId();
     setCart(userId);
@@ -78,6 +82,7 @@ function Product(){
 
   return (
     <div className="container">
+    <CartToast />
       <div className="product">
         <h1>{ product.name }</h1>
         <p style={{color:'#930045'}}><strong>Retailer: { retailer.name }</strong></p>
@@ -100,6 +105,7 @@ function Product(){
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
               <Button onClick={() => updateCart(id)}>Add To Cart</Button>
+              <Button onClick={() => {showCart()}}>Show Cart</Button>
               {/* <Button onClick={() => updateDatabaseCart()}>Update Cart</Button> */}
             </ul>
           </div>
