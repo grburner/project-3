@@ -43,8 +43,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    console.log(req.body)
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findByIdAndUpdate({ _id: req.params.id }, { cart: req.body } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

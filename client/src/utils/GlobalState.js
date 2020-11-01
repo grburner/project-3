@@ -45,9 +45,9 @@ const StateProvider = ( { children } ) => {
         currentUser: action.payload
       };
     case 'SETuserCart':
-      return {
-        ...state,
-        userCart: action.payload
+        return {
+          ...state,
+          userCart: action.payload
       };
     case 'SETuser':
       return {

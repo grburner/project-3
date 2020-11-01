@@ -44,9 +44,14 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Product'
     }
+  }],
+  cart: [{
+    product_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Product'
+    }
   }]
-  
-});
+})
 
 userSchema.methods = {
   checkPassword: function (inputPassword) {

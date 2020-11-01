@@ -15,7 +15,6 @@ function Header(){
   });
 
   useEffect(()=>{
-    console.log(globalState);
     setUserState({
       role: globalState.state.userRole
     });

@@ -28,7 +28,7 @@ export default {
   },
   updateProducts: function(id, body) {
     return axios({
-      method: 'patch',
+      method: 'get',
       url: ('api/products/' + id),
       data: body
     });
@@ -42,8 +42,12 @@ export default {
   findRetailerById: function(id) {
     return axios.get('/api/users/' + id);
   },
-  updateCart: function(id) {
-    return axios.get('api/cart' + id);
+  updateCart: function(userId, body) {
+    return axios({
+      method: 'patch',
+      url: ('/api/users/cart/' + userId),
+      data: body
+    })
   },
   getUserByName: function(name) {
     return axios.get('/api/users/name/' + name);
