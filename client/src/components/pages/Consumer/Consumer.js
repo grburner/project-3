@@ -1,10 +1,12 @@
 import React, {useState, useContext, useEffect} from 'react';
 import './style.css';
 import API from '../../../utils/API';
-
+import { useHistory } from 'react-router-dom';
 import { store } from '../../../utils/GlobalState';
+import Button from '../../atoms/Button/Button';  
 
 function Consumer(){
+  let history = useHistory();
   const globalState = useContext(store);
   const [consumer, setConsumer] = useState({
     name: '',
@@ -37,7 +39,14 @@ function Consumer(){
       .catch(err => console.log(err));
   },[globalState]);
 
-  
+  const handleClick = () => {
+    if (globalState.state.userId === 'retailer') {
+      history.push('/retailer')
+    } else if (globalState.state.userId = 'consumer') {
+      history.push('/')
+    }
+  }
+
   const seed = {
     firstName: 'John',
     lastName: 'Smith',
@@ -59,6 +68,7 @@ function Consumer(){
       <p>City: {consumer.city}</p>
       <p>State: {consumer.state}</p>
       <p>Zip: {consumer.name}</p>
+      <Button onClick={handleClick}>To Portal</Button>
     </div>
   );
 }
