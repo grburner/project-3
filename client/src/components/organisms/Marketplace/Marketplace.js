@@ -40,7 +40,7 @@ function Marketplace(props){
 
   if(props.filters.store !== '') {
     let newArray = seed.filter(function(x){
-      return x.store === props.filters.store;
+      return x.retailer_id === props.filters.store;
     });
     seed = newArray;
   }

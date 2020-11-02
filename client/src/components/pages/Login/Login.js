@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 import API from '../../../utils/API';
 import Button from '../../atoms/Button/Button';
 import { store } from '../../../utils/GlobalState';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 function Login() {
-  let history = useHistory()
+  let history = useHistory();
   const globalState = useContext(store);
   const { dispatch } = globalState;
   const [userState, setUserState] = useState({
@@ -16,6 +16,10 @@ function Login() {
     password: '',
     redirectTo: null
   });
+
+  useEffect(() => {
+    console.log(globalState);
+  },[globalState]);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -35,21 +39,21 @@ function Login() {
             if (!res.data.error) {
               dispatch({ type: 'SETuser', payload: { userRole: res.data[0].role, userId: res.data[0]._id }});
               if (res.data[0].role === 'consumer') {
-                history.push('/')
+                history.push('/consumer');
               } else if (res.data[0].role === 'retailer') {
-                history.push('/retailer')
+                history.push('/retailer');
               }
             } else {
-              console.log('error signing up')
+              console.log('error signing up');
             }
-          })
+          });
         }
       }).catch(error => {
         console.log('login error: ');
         console.log(error);
                 
       });
-    };
+  };
 
 
 

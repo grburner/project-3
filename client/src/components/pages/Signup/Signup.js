@@ -4,10 +4,10 @@ import './style.css';
 import API from '../../../utils/API';
 import Button from '../../atoms/Button/Button';
 import { store } from '../../../utils/GlobalState';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 function Signup(){
-  let history = useHistory()
+  let history = useHistory();
   const globalState = useContext(store);
   const { dispatch } = globalState;
 
@@ -55,32 +55,32 @@ function Signup(){
       });
     }
   };
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if(userState.password && userState.role && userState.username && userState.name){
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(userState.password && userState.role && userState.username && userState.name){
     //request to server to add a new username/password
-    API.createUser(userState)
-      .then(response => {
-        if (!response.data.error) {
-          console.log('successful signup');
-          history.push('/login')
-        } else {
-          console.log('username already taken');
-          setError({
-            message: 'Username already taken'
-          });
-        }
-      }).catch(error => {
-        console.log('signup error: ');
-        console.log(error);
+      API.createUser(userState)
+        .then(response => {
+          if (!response.data.error) {
+          // Successful Signup
+            history.push('/login');
+          } else {
+            console.log('username already taken');
+            setError({
+              message: 'Username already taken'
+            });
+          }
+        }).catch(error => {
+          console.log('signup error: ');
+          console.log(error);
+        });
+    } else {
+      setError({
+        message: 'Fill out all required fields!'
       });
-  } else {
-    setError({
-      message: 'Fill out all required fields!'
-    });
-  }
-};
+    }
+  };
   return (
     <div className="container signup-page">
       <h2 style={{color:'#930045', marginTop:'20px'}}>Sign Up:</h2>

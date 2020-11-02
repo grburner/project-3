@@ -10,7 +10,8 @@ const initialState = {
   currentUser: '',
   userCart: [],
   userRole: '',
-  userId: ''
+  userId: '',
+  toastState: false
 };
 
 const store = createContext(initialState);
@@ -45,9 +46,9 @@ const StateProvider = ( { children } ) => {
         currentUser: action.payload
       };
     case 'SETuserCart':
-      return {
-        ...state,
-        userCart: action.payload
+        return {
+          ...state,
+          userCart: action.payload
       };
     case 'SETuser':
       return {
@@ -55,6 +56,16 @@ const StateProvider = ( { children } ) => {
         userRole: action.payload.userRole,
         userId: action.payload.userId
       };
+    case 'TOGGLEtoastSHOW':
+      return {
+        ...state,
+        toastState: true
+      };
+      case 'TOGGLEtoastHIDE':
+        return {
+          ...state,
+          toastState: false
+        };
     default:
       throw new Error();
     }
