@@ -54,5 +54,12 @@ export default {
   },
   logout: function(){
     return axios.get('/logout')
+  },
+  createNewOrder: function(order) {
+    return axios({
+      method: 'post',
+      url: ('/api/orders/'),
+      data: order
+    })
   }
 };

@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import API from '../../../utils/API';
 import { store } from '../../../utils/GlobalState';
+import CartDetail from '../../molecules/CartDetail/index';
 import Modal from 'react-bootstrap/Modal'
 import Button from '../../atoms/Button/Button';
 
 const CartToast = () => {
     const globalState = useContext(store);
     const { dispatch } = globalState;
+
+    let userId = '5f90df97d56aef06bcb010cb';
 
     const [cartData, setCartData] = useState()
 
@@ -16,13 +19,15 @@ const CartToast = () => {
         globalState.state.userCart.forEach(elem => {
             promises.push(
                 API.getProductsID(elem.product_id)
-                .then(data => { return {
+                .then(
+                    data => { return {
                     "name": data.data.name,
                     "price": data.data.price,
                     "retailer_id": data.data.retailer_id,
                     "units": data.data.units,
                     "order_units": 1,
-            }})
+                    "product_id": data.data._id
+                }})
             )
         });
         Promise.all(promises).then((values) => {setCartData(values)})
@@ -48,20 +53,47 @@ const CartToast = () => {
       };
 
     const createOrder = () => {
-        let orders = ["5f90df97d56aef06bcb010d3"]
+        let orders = []
+        let uniqueRetailers = []
         cartData.forEach(elem => {
+            if (uniqueRetailers.indexOf(elem.retailer_id) === -1) {
+                uniqueRetailers.push(elem.retailer_id)
+            }
+        })
+        uniqueRetailers.forEach(elem => {
+            orders.push({
+                'retailer_id' : elem,
+                // 'user_id': globalState.state.userId,
+                'user_id': userId,
+                'date': new Date(),
+                'status': 'open',
+                'detail': []
+            })
+        })
+        cartData.forEach(elem => {
+            console.log(elem)
+            let index = 0
             let id = elem.retailer_id
             orders.forEach(order => {
-                if (order === id) {
-                    console.log('matches ' + id)
+                if (id === order.retailer_id) {
+                    orders[index].detail.push({
+                        'product_id': elem.product_id,
+                        'quantity': elem.order_units,
+                        'price': elem.price
+                    })
+                    index += 1
                 } else {
-                    orders.push(id)
-                    return
+                    index += 1
                 }
             })
-            return
         })
-        console.log(orders)
+    sendOrders(orders)
+    }
+
+    const sendOrders = (orders) => {
+        orders.forEach(order => {
+            API.createNewOrder(order)
+        })
     }
 
     return(
@@ -75,11 +107,12 @@ const CartToast = () => {
                 <strong className="mr-auto">Cart</strong>
             </Modal.Header>
             <Modal.Body>
+                <div>{'test'}</div>
                     {cartData ? cartData.map((elem, index) => (
-                        <div>{elem.name}</div>
+                        <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
                     )): ''}
             </Modal.Body>
-            {/* <Button onClick={() => createOrder()}>Checkout</Button> */}
+            <Button onClick={() => createOrder()}>Checkout</Button>
         </Modal>
     )
 }
