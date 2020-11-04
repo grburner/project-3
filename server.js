@@ -35,6 +35,11 @@ app.use( (req, res, next) => {
   return next();
 });
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 app.use(routes);
 // Connect to the Mongo DB
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/marketplace", {

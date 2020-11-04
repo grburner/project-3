@@ -3,8 +3,7 @@ import './style.css';
 
 // import Button from 'react-bootstrap/Button';
 
-function customButton({children, href, onClick, variant, width}){
-
+function customButton({children, href, onClick, variant, fullwidth}){
   const [hoverState, setHover] = useState(false);
   if(variant === 'white'){
     return (
@@ -15,6 +14,7 @@ function customButton({children, href, onClick, variant, width}){
             className={hoverState ? 'main-button-white-hover' : 'main-button-white'}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            style={fullwidth ? {width:'100%'} : {}}
           >
             {children}
           </button>
@@ -30,6 +30,7 @@ function customButton({children, href, onClick, variant, width}){
             className={hoverState ? 'main-button-hover' : 'main-button'}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            style={fullwidth ? {width:'100%'} : {}}
           >
             {children}
           </button>

@@ -5,6 +5,7 @@ import Item from '../../organisms/Item/Item';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import API from '../../../utils/API';
+import Button from '../../atoms/Button/Button'
 
 import ProductContext from '../../../utils/ProductContext';
 
@@ -15,6 +16,12 @@ function Marketplace(props){
   const [limit, setLimit] = useState({
     value: 20
   });
+
+  const showMore = () => {
+    setLimit({
+      value: limit.value + 8
+    })
+  }
 
   let seed = [];
 
@@ -73,6 +80,11 @@ function Marketplace(props){
             );
           }
         })}
+      </Row>
+      <Row>
+        <Col>
+        <Button onClick={showMore} fullwidth="true">Load More</Button>
+        </Col>
       </Row>
     </div>
   );
