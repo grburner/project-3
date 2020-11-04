@@ -37,9 +37,15 @@ function Login() {
         if (response.status === 200) {
           API.getUserByName(response.data.username).then(res => {
             if (!res.data.error) {
+              // Set local storage
+              localStorage.setItem('userdata', JSON.stringify(res.data));
+
+              // Set global variable
               dispatch({ type: 'SETuser', payload: { userRole: res.data[0].role, userId: res.data[0]._id }});
+
+              // Handle redirects based on role type
               if (res.data[0].role === 'consumer') {
-                history.push('/consumer');
+                history.push('/');
               } else if (res.data[0].role === 'retailer') {
                 history.push('/retailer');
               }

@@ -67,5 +67,10 @@ module.exports = {
       .find({username: req.params.name})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  logout: function(req, res) {
+    // req.logout();
+    // res.redirect('/');
+    console.log("Hit the logout route")
   }
 };

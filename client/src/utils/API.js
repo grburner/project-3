@@ -51,5 +51,15 @@ export default {
   },
   getUserByName: function(name) {
     return axios.get('/api/users/name/' + name);
+  },
+  logout: function(){
+    return axios.get('/logout')
+  },
+  createNewOrder: function(order) {
+    return axios({
+      method: 'post',
+      url: ('/api/orders/'),
+      data: order
+    })
   }
 };
