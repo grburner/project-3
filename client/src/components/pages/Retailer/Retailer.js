@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { store } from '../../../utils/GlobalState';
 
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -14,10 +15,12 @@ import ProductTable from '../../organisms/ProductsTable';
 
 
 const Retailer = () => {
+  const globalState = useContext(store)
+  const { dispatch } = globalState;
 
   return (
     <Container>
-      <SingleProductAddModal />
+      <SingleProductAddModal data={globalState.state.userId}></SingleProductAddModal>
       <Row>
         <RetailNav />
       </Row>

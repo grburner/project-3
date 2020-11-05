@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import Table from 'react-bootstrap/Table';
 import API from '../../../utils/API';
 import Editable from '../../../utils/Editable.js';
 import Button from '../../atoms/Button/Button.js';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { store } from '../../../utils/GlobalState';
 
 const ProductsTable = () => {
+  const globalState = useContext(store);
   const [chartData, setChartData] = useState([]);
   const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
   const [inputData, setInputData] = useState('');
@@ -14,7 +16,7 @@ const ProductsTable = () => {
 
 
   useEffect(() => {
-    API.getProductsByRetailerId(retailerId).then(data => {
+    API.getProductsByRetailerId(globalState.state.userId).then(data => {
       setChartData(data.data);
     });
   }, []);
@@ -56,7 +58,7 @@ const ProductsTable = () => {
         'units': Number(elem.units),
         'status': elem.status
       };
-      API.updateProducts(elem._id, body);
+      API.updateProducts(elem._id, body).then(res => {console.log(res)});
     });
   };
   

@@ -12,55 +12,23 @@ import API from '../../../utils/API'
 
 function Header(){
   const history = useHistory();
-  // Set state
   const globalState = useContext(store);
-  const [userState, setUserState] = useState({
-    loggedin: false,
-    role: '',
-    text: 'Login'
-  });
-
-  useEffect(()=>{
-    // Check if stored user exists
-    if (!localStorage.getItem("userdata") === null) {
-      // Get stored user data
-      let data = JSON.parse(localStorage.getItem("userdata"));
-      setUserState({
-        loggedin: true,
-        role: data[0].role,
-        text: 'Logout'
-      });
-    } else {
-      setUserState({
-        loggedin: false,
-        role: '',
-        text: 'Login'
-      });
-    }
-  },[]);
-
-  useEffect(()=>{console.log(userState)},[userState])
+  const { dispatch } = globalState;
 
   const logout = () => {
-    if(userState.loggedin){
+    if(globalState.state.userId){
       // if user is logged in, log them out
       API.logout()
       .then(res => {
         console.log('Logout');
         console.log(res);
-        window.localStorage.removeItem("userdata");
-        setUserState({
-          loggedin: false,
-          role: '',
-          text: 'Login'
-        });
+        dispatch({ type: 'SETuser', payload: { userRole: '', userId: '' }});
       })
       .catch(err => console.log(err)); 
 
     } else {
       // if user is not logged in, take them to login page
-      // history.push('/login')
-      window.location.href = "/login"
+      history.push('/login')
     }
   }
 
@@ -72,10 +40,10 @@ function Header(){
         <Col xs={2}>
           <Row>
             <Col>
-              <Button variant="white" onClick={logout}>{userState.text}</Button>
+              <Button variant="white" onClick={logout}>{globalState.state.userId ? 'Logout' : 'Login'}</Button>
             </Col>
             <Col>
-              <Button href="/signup" variant="white">Sign Up</Button>
+              {globalState.state.userId ? '' : <Button href="/signup" variant="white">Sign Up</Button>}
             </Col>
           </Row>
         </Col>
