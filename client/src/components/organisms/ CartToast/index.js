@@ -16,21 +16,23 @@ const CartToast = () => {
     useEffect(() => {
         let promises = [];
 
-        globalState.state.userCart.forEach(elem => {
-            promises.push(
-                API.getProductsID(elem.product_id)
-                .then(
-                    data => { return {
-                    "name": data.data.name,
-                    "price": data.data.price,
-                    "retailer_id": data.data.retailer_id,
-                    "units": data.data.units,
-                    "order_units": 1,
-                    "product_id": data.data._id
-                }})
-            )
-        });
-        Promise.all(promises).then((values) => {setCartData(values)})
+        if (globalState.state.userCart) {
+            globalState.state.userCart.forEach(elem => {
+                promises.push(
+                    API.getProductsID(elem.product_id)
+                    .then(
+                        data => { return {
+                        "name": data.data.name,
+                        "price": data.data.price,
+                        "retailer_id": data.data.retailer_id,
+                        "units": data.data.units,
+                        "order_units": 1,
+                        "product_id": data.data._id
+                    }})
+                )
+            });
+            Promise.all(promises).then((values) => {setCartData(values)})
+        }
     }, [globalState]);
 
     const handleChange = (e, name) => {

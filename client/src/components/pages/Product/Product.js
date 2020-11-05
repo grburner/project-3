@@ -90,9 +90,10 @@ function Product(){
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button onClick={() => updateCart(id)}>Add To Cart</Button>
-              <Button onClick={() => {showCart()}}>Show Cart</Button>
-              {/* <Button onClick={() => updateDatabaseCart()}>Update Cart</Button> */}
+              {globalState.state.userId ? 
+                <Button onClick={() => updateCart(id)}>Add To Cart</Button> :
+                ''
+              }
             </ul>
           </div>
          
