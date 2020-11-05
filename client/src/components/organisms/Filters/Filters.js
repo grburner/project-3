@@ -69,15 +69,18 @@ function Filters(props){
   // Sticky Header
   var header = '';
   var sticky = '';
-  // When the user scrolls the page, execute myFunction
-  window.onscroll = function() {
-    // Get the header
-    header = document.getElementById('filters');
 
-    // Get the offset position of the navbar
-    sticky = document.getElementById('filters').offsetTop;
-    stickyFilter();
-  };
+  document.addEventListener('DOMContentLoaded', () => {
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {
+      // Get the header
+      header = document.getElementById('filters');
+
+      // Get the offset position of the navbar
+      sticky = document.getElementById('filters').offsetTop;
+      stickyFilter();
+    };
+  });
 
   // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
   function stickyFilter() {
