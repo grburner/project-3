@@ -52,12 +52,14 @@ const ProductsTable = () => {
 
   const sendData = () => {
     chartData.forEach(elem => {
+      console.log(elem)
       const body = 
       {
-        'price': Number(elem.price),
-        'units': Number(elem.units),
+        'price': elem.price,
+        'units': elem.units,
         'status': elem.status
       };
+      console.log(body)
       API.updateProducts(elem._id, body).then(res => {console.log(res)});
     });
   };

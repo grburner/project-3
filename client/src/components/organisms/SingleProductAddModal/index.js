@@ -52,7 +52,6 @@ const SingleProductAddModal = (props) => {
   function addProduct(product){
     const productToAdd = {
       'retailer_id': retId,
-      // 'retailer_id': '5fa42bfc8096636e7607e595',
       'name': product.text.toUpperCase(),
       'description': product.description,
       'country': product.country,
