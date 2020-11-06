@@ -20,14 +20,16 @@ import Product from './components/pages/Product/Product';
 import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
 import ImageUpload from './components/organisms/ImageUpload/index.js';
+import SingleProductAddModal from './components/organisms/SingleProductAddModal';
 
 function App() {
 
   return (
     <div className="App">
       <StateProvider>
+      <Router>
         <Header />
-        <Router>
+        {/* <Router> */}
           <div>
             <Switch>
               <Route path="/signup">
@@ -45,13 +47,17 @@ function App() {
               <Route path="/product/:id">
                 <Product />
               </Route>
+              <Route path="/product_add">
+                <SingleProductAddModal />
+              </Route>
               <Route path="/">
                 <Home />
               </Route>
             </Switch>
           </div>
-        </Router>
+        {/* </Router> */}
         <Footer />
+        </Router>
       </StateProvider>
     </div>
   );

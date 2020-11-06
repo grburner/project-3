@@ -38,7 +38,7 @@ function Login() {
           API.getUserByName(response.data.username).then(res => {
             if (!res.data.error) {
               // Set local storage
-              localStorage.setItem('userdata', JSON.stringify(res.data));
+              // localStorage.setItem('userdata', JSON.stringify(res.data));
 
               // Set global variable
               dispatch({ type: 'SETuser', payload: { userRole: res.data[0].role, userId: res.data[0]._id }});
@@ -46,6 +46,10 @@ function Login() {
               // Handle redirects based on role type
               if (res.data[0].role === 'consumer') {
                 history.push('/');
+                API.getUser(res.data[0]._id)
+                .then(res => {
+                  dispatch({ type: 'SETuserCart', payload: res.data.cart })
+                })
               } else if (res.data[0].role === 'retailer') {
                 history.push('/retailer');
               }

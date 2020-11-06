@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import API from '../../../utils/API';
 import Button from '../../atoms/Button/Button'
+import CartToast from '../ CartToast';
 
 import ProductContext from '../../../utils/ProductContext';
 
@@ -69,6 +70,7 @@ function Marketplace(props){
   return (
     <div className="container marketplace">
       <h3>Marketplace</h3>
+      <CartToast />
       <Row>
         {seed.map((x,i)=>{
           // console.log(x)

@@ -16,28 +16,44 @@ const CartToast = () => {
     useEffect(() => {
         let promises = [];
 
-        globalState.state.userCart.forEach(elem => {
-            promises.push(
-                API.getProductsID(elem.product_id)
-                .then(
-                    data => { return {
-                    "name": data.data.name,
-                    "price": data.data.price,
-                    "retailer_id": data.data.retailer_id,
-                    "units": data.data.units,
-                    "order_units": 1,
-                    "product_id": data.data._id
-                }})
-            )
-        });
-        Promise.all(promises).then((values) => {setCartData(values)})
+        if (globalState.state.userCart) {
+            globalState.state.userCart.forEach(elem => {
+                promises.push(
+                    API.getProductsID(elem.product_id)
+                    .then(
+                        data => { return {
+                        "name": data.data.name,
+                        "price": data.data.price,
+                        "retailer_id": data.data.retailer_id,
+                        "units": data.data.units,
+                        "order_units": 1,
+                        "product_id": data.data._id
+                    }})
+                )
+            });
+            Promise.all(promises).then((values) => {setCartData(values)})
+        }
     }, [globalState]);
 
-    const handleChange = (e, name) => {
+    const handleChange = (e, name, type) => {
         const value = e.target.value;
         cartData.forEach((elem, index) => {
             if (name === elem.name) {
-            changeState('order_units', name , value);
+                if (type === 'change') {
+                    changeState('order_units', name , value);
+                } else if (type === 'remove') {
+                    let revisedCart = []
+                    if (elem.name === name) {
+                        globalState.state.userCart.forEach(item => {
+                            if (elem.product_id !== item.product_id) {
+                                revisedCart.push(item)
+                            }
+                        })
+                    console.log(revisedCart)
+                    dispatch({ type: 'SETuserCart', payload: revisedCart })
+                    API.updateCart(globalState.state.userId, revisedCart)
+                    }
+                }
             }
         });
     };
@@ -63,8 +79,8 @@ const CartToast = () => {
         uniqueRetailers.forEach(elem => {
             orders.push({
                 'retailer_id' : elem,
-                // 'user_id': globalState.state.userId,
-                'user_id': userId,
+                'user_id': globalState.state.userId,
+                // 'user_id': userId,
                 'date': new Date(),
                 'status': 'open',
                 'detail': []
@@ -78,7 +94,7 @@ const CartToast = () => {
                 if (id === order.retailer_id) {
                     orders[index].detail.push({
                         'product_id': elem.product_id,
-                        'quantity': elem.order_units,
+                        'quantity': Number(elem.order_units),
                         'price': elem.price
                     })
                     index += 1
@@ -104,14 +120,14 @@ const CartToast = () => {
         >
             <Modal.Header  closeButton>
                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                <strong className="mr-auto">Cart</strong>
+                <strong className="mr-auto">Your Cart</strong>
             </Modal.Header>
             <Modal.Body>
-                <div>{'test'}</div>
-                    {cartData ? cartData.map((elem, index) => (
-                        <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
-                    )): ''}
+                {cartData ? cartData.map((elem, index) => (
+                    <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
+                )): ''}
             </Modal.Body>
+
             <Button onClick={() => createOrder()}>Checkout</Button>
         </Modal>
     )

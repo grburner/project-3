@@ -24,8 +24,8 @@ function Item(props){
   }
   
   return (
-    <a href={link} className="item-link">
-    {/* <a onClick={handleClick} className="item-link"> */}
+    // <a href={link} className="item-link">
+    <a onClick={handleClick} className="item-link">
       <div className="item">
         <div style={{backgroundImage: 'url('+ image + ')' }} className="item-image">&nbsp;</div>
         <div style={{padding:'5px', height:'100%'}}>
@@ -33,8 +33,8 @@ function Item(props){
           <p>${props.value.price}</p>
           <p style={{margin:'5px', padding:'0'}}>&nbsp;</p>
           <div style={{position:'absolute', bottom:'0', marginTop:'50px', width:'85%'}}>
-            {/* <Button href={handleClick} width="100%">View</Button> */}
-            <Button href={link} width="100%">View</Button>
+            <Button href={handleClick} width="100%">View</Button>
+            {/* <Button href={link} width="100%">View</Button> */}
           </div>
         </div>
         

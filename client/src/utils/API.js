@@ -28,7 +28,7 @@ export default {
   },
   updateProducts: function(id, body) {
     return axios({
-      method: 'get',
+      method: 'patch',
       url: ('api/products/' + id),
       data: body
     });
