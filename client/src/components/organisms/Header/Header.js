@@ -39,19 +39,6 @@ function Header(){
     dispatch({ type: 'TOGGLEtoastSHOW' })
   }
 
-  const setCart = (userId) => {
-    API.getUser(userId)
-      .then(res => {
-        console.log('set Cart data')
-        console.log(res.data.cart); 
-        dispatch({ type: 'SETuserCart', payload: res.data.cart })
-      });
-    }
-
-  useEffect(() => {
-    setCart(userId);
-  }, [])
-
   return (
     <header>
       <Row>
