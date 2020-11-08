@@ -40,7 +40,7 @@ const OrderDetail = (props) => {
       <tr key={index}>
         <td>{prodNames[index] ? prodNames[index] : 'no data'}</td>
         <td>{element.quantity}</td>
-        <td>{element.cost}</td>
+        <td>${element.cost}</td>
       </tr>
     );
   };
