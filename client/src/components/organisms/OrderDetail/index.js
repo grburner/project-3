@@ -14,8 +14,6 @@ const OrderDetail = (props) => {
   const [prodNames, setProdNames] = useState([]);
   const [orderState, setOrderState] = useState(data.status)
 
-  console.log(data);
-
   const getUserName = (id) => {
     API.getUserName(id).then((data) => {setCustName(data.data.name);});
   };
@@ -43,7 +41,6 @@ const OrderDetail = (props) => {
   };
 
   const shipOrder = (id, body) => {
-    console.log('data index =' + data.index)
     API.updateOrder(id, body)
     setOrderState('closed')
     // props.onChange(data.index, "closed")

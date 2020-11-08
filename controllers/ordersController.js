@@ -40,7 +40,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateOrder: function(req, res) {
-    console.log(req.body)
     db.Order
       .findOneAndUpdate({_id: req.params.id}, { "$set": req.body })
       .then(dbModel => res.json(dbModel))
