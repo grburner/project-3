@@ -12,7 +12,8 @@ router
   .route('/:id')
   .get(ordersController.findById)
   .put(ordersController.update)
-  .delete(ordersController.remove);
+  .delete(ordersController.remove)
+  .patch(ordersController.updateOrder);
 
 // Matches with "/api/orders/retailer_id/:retailer_id"
 router

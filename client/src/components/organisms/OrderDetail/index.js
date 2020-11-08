@@ -45,6 +45,11 @@ const OrderDetail = (props) => {
     );
   };
 
+  const shipOrder = (id, body) => {
+    console.log('called in client')
+    API.updateOrder(id, body)
+  }
+
   return (
     <Card>
       <Card.Header>
@@ -66,7 +71,7 @@ const OrderDetail = (props) => {
             <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
           </Col>
           <Col className="mt-2">
-            <Button onClick={() => console.log('ship me clicked')}>Ship Now</Button>
+            <Button onClick={() => shipOrder(data.orderId, {'status': 'closed'})}>Ship Now</Button>
           </Col>
         </Row>
       </Card.Body>

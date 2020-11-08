@@ -38,7 +38,6 @@ const OrdersTable = () => {
   };
 
   const passProdDetail = (ind = 0) => {
-    console.log('into prod');
     let index = ind;
     let passObj = {};
     let details = [];
@@ -56,6 +55,7 @@ const OrdersTable = () => {
     passObj.status = chartData[index].status;
     passObj.orderDate = chartData[index].date;
     passObj.shipByDate = DateFormatter(chartData[index].date, 14);
+    passObj.orderId = chartData[index]._id;
     setProdDetail(passObj);
     setDetailIndex(index);
     setShowDetail(true);
