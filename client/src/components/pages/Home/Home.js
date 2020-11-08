@@ -95,7 +95,7 @@ function Home(){
         <Search />
       </Hero>
       <Filters filters={filters} filterChange={filterChange} filterReset={resetFilters}/>
-      <div className="container">
+      <div className="marketplace-container">
         <Marketplace filters={filters} />
       </div>
     </ProductContext.Provider>

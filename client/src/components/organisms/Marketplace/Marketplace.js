@@ -10,6 +10,8 @@ import CartToast from '../ CartToast';
 
 import ProductContext from '../../../utils/ProductContext';
 
+import wave from '../../atoms/Images/wave.png'
+
 function Marketplace(props){
 
   const products = useContext(ProductContext);
@@ -68,15 +70,14 @@ function Marketplace(props){
   }
 
   return (
-    <div className="container marketplace">
-      <h3>Marketplace</h3>
+    <div className="marketplace">
+      <h3 className="marketplace-header">Wines</h3>
       <CartToast />
       <Row>
         {seed.map((x,i)=>{
-          // console.log(x)
           if(i < limit.value){
             return (
-              <Col lg={3} md={6} sm={12} style={{marginBottom: '20px'}}>
+              <Col xl={3} lg={4} md={6} sm={6} xs={12} style={{marginBottom: '20px'}}>
                 <Item value={x}/>
               </Col>
             );

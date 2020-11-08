@@ -3,11 +3,28 @@
     border:2px solid #930045;
     padding:50px;
     text-align:left;
-    max-width:50%;
-    margin:20px 0 20px 25%;
+    width:90%;
+    max-width:1000px;
+    margin:0 auto 50px auto;
     font-weight:bold;
 }
 
 .form-input{
     width:100%;
+}
+
+.login-form input,
+.login-form input:focus{
+    width:100%;
+    background-color:transparent;
+    border:0;
+    color:black;
+    font-size:18px;
+    outline:none;
+    border-bottom:1px solid black;
+    margin-bottom:10px;
+}
+
+.login-form-wrapper{
+    min-height:80vh;
 }

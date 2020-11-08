@@ -28,7 +28,7 @@ function Item(props){
     <a onClick={handleClick} className="item-link">
       <div className="item">
         <div style={{backgroundImage: 'url('+ image + ')' }} className="item-image">&nbsp;</div>
-        <div style={{padding:'5px', height:'100%'}}>
+        <div className="item-description">
           <p>{props.value.name}</p>
           <p>${props.value.price}</p>
           <p style={{margin:'5px', padding:'0'}}>&nbsp;</p>

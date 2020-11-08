@@ -1,4 +1,14 @@
 footer{
     padding:20px 0;
     background-color:lightgray;
+    font-size:18px;
+    color:#930045;
+}
+
+footer i{
+    color:#930045;
+}
+
+footer a{
+    color:#930045;
 }
