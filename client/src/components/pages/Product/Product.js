@@ -48,12 +48,20 @@ function Product(){
     }
 
   const updateCart = (id) => {
+    let exists = false
     let cart = globalState.state.userCart
-    cart.push({'product_id': id});
-    dispatch({ type: 'SETuserCart', payload: cart})
-    API.updateCart(userId, globalState.state.userCart)
-    .then(res => console.log(res))
-    };
+    cart.forEach(item => {
+      if (item.product_id === id) {
+        exists = true
+      }
+    })
+    if (!exists) {
+      cart.push({'product_id': id});
+      dispatch({ type: 'SETuserCart', payload: cart})
+      API.updateCart(userId, globalState.state.userCart)
+      .then(res => console.log(res))
+    }
+  };
 
   const showCart = () => {
     dispatch({ type: 'TOGGLEtoastSHOW' })

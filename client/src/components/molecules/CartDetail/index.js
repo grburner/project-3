@@ -10,11 +10,11 @@ const CartDetail = (props) => {
     useEffect(() => {}, [placeholder])
 
     const handleChange = (e, type) => {
-        if (e.target.value < props.data.units) {
-            console.log('less than')
+        if ( type === "remove" ) {
+            props.onChange(e, props.data.name, "remove")
+        } else if (e.target.value < props.data.units) {
             props.onChange(e, props.data.name, type)
         } else {
-            console.log('greater than')
             setPlaceholder(`sorry - max ${props.data.units} bottles!`)
         }
     }

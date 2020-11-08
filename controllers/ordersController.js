@@ -40,9 +40,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateOrder: function(req, res) {
-    console.log('into controller')
     db.Order
-      .findOneAndUpdate({_id: req.params.id}, req.body)
+      .findOneAndUpdate({_id: req.params.id}, { "$set": req.body })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   }

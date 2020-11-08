@@ -13,9 +13,7 @@ import API from '../../../utils/API';
 
 const OrdersTable = () => {
   const globalState = useContext(store);
-
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState();
   const [showDetail, setShowDetail] = useState(false);
   const [prodDetail, setProdDetail] = useState({});
   const [detailIndex, setDetailIndex] = useState(0);
@@ -23,7 +21,9 @@ const OrdersTable = () => {
   useEffect(() => {
     API.findByRetailerId(globalState.state.userId)
       .then(data => {
-        setChartData(data.data);});
+        console.log(data.data);
+        setChartData(data.data);
+    });
   }, []);
 
   const getOrderInfo = (elem) => {
@@ -56,10 +56,20 @@ const OrdersTable = () => {
     passObj.orderDate = chartData[index].date;
     passObj.shipByDate = DateFormatter(chartData[index].date, 14);
     passObj.orderId = chartData[index]._id;
+    passObj.index = index
+    passObj.shippedOn = chartData[index].shipped_on;
     setProdDetail(passObj);
     setDetailIndex(index);
     setShowDetail(true);
   };
+
+  // const changeOrderState = (index, state) => {
+  //   console.log('into change order state')
+  //   setChartData(
+  //     ...chartData,
+  //     {[index]: {status: state}}
+  //   )
+  // }
   
   const renderProductRow = (element, index) => {
     const orderDate = DateFormatter(element.date);
@@ -108,12 +118,13 @@ const OrdersTable = () => {
               </tr>
             </thead>
             <tbody>
-              {chartData.map(renderProductRow)}
+              {chartData ? chartData.map(renderProductRow) : ''}
             </tbody>
           </Table>
         </Col>
         <Col sm={showDetail ? 4 : 0}>
           {showDetail ? <OrderDetail data={prodDetail}></OrderDetail> : ''}
+          {/* {showDetail ? <OrderDetail data={prodDetail} onChange={changeOrderState}></OrderDetail> : ''} */}
         </Col>
       </Row>
     </div>
