@@ -38,7 +38,6 @@ const OrdersTable = () => {
   };
 
   const passProdDetail = (ind = 0) => {
-    console.log('into prod');
     let index = ind;
     let passObj = {};
     let details = [];
@@ -56,6 +55,7 @@ const OrdersTable = () => {
     passObj.status = chartData[index].status;
     passObj.orderDate = chartData[index].date;
     passObj.shipByDate = DateFormatter(chartData[index].date, 14);
+    passObj.orderId = chartData[index]._id;
     setProdDetail(passObj);
     setDetailIndex(index);
     setShowDetail(true);
@@ -77,7 +77,7 @@ const OrdersTable = () => {
         <td>{orderDate}</td>
         <td>{sendDate}</td>
         <td>{getOrderInfo(element).items}</td>
-        <td>{getOrderInfo(element).total}</td>
+        <td>${getOrderInfo(element).total}</td>
         <td><Badge pill variant={(element.status == 'open' ? 'danger' : 'success')}>{element.status}</Badge></td>
       </tr>
     );

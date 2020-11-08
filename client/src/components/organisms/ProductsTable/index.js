@@ -72,7 +72,7 @@ const ProductsTable = () => {
         <td data-id={element._id}>
           <Editable
             text={inputData}
-            placeholder={element.price}
+            placeholder={'$' + element.price}
             childRef={inputRef}
             type='input'
           >

@@ -38,5 +38,12 @@ module.exports = {
       .find({'retailer_id': req.params.retailer_id})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  updateOrder: function(req, res) {
+    console.log('into controller')
+    db.Order
+      .findOneAndUpdate({_id: req.params.id}, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   }
 };
