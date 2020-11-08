@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { store } from '../../../utils/GlobalState';
 import OrderDetail from '../../organisms/OrderDetail';
 import DateFormatter from '../../../utils/DateFormatter';
@@ -12,14 +12,16 @@ import Nav from 'react-bootstrap/Nav';
 import API from '../../../utils/API';
 
 const OrdersTable = () => {
+  const globalState = useContext(store);
+
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState('5f90def5747f0b4e289d05e9');
+  const [retailerId, setRetailerId] = useState();
   const [showDetail, setShowDetail] = useState(false);
   const [prodDetail, setProdDetail] = useState({});
   const [detailIndex, setDetailIndex] = useState(0);
 
   useEffect(() => {
-    API.findByRetailerId(retailerId)
+    API.findByRetailerId(globalState.state.userId)
       .then(data => {
         setChartData(data.data);});
   }, []);

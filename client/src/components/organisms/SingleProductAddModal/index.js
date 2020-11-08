@@ -11,10 +11,14 @@ import ImageUpload from '../../organisms/ImageUpload/index';
 
 import './style.css';
 
-const SingleProductAddModal = () => {
+const SingleProductAddModal = (props) => {
   const globalState = useContext(store);
-  const [user, setUser] = useState('5f90df97d56aef06bcb010d3');
   const { dispatch } = globalState;
+  const [retId, setRetId] = useState()
+
+  useEffect(() => {
+    setRetId(props.data)
+  }, [])
 
   const [product, setProduct] = useState({
     text: '',
@@ -26,7 +30,8 @@ const SingleProductAddModal = () => {
     size: '750mL',
     grapes: 'Syrah',
     tags: ['Natural'],
-    image: ''
+    image: '',
+    status: 'live'
   });
 
   const testUser = {
@@ -46,7 +51,7 @@ const SingleProductAddModal = () => {
 
   function addProduct(product){
     const productToAdd = {
-      'retailer_id': user,
+      'retailer_id': retId,
       'name': product.text.toUpperCase(),
       'description': product.description,
       'country': product.country,
@@ -57,12 +62,13 @@ const SingleProductAddModal = () => {
       'grape_blend': product.grapes,
       'units': 0,
       'price': 0,
-      'image': product.image
+      'image': product.image,
+      'status': 'live'
     };
 
     API.createProduct(productToAdd)
       .then(res => {
-        //console.log(res);
+        console.log(res);
       })
       .catch(err => console.log(err));
   }
@@ -78,7 +84,6 @@ const SingleProductAddModal = () => {
   };
 
   return (
-      <>
       <Modal show={globalState.state.sProdModalinView}>
         <Modal.Header>
           <Modal.Title>Single Product Add Template</Modal.Title>
@@ -206,10 +211,7 @@ const SingleProductAddModal = () => {
             Submit
           </Button>
         </Modal.Footer>
-        
       </Modal>
-     
-    </>
   );
 };
 

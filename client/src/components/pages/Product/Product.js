@@ -12,10 +12,9 @@ function Product(){
   const { dispatch } = globalState;
 
   let { id } = useParams();
-  let userId = '5f90df97d56aef06bcb010cb';
+  // let userId = '5f90df97d56aef06bcb010cb';
 
-  // use this once useHistory is figured out
-  // let userId = globalState.state.userId
+  let userId = globalState.state.userId
 
   const [product, setProduct] = useState({});
   const [retailer, setRetailer] = useState({
@@ -47,19 +46,6 @@ function Product(){
         dispatch({ type: 'SETuserCart', payload: res.data.cart })
       });
     }
-
-  // const updateCart = (id) => {
-  //     let cart = globalState.state.userCart
-  //     cart.push({'product_id': id});
-  //     console.log(cart)
-  //       dispatch({ type: 'SETuserCart', payload: cart})
-  //     };
-
-  // const updateDatabaseCart = () => {
-  //   console.log(globalState.state.userCart)
-  //   API.updateCart(userId, globalState.state.userCart)
-  //     .then(res => console.log(res))
-  // }
 
   const updateCart = (id) => {
     let cart = globalState.state.userCart
@@ -104,9 +90,10 @@ function Product(){
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              <Button onClick={() => updateCart(id)}>Add To Cart</Button>
-              <Button onClick={() => {showCart()}}>Show Cart</Button>
-              {/* <Button onClick={() => updateDatabaseCart()}>Update Cart</Button> */}
+              {globalState.state.userId ? 
+                <Button onClick={() => updateCart(id)}>Add To Cart</Button> :
+                ''
+              }
             </ul>
           </div>
          

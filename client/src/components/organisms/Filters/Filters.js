@@ -66,27 +66,29 @@ function Filters(props){
     document.getElementById('priceRange').value=maxPrice.maxPrice;
   },[maxPrice]);
 
-  // Sticky Header
-  var header = '';
-  var sticky = '';
-  // When the user scrolls the page, execute myFunction
-  window.onscroll = function() {
-    // Get the header
-    header = document.getElementById('filters');
+  //   // Sticky Header
+  //   var header = '';
+  //   var sticky = '';
 
-    // Get the offset position of the navbar
-    sticky = document.getElementById('filters').offsetTop;
-    stickyFilter();
-  };
+  // // document.addEventListener('DOMContentLoaded', () => {
 
-  // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  function stickyFilter() {
-    if (window.pageYOffset > sticky) {
-      header.classList.add('sticky');
-    } else {
-      header.classList.remove('sticky');
-    }
-  }
+  //   // When the user scrolls the page, execute myFunction
+  //   window.onscroll = function() {
+  //     // Get the header
+  //     header = document.getElementById('filters');
+
+  //     // Get the offset position of the navbar
+  //     sticky = document.getElementById('filters').offsetTop;
+  //     stickyFilter();
+  // };
+  //   // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  //   function stickyFilter() {
+  //   if (window.pageYOffset > sticky) {
+  //     header.classList.add('sticky');
+  //   } else {
+  //     header.classList.remove('sticky');
+  //   }
+  // }
 
   return (
     
