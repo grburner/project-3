@@ -16,6 +16,10 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  shipped_on:  {
+    type: Date,
+    default: ''
+  },
   status: String,
   detail: [{
     product_id: {
