@@ -3,15 +3,24 @@
     border:2px solid #930045;
     padding:50px;
     text-align:left;
-    max-width:600px;
+    width:90%;
+    max-width:1000px;
     margin:0 auto 50px auto;
     font-weight:bold;
+    color:#930045;
 }
 
-.signup-form input{
+.signup-form input,
+.signup-form input:focus{
     width:100%;
+    background-color:transparent;
+    border:0;
+    color:black;
+    font-size:18px;
+    outline:none;
+    border-bottom:1px solid black;
+    margin-bottom:10px;
 }
-
 .error-message{
     max-width:600px;
     padding:10px;

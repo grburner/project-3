@@ -14,12 +14,19 @@ function Search(){
   const products = useContext(ProductContext);
 
   const [searchValue, searchUpdate] = useState({
-    search: ''
+    search: 'Find your perfect wine'
   });
 
   const updateSearch = (event) => {
     searchUpdate({
       search: event.target.value
+    });
+    searchClick();
+  };
+
+  const clearSearch = () => {
+    searchUpdate({
+      search: ''
     });
   };
 
@@ -58,7 +65,7 @@ function Search(){
 
   return (
     <div className="search-wrapper">
-      <input onChange={updateSearch}></input><i onClick={searchClick} className="search-icon fa fa-search" aria-hidden="true"></i>
+      <input onChange={updateSearch} onFocus={clearSearch} value={searchValue.search}></input><i onClick={searchClick} className="search-icon fa fa-search" aria-hidden="true"></i>
     </div>
   );
 }

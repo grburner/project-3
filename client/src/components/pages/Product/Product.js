@@ -75,7 +75,7 @@ function Product(){
   let defaultImage = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
 
   return (
-    <div className="container">
+    <div className="container" style={{minHeight: '80vh'}}>
     <CartToast />
       <div className="product">
         <h1>{ product.name }</h1>

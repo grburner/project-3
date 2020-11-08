@@ -96,7 +96,8 @@ function Signup(){
           <option id="retailer" value="retailer">I want to sell wine!</option>
         </select>
         <br />
-        Email (Username): <strong style={{color:'#930045'}}>*</strong> <input 
+        Email (Username): <strong style={{color:'#930045'}}>*</strong>
+        <input 
           name="username" 
           value={userState.username}
           onChange={handleChange}></input><br />

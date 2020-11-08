@@ -1,4 +1,16 @@
 header{
     padding:15px 0;
     background-color:#930045;
+    height:100px;
 }
+
+.shoppingcart-icon{
+    background-color:white;
+    padding:5px 10px;
+}
+
+.shoppingcart-icon i{
+    color:#930045;
+    font-size: 30px;
+}
+

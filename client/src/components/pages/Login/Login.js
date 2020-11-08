@@ -72,7 +72,7 @@ function Login() {
     return <Redirect to={{ pathname: userState.redirectTo }} />;
   } else {
     return (
-      <div>
+      <div className="login-form-wrapper">
         <h2 style={{color:'#930045', marginTop:'20px'}}>Login</h2>
         <form className="form-horizontal login-form">
           <div className="form-group">

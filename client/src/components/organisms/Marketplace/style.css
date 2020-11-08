@@ -1,15 +1,39 @@
 .marketplace{
-    border:2px solid #930045;
-    border-radius:5px;
+    /* border:2px solid #930045;
+    border-radius:5px; */
     padding:10px;
-    background-color:#F9F9F9;
-    box-shadow:3px 4px 5px #666;
+    /* background-color:#F9F9F9;
+    box-shadow:3px 4px 5px #666; */
 }
 
 .marketplace .item{
+    cursor:pointer;
     margin:10px 0;
 }
 
-.marketplace h3{
+.marketplace-header{
     color:#930045;
 }
+
+.marketplace-container{
+    padding:25px 150px;
+}
+
+@media (max-width: 576px) { 
+    .marketplace-container{
+        padding:10px 10px;
+    }
+ }
+
+@media (min-width:576px) and (max-width: 768px) { 
+    .marketplace-container{
+        padding:20px 50px;
+    }
+ }
+
+@media (min-width:768px) and (max-width: 992px) { 
+    .marketplace-container{
+        padding:25px 100px;
+    }
+ }
+  
