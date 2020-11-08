@@ -13,10 +13,10 @@ const OrderDetail = (props) => {
   const [passedData, setPassedData] = useState(data);
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
+  const [orderState, setOrderState] = useState(data.status)
 
-  // useEffect(() => {
-  //   setPassedData(data)
-  // }, [])
+  useEffect(() => {}, [orderState]);
+
   console.log(data);
 
   const getUserName = (id) => {
@@ -48,6 +48,7 @@ const OrderDetail = (props) => {
   const shipOrder = (id, body) => {
     console.log('called in client')
     API.updateOrder(id, body)
+    setOrderState('closed')
   }
 
   return (

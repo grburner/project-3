@@ -130,7 +130,7 @@ const CartToast = () => {
             <Modal.Header  closeButton>
                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                 <strong className="mr-auto">Your Cart</strong>
-                <strong>${cartTotal}</strong>
+                <strong>${cartTotal ? cartTotal.toFixed(2) : ''}</strong>
             </Modal.Header>
             <Modal.Body>
                 {cartData ? cartData.map((elem, index) => (
