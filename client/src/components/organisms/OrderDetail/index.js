@@ -10,12 +10,9 @@ import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
-  const [passedData, setPassedData] = useState(data);
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
   const [orderState, setOrderState] = useState(data.status)
-
-  useEffect(() => {}, [orderState]);
 
   console.log(data);
 
@@ -46,9 +43,10 @@ const OrderDetail = (props) => {
   };
 
   const shipOrder = (id, body) => {
-    console.log('called in client')
+    console.log('data index =' + data.index)
     API.updateOrder(id, body)
     setOrderState('closed')
+    // props.onChange(data.index, "closed")
   }
 
   return (
@@ -68,11 +66,21 @@ const OrderDetail = (props) => {
         </Table>
         <Row className="border-top border-dark">
           <Col className="mt-2">
-            <Row className="d-flex justify-content-center">Ship By:</Row>
-            <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
+            { data.shippedOn ? 
+              <div>
+                <Row className="d-flex justify-content-center">Shiped On:</Row>
+                <Row className="d-flex justify-content-center">{DateFormatter(data.shippedOn)}</Row>
+              </div> :
+              <div>
+                <Row className="d-flex justify-content-center">Ship By:</Row>
+                <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
+              </div>
+            }
           </Col>
           <Col className="mt-2">
-            <Button onClick={() => shipOrder(data.orderId, {'status': 'closed'})}>Ship Now</Button>
+            { data.shippedOn ? '' : 
+              <Button onClick={() => shipOrder(data.orderId, {'status': 'closed', 'shipped_on': new Date()})}>Ship Now</Button>
+            }
           </Col>
         </Row>
       </Card.Body>
