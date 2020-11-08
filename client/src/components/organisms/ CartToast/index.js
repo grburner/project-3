@@ -9,9 +9,8 @@ const CartToast = () => {
     const globalState = useContext(store);
     const { dispatch } = globalState;
 
-    let userId = '5f90df97d56aef06bcb010cb';
-
-    const [cartData, setCartData] = useState()
+    const [cartData, setCartData] = useState();
+    const [cartTotal, setCartTotal] = useState();
 
     useEffect(() => {
         let promises = [];
@@ -31,9 +30,20 @@ const CartToast = () => {
                     }})
                 )
             });
-            Promise.all(promises).then((values) => {setCartData(values)})
+            Promise.all(promises)
+                .then((values) => {setCartData(values)})
         }
     }, [globalState]);
+
+    useEffect(() => {
+        let total = 0
+        if (cartData) {
+            cartData.forEach(item => {
+                total += (item.order_units * item.price)
+            })
+        }
+        setCartTotal(total)
+    }, [cartData])
 
     const handleChange = (e, name, type) => {
         const value = e.target.value;
@@ -80,7 +90,6 @@ const CartToast = () => {
             orders.push({
                 'retailer_id' : elem,
                 'user_id': globalState.state.userId,
-                // 'user_id': userId,
                 'date': new Date(),
                 'status': 'open',
                 'detail': []
@@ -121,6 +130,7 @@ const CartToast = () => {
             <Modal.Header  closeButton>
                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                 <strong className="mr-auto">Your Cart</strong>
+                <strong>${cartTotal ? cartTotal.toFixed(2) : ''}</strong>
             </Modal.Header>
             <Modal.Body>
                 {cartData ? cartData.map((elem, index) => (

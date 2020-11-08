@@ -13,10 +13,10 @@ const OrderDetail = (props) => {
   const [passedData, setPassedData] = useState(data);
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
+  const [orderState, setOrderState] = useState(data.status)
 
-  // useEffect(() => {
-  //   setPassedData(data)
-  // }, [])
+  useEffect(() => {}, [orderState]);
+
   console.log(data);
 
   const getUserName = (id) => {
@@ -40,10 +40,16 @@ const OrderDetail = (props) => {
       <tr key={index}>
         <td>{prodNames[index] ? prodNames[index] : 'no data'}</td>
         <td>{element.quantity}</td>
-        <td>{element.cost}</td>
+        <td>${element.cost}</td>
       </tr>
     );
   };
+
+  const shipOrder = (id, body) => {
+    console.log('called in client')
+    API.updateOrder(id, body)
+    setOrderState('closed')
+  }
 
   return (
     <Card>
@@ -66,7 +72,7 @@ const OrderDetail = (props) => {
             <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
           </Col>
           <Col className="mt-2">
-            <Button onClick={() => console.log('ship me clicked')}>Ship Now</Button>
+            <Button onClick={() => shipOrder(data.orderId, {'status': 'closed'})}>Ship Now</Button>
           </Col>
         </Row>
       </Card.Body>
