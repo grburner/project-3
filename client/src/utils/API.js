@@ -69,5 +69,16 @@ export default {
       url: ('/api/orders/' + id),
       data: body
     })
+  },
+  createPaymentIntent: function(body) {
+    return axios({
+      method: 'post',
+      url: ('/api/external'),
+      json: true,
+      data: body,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
   }
 };

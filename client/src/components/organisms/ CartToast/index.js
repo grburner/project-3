@@ -4,6 +4,10 @@ import { store } from '../../../utils/GlobalState';
 import CartDetail from '../../molecules/CartDetail/index';
 import Modal from 'react-bootstrap/Modal'
 import Button from '../../atoms/Button/Button';
+import StripeCheckoutForm from '../../molecules/StripeCheckoutForm';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const promise = loadStripe("pk_test_51HlK4mEvE5s7arjumolwyCiIE9nvH6na72khlufapzEhuSDMkn9YZFlLf7GlaHNQKbFQYsLKBBGZj0NfEgRYJR3j00PgajqeRI");
 
 const CartToast = () => {
     const globalState = useContext(store);
@@ -11,6 +15,7 @@ const CartToast = () => {
 
     const [cartData, setCartData] = useState();
     const [cartTotal, setCartTotal] = useState();
+    const [showCheckout, setShowCheckout] = useState(false);
 
     useEffect(() => {
         let promises = [];
@@ -112,6 +117,7 @@ const CartToast = () => {
                 }
             })
         })
+    setShowCheckout(true)
     sendOrders(orders)
     }
 
@@ -136,9 +142,14 @@ const CartToast = () => {
                 {cartData ? cartData.map((elem, index) => (
                     <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
                 )): ''}
+                {showCheckout ?
+                <Elements stripe={promise}>
+                    <StripeCheckoutForm amount={cartTotal}/> 
+                </Elements> 
+                : ''}
             </Modal.Body>
 
-            <Button onClick={() => createOrder()}>Checkout</Button>
+            {!showCheckout ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
         </Modal>
     )
 }

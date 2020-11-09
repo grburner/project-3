@@ -69,8 +69,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   logout: function(req, res) {
-    // req.logout();
-    // res.redirect('/');
+    req.logout();
+    res.redirect('/');
     console.log("Hit the logout route")
   }
 };
