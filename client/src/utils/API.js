@@ -61,5 +61,24 @@ export default {
       url: ('/api/orders/'),
       data: order
     })
+  },
+  updateOrder: function(id, body) {
+    console.log('called in API')
+    return axios({
+      method: 'patch',
+      url: ('/api/orders/' + id),
+      data: body
+    })
+  },
+  createPaymentIntent: function(body) {
+    return axios({
+      method: 'post',
+      url: ('/api/external'),
+      json: true,
+      data: body,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
   }
 };

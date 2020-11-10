@@ -10,14 +10,9 @@ import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
-  const [passedData, setPassedData] = useState(data);
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
-
-  // useEffect(() => {
-  //   setPassedData(data)
-  // }, [])
-  console.log(data);
+  const [orderState, setOrderState] = useState(data.status)
 
   const getUserName = (id) => {
     API.getUserName(id).then((data) => {setCustName(data.data.name);});
@@ -40,10 +35,16 @@ const OrderDetail = (props) => {
       <tr key={index}>
         <td>{prodNames[index] ? prodNames[index] : 'no data'}</td>
         <td>{element.quantity}</td>
-        <td>{element.cost}</td>
+        <td>${element.cost}</td>
       </tr>
     );
   };
+
+  const shipOrder = (id, body) => {
+    API.updateOrder(id, body)
+    setOrderState('closed')
+    // props.onChange(data.index, "closed")
+  }
 
   return (
     <Card>
@@ -62,11 +63,21 @@ const OrderDetail = (props) => {
         </Table>
         <Row className="border-top border-dark">
           <Col className="mt-2">
-            <Row className="d-flex justify-content-center">Ship By:</Row>
-            <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
+            { data.shippedOn ? 
+              <div>
+                <Row className="d-flex justify-content-center">Shiped On:</Row>
+                <Row className="d-flex justify-content-center">{DateFormatter(data.shippedOn)}</Row>
+              </div> :
+              <div>
+                <Row className="d-flex justify-content-center">Ship By:</Row>
+                <Row className="d-flex justify-content-center">{data.shipByDate}</Row>
+              </div>
+            }
           </Col>
           <Col className="mt-2">
-            <Button onClick={() => console.log('ship me clicked')}>Ship Now</Button>
+            { data.shippedOn ? '' : 
+              <Button onClick={() => shipOrder(data.orderId, {'status': 'closed', 'shipped_on': new Date()})}>Ship Now</Button>
+            }
           </Col>
         </Row>
       </Card.Body>

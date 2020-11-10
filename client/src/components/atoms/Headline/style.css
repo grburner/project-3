@@ -11,3 +11,15 @@
     color:white;
     text-decoration: none;
 }
+
+@media (max-width: 576px) {
+    .headline{
+        font-size:24px;
+    }
+}
+
+@media (min-width: 577px) { 
+    .headline{
+        font-size:40px;
+    }
+ }

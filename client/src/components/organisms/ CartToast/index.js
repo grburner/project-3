@@ -4,14 +4,18 @@ import { store } from '../../../utils/GlobalState';
 import CartDetail from '../../molecules/CartDetail/index';
 import Modal from 'react-bootstrap/Modal'
 import Button from '../../atoms/Button/Button';
+import StripeCheckoutForm from '../../molecules/StripeCheckoutForm';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const promise = loadStripe("pk_test_51HlK4mEvE5s7arjumolwyCiIE9nvH6na72khlufapzEhuSDMkn9YZFlLf7GlaHNQKbFQYsLKBBGZj0NfEgRYJR3j00PgajqeRI");
 
 const CartToast = () => {
     const globalState = useContext(store);
     const { dispatch } = globalState;
 
-    let userId = '5f90df97d56aef06bcb010cb';
-
-    const [cartData, setCartData] = useState()
+    const [cartData, setCartData] = useState();
+    const [cartTotal, setCartTotal] = useState();
+    const [showCheckout, setShowCheckout] = useState(false);
 
     useEffect(() => {
         let promises = [];
@@ -31,9 +35,20 @@ const CartToast = () => {
                     }})
                 )
             });
-            Promise.all(promises).then((values) => {setCartData(values)})
+            Promise.all(promises)
+                .then((values) => {setCartData(values)})
         }
     }, [globalState]);
+
+    useEffect(() => {
+        let total = 0
+        if (cartData) {
+            cartData.forEach(item => {
+                total += (item.order_units * item.price)
+            })
+        }
+        setCartTotal(total)
+    }, [cartData])
 
     const handleChange = (e, name, type) => {
         const value = e.target.value;
@@ -80,7 +95,6 @@ const CartToast = () => {
             orders.push({
                 'retailer_id' : elem,
                 'user_id': globalState.state.userId,
-                // 'user_id': userId,
                 'date': new Date(),
                 'status': 'open',
                 'detail': []
@@ -103,6 +117,7 @@ const CartToast = () => {
                 }
             })
         })
+    setShowCheckout(true)
     sendOrders(orders)
     }
 
@@ -121,14 +136,20 @@ const CartToast = () => {
             <Modal.Header  closeButton>
                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                 <strong className="mr-auto">Your Cart</strong>
+                <strong>${cartTotal ? cartTotal.toFixed(2) : ''}</strong>
             </Modal.Header>
             <Modal.Body>
                 {cartData ? cartData.map((elem, index) => (
                     <CartDetail key={index} data={elem} onChange={handleChange}></CartDetail>
                 )): ''}
+                {showCheckout ?
+                <Elements stripe={promise}>
+                    <StripeCheckoutForm amount={cartTotal}/> 
+                </Elements> 
+                : ''}
             </Modal.Body>
 
-            <Button onClick={() => createOrder()}>Checkout</Button>
+            {!showCheckout ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
         </Modal>
     )
 }

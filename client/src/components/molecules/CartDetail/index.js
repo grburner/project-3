@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Editable from '../../../utils/Editable';
 
 const CartDetail = (props) => {
+    const [placeholder, setPlaceholder] = useState(props.data.order_units)
+    const inputRef = useRef();
+
+    useEffect(() => {}, [placeholder])
 
     const handleChange = (e, type) => {
-        props.onChange(e, props.data.name, type)
+        if ( type === "remove" ) {
+            props.onChange(e, props.data.name, "remove")
+        } else if (e.target.value < props.data.units) {
+            props.onChange(e, props.data.name, type)
+        } else {
+            setPlaceholder(`sorry - max ${props.data.units} bottles!`)
+        }
     }
 
     return(
@@ -20,12 +31,21 @@ const CartDetail = (props) => {
             <Col xs={6}>{props.data.name}</Col>
             <Col xs={1}>${props.data.price}</Col>
             <Col xs={1}>
-                <input 
-                    className='d-inline' 
-                    placeholder={props.data.order_units} 
-                    data-id={props.key} value={props.value} 
-                    onChange={(e) => handleChange(e, "change")}>
-                </input>
+                <Editable
+                    text={props.data.order_units}
+                    placeholder={`max ${props.data.units} units`}
+                    childRef={inputRef}
+                    type='input'
+                >
+                    <input 
+                        className='d-inline' 
+                        ref={inputRef}
+                        placeholder={`max ${props.data.units} units`}
+                        data-id={props.key} 
+                        value={props.data.value} 
+                        onChange={(e) => handleChange(e, "change")}>
+                    </input>
+                </Editable>
             </Col>
         </Row>
     )
