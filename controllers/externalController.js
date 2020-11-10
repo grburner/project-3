@@ -13,7 +13,7 @@ module.exports = {
     createPaymentIntent: async function(req, res) {
         console.log(req.body.amount)
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: req.body.amount*100,
+            amount: parseInt(req.body.amount*100),
             currency: 'usd'
         });
 
