@@ -16,6 +16,8 @@ const CartToast = () => {
     const [cartData, setCartData] = useState();
     const [cartTotal, setCartTotal] = useState();
     const [showCheckout, setShowCheckout] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false)
 
     useEffect(() => {
         let promises = [];
@@ -46,6 +48,7 @@ const CartToast = () => {
             cartData.forEach(item => {
                 total += (item.order_units * item.price)
             })
+            setShowConfirm(true)
         }
         setCartTotal(total)
     }, [cartData])
@@ -119,12 +122,18 @@ const CartToast = () => {
         })
     setShowCheckout(true)
     sendOrders(orders)
+    setShowConfirm(false)
     }
 
     const sendOrders = (orders) => {
         orders.forEach(order => {
             API.createNewOrder(order)
         })
+    }
+
+    const toggleShowCheckout = () => {
+        !showCheckout ? setShowCheckout(true) : setShowCheckout(false);
+        !showSuccess ? setShowSuccess(true) : setShowSuccess(false)
     }
 
     return(
@@ -144,12 +153,13 @@ const CartToast = () => {
                 )): ''}
                 {showCheckout ?
                 <Elements stripe={promise}>
-                    <StripeCheckoutForm amount={cartTotal}/> 
+                    <StripeCheckoutForm amount={cartTotal} toggleView={toggleShowCheckout}/> 
                 </Elements> 
                 : ''}
+                { showSuccess ? <p>Success! Your wine is on the way!</p> : ''}
             </Modal.Body>
 
-            {!showCheckout ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
+            {showConfirm ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
         </Modal>
     )
 }
