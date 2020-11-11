@@ -133,7 +133,8 @@ const CartToast = () => {
 
     const toggleShowCheckout = () => {
         !showCheckout ? setShowCheckout(true) : setShowCheckout(false);
-        !showSuccess ? setShowSuccess(true) : setShowSuccess(false)
+        !showSuccess ? setShowSuccess(true) : setShowSuccess(false);
+        setCartData([])
     }
 
     return(
