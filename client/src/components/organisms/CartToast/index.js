@@ -159,7 +159,7 @@ const CartToast = () => {
                 : ''}
                 { showSuccess ? <p>Success! Your wine is on the way!</p> : ''}
             </Modal.Body>
-            {cartTotal === 0 ? <p>Add some wine to your cart!</p> : ''}
+            {cartTotal && showSuccess === 0 ? <p>Add some wine to your cart!</p> : ''}
             {showConfirm && cartTotal ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
         </Modal>
     )
