@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     CardElement,
     useStripe,
@@ -6,6 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import './style.css'
 import API from '../../../utils/API';
+import { store } from '../../../utils/GlobalState';
 
 export default function CheckoutForm(props) {
     const [succeeded, setSucceeded] = useState(false);
@@ -15,6 +16,8 @@ export default function CheckoutForm(props) {
     const [clientSecret, setClientSecret] = useState('');
     const stripe = useStripe();
     const elements = useElements();
+    const globalState = useContext(store);
+    const { dispatch } = globalState;
 
     useEffect(() => {
       console.log('into use effect Stripe')
@@ -43,6 +46,11 @@ export default function CheckoutForm(props) {
         }
       };
 
+      const resetCart = () => {
+        dispatch({ type: 'SETuserCart', payload: '' })
+        API.updateCart(globalState.state.userId, [])
+      }
+
       const handleChange = async (event) => {
         // Listen for changes in the CardElement
         // and display any errors as the customer types their card details
@@ -64,8 +72,14 @@ export default function CheckoutForm(props) {
           setError(null);
           setProcessing(false);
           setSucceeded(true);
+          resetCart()
+          paymentViewChange()
         }
       };
+
+    const paymentViewChange = () => {
+      props.toggleView()
+    }
 
     return (
     <form id="payment-form" onSubmit={handleSubmit}>
@@ -90,18 +104,6 @@ export default function CheckoutForm(props) {
           {error}
         </div>
       )}
-      {/* Show a success message upon completion */}
-      { succeeded ? 
-        <p>Payment succeeded, see the result in your
-          <a
-            href={`https://dashboard.stripe.com/test/payments`}
-          >
-            {" "}
-            Stripe dashboard.
-          </a> Refresh the page to pay again.
-      </p>
-      : ''
-      }
     </form>
     )
 }

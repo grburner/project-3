@@ -4,7 +4,7 @@ import './style.css';
 import Button from '../../atoms/Button/Button';
 import { store } from '../../../utils/GlobalState';
 import API from '../../../utils/API';
-import CartToast from '../../organisms/ CartToast/';
+import CartToast from '../../organisms/CartToast';
 
 
 function Product(){

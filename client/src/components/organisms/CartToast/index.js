@@ -16,6 +16,8 @@ const CartToast = () => {
     const [cartData, setCartData] = useState();
     const [cartTotal, setCartTotal] = useState();
     const [showCheckout, setShowCheckout] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(true)
 
     useEffect(() => {
         let promises = [];
@@ -119,12 +121,20 @@ const CartToast = () => {
         })
     setShowCheckout(true)
     sendOrders(orders)
+    setShowConfirm(false)
     }
 
     const sendOrders = (orders) => {
         orders.forEach(order => {
             API.createNewOrder(order)
         })
+    }
+
+    const toggleShowCheckout = () => {
+        !showCheckout ? setShowCheckout(true) : setShowCheckout(false);
+        setShowConfirm(false);
+        !showSuccess ? setShowSuccess(true) : setShowSuccess(false);
+        setCartData([])
     }
 
     return(
@@ -136,7 +146,7 @@ const CartToast = () => {
             <Modal.Header  closeButton>
                 <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
                 <strong className="mr-auto">Your Cart</strong>
-                <strong>${cartTotal ? cartTotal.toFixed(2) : ''}</strong>
+                <strong>{cartTotal ? '$' + cartTotal.toFixed(2) : ''}</strong>
             </Modal.Header>
             <Modal.Body>
                 {cartData ? cartData.map((elem, index) => (
@@ -144,12 +154,13 @@ const CartToast = () => {
                 )): ''}
                 {showCheckout ?
                 <Elements stripe={promise}>
-                    <StripeCheckoutForm amount={cartTotal}/> 
+                    <StripeCheckoutForm amount={cartTotal} toggleView={toggleShowCheckout}/> 
                 </Elements> 
                 : ''}
+                { showSuccess ? <p>Success! Your wine is on the way!</p> : ''}
             </Modal.Body>
-
-            {!showCheckout ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
+            {cartTotal && showSuccess === 0 ? <p>Add some wine to your cart!</p> : ''}
+            {showConfirm && cartTotal ? <Button onClick={() => createOrder()}>Checkout</Button> : '' }
         </Modal>
     )
 }
