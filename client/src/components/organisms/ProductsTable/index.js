@@ -23,7 +23,8 @@ const ProductsTable = () => {
   useEffect(() => {
     API.getProductsByRetailerId(globalState.state.userId)
       .then(data => {
-        setChartData(data.data);
+        console.log(data.data);
+        setChartData(data.data.slice().sort((a,b) => b.price - a.price));
       });
   }, []);
 
