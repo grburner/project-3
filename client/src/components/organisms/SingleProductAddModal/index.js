@@ -79,7 +79,8 @@ const SingleProductAddModal = (props) => {
           tags: ['Natural'],
           image: '',
           status: 'live'
-        })
+        });
+        history.push('/retailer')
       })
       .catch(err => console.log(err));
   }

@@ -52,7 +52,7 @@ function Header(){
             </Col>
             <Col>
               {globalState.state.userId ? '' : <Button href="/signup" variant="white">Sign Up</Button>}
-              {globalState.state.userId ? 
+              {globalState.state.userRole === 'consumer' ? 
                 <Button variant="white" onClick={showCart}><i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart</Button>
                 :
                 ''
