@@ -47,7 +47,7 @@ export default function CheckoutForm(props) {
       };
 
       const resetCart = () => {
-        dispatch({ type: 'SETuserCart', payload: '' })
+        dispatch({ type: 'SETuserCart', payload: [] })
         API.updateCart(globalState.state.userId, [])
       }
 
