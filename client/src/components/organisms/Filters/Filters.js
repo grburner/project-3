@@ -18,8 +18,11 @@ function Filters(props){
 
   const [maxPrice, setMaxPrice] = useState({});
 
-  const [retailers, setRetailers] = useState(['Test']);
+  const [retailers, setRetailers] = useState(['']);
 
+  const [store, setStore] = useState('');
+
+  
   let stores = [];
 
   useEffect(() => {
@@ -63,47 +66,25 @@ function Filters(props){
 
   useEffect(() => {
     // Set price slider to max when max price is loaded
-    document.getElementById('priceRange').value=maxPrice.maxPrice;
+    document.getElementById('priceRange').value = maxPrice.maxPrice;
   },[maxPrice]);
-
-  //   // Sticky Header
-  //   var header = '';
-  //   var sticky = '';
-
-  // // document.addEventListener('DOMContentLoaded', () => {
-
-  //   // When the user scrolls the page, execute myFunction
-  //   window.onscroll = function() {
-  //     // Get the header
-  //     header = document.getElementById('filters');
-
-  //     // Get the offset position of the navbar
-  //     sticky = document.getElementById('filters').offsetTop;
-  //     stickyFilter();
-  // };
-  //   // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  //   function stickyFilter() {
-  //   if (window.pageYOffset > sticky) {
-  //     header.classList.add('sticky');
-  //   } else {
-  //     header.classList.remove('sticky');
-  //   }
-  // }
 
   return (
     
     <div className="filter-wrapper" id="filters">
-      <Container>
+      <Container fluid="md">
         <p className="filter-header">Filter Your Search:</p>
         <Row>
           <Col md>
-            <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? '$' + maxPrice.maxPrice : '$' + props.filters.priceMax}</label>
-            <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
+            <div className="price-wrapper">
+              <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? '$' + maxPrice.maxPrice : '$' + props.filters.priceMax}</label>
+              <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
+            </div>
           </Col>
           <Col md>
-            <label htmlFor="itemsStore">Store:</label><br/>
+            <label htmlFor="itemsStore">Store:{store}</label><br/>
             <select name="store"  id="itemsStore" onChange={props.filterChange}>
-              <option value="">   </option>
+              <option value="">Store</option>
               {retailers.map((x, i)=>{
                 return <option value={x.split('*')[1]}>{x.split('*')[0]}</option>;
               })}
@@ -112,7 +93,7 @@ function Filters(props){
           <Col md>
             <label htmlFor="itemsType">Type: {props.filters.type}</label><br/>
             <select name="type"  id="itemsType" onChange={props.filterChange}>
-              <option value="">   </option>
+              <option value="">Type</option>
               <option value="Red">Red</option>
               <option value="White">White</option>
               <option value="Rose">Rose</option>
@@ -122,14 +103,14 @@ function Filters(props){
           <Col md>
             <label htmlFor="itemsStyle">Style: {props.filters.style}</label><br/>
             <select  name="style" id="itemsStyle" onChange={props.filterChange}>
-              <option value="">   </option>
+              <option value="">Style</option>
               <option value="Sparkling">Sparkling</option>
               <option value="Still">Still</option>
               <option value="Fortified">Fortified</option>
             </select>
           </Col>
           <Col md>
-            <Button onClick={props.filterReset}>Reset</Button>
+            <Button onClick={props.filterReset}>Reset<i className="fa fa-times" aria-hidden="true"></i></Button>
           </Col>
         </Row>
       </Container>

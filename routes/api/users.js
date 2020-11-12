@@ -33,11 +33,11 @@ router
 // Matches with "/api/users/cart/:id"
 router
   .route('/cart/:id')
-  .patch(usersController.update)
+  .patch(usersController.update);
 
 // Matches with "/api/users/logout"
 router
-    .route('/logout')
-    .get(usersController.logout)
+  .route('/logout')
+  .get(usersController.logout);
 
 module.exports = router;

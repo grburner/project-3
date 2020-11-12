@@ -1,26 +1,34 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
-import Table from 'react-bootstrap/Table';
+
+// UTILS
 import API from '../../../utils/API';
+import { store } from '../../../utils/GlobalState';
+
+// COMPONENTS
 import Editable from '../../../utils/Editable.js';
 import Button from '../../atoms/Button/Button.js';
+
+// BOOTSTRAP
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { store } from '../../../utils/GlobalState';
+import Table from 'react-bootstrap/Table';
 
 const ProductsTable = () => {
   const globalState = useContext(store);
+
   const [chartData, setChartData] = useState([]);
-  const [retailerId, setRetailerId] = useState('5f90df97d56aef06bcb010d3');
   const [inputData, setInputData] = useState('');
   const inputRef = useRef();
 
-
   useEffect(() => {
-    API.getProductsByRetailerId(globalState.state.userId).then(data => {
-      setChartData(data.data);
-    });
+    API.getProductsByRetailerId(globalState.state.userId)
+      .then(data => {
+        console.log(data.data);
+        setChartData(data.data.slice().sort((a,b) => b.price - a.price));
+      });
   }, []);
 
+  // Reset state after changes (called from toggleStatus and changeInput)
   const changeState = (field, index, value) => {
     const newData = chartData.map((d, i) => {
       if (i === index) {
@@ -31,6 +39,7 @@ const ProductsTable = () => {
     setChartData(newData);
   };
 
+  // Update product status
   const toggleStatus = e => {
     const id = e.target.dataset.id;
     chartData.forEach((elem, index) => {
@@ -40,9 +49,10 @@ const ProductsTable = () => {
     });
   };
 
+  // Change editable input based on a specific field
   const changeInput = (e, field) => {
     const id = e.target.dataset.id;
-    const value = e.target.value;
+    const value = e.target.value.replace(/^0+/, '');
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
         changeState(field, index , value);
@@ -50,22 +60,21 @@ const ProductsTable = () => {
     });
   };
 
+  // Update products in database after changes
   const sendData = () => {
     chartData.forEach(elem => {
-      console.log(elem)
       const body = 
       {
         'price': elem.price,
         'units': elem.units,
         'status': elem.status
       };
-      console.log(body)
-      API.updateProducts(elem._id, body).then(res => {console.log(res)});
+      API.updateProducts(elem._id, body);
     });
   };
   
+  // Render rows, called from return
   const renderProductRow = (element, index) => {
-    console.log(element);
     return (
       <tr key={index} data-id={element._id}>
         <td data-id={element._id} >{element.name}</td>
@@ -113,7 +122,6 @@ const ProductsTable = () => {
   };
 
   return (
-
     <div>
       <div className="mb-3">
         <Navbar bg="light" expand="lg" className="w-100">
@@ -146,7 +154,6 @@ const ProductsTable = () => {
 };
 
 export default function ProductTable() {
-
   return (
     <div className="App table-wrapper-scroll-y my-custom-scrollbar w-100">
       <ProductsTable />

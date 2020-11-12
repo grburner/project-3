@@ -1,6 +1,4 @@
 import React, { createContext, useReducer } from 'react';
-import API from '../utils/API';
-
 
 const initialState = {
   sProdModalinView: false,
@@ -22,12 +20,12 @@ const StateProvider = ( { children } ) => {
     switch(action.type) {
     case 'SHOWsProdModalinView':
       return {
-        ...initialState,
+        ...state,
         sProdModalinView: true
       };
     case 'HIDEsProdModalinView':
       return {
-        ...initialState,
+        ...state,
         sProdModalinView: false
       };
     case 'SHOWbProdModalinView':
@@ -46,9 +44,9 @@ const StateProvider = ( { children } ) => {
         currentUser: action.payload
       };
     case 'SETuserCart':
-        return {
-          ...state,
-          userCart: action.payload
+      return {
+        ...state,
+        userCart: action.payload
       };
     case 'SETuser':
       return {
@@ -61,11 +59,11 @@ const StateProvider = ( { children } ) => {
         ...state,
         toastState: true
       };
-      case 'TOGGLEtoastHIDE':
-        return {
-          ...state,
-          toastState: false
-        };
+    case 'TOGGLEtoastHIDE':
+      return {
+        ...state,
+        toastState: false
+      };
     default:
       throw new Error();
     }

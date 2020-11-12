@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { orderDataAPI } = require('../../client/src/utils/mockAPI');
 const ordersController = require('../../controllers/ordersController');
 
 // Matches with "/api/orders"

@@ -1,27 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
+
+// UTILS
 import API from '../../../utils/API';
+import DateFormatter from '../../../utils/DateFormatter';
+
+// COMPONENTS
+import Button from '../../atoms/Button/Button';
+
+// BOOTSTRAP
+import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import DateFormatter from '../../../utils/DateFormatter';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
-import Button from '../../atoms/Button/Button';
 
 const OrderDetail = (props) => {
   const { data } = props;
+
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
-  const [orderState, setOrderState] = useState(data.status)
+  const [orderState, setOrderState] = useState(data.status);
 
   const getUserName = (id) => {
     API.getUserName(id).then((data) => {setCustName(data.data.name);});
   };
+
+  // API call for each product and wait until all are completed to setState
   useEffect(() => {
     let promises = [];
     getUserName(data.custId);
-
-    const prodsList = data.products.forEach((elem) => {
+    data.products.forEach((elem) => {
       promises.push(
         API.getProductsID(elem.name)
           .then(data => {return data.data.name;})
@@ -41,10 +49,9 @@ const OrderDetail = (props) => {
   };
 
   const shipOrder = (id, body) => {
-    API.updateOrder(id, body)
-    setOrderState('closed')
-    // props.onChange(data.index, "closed")
-  }
+    API.updateOrder(id, body);
+    setOrderState('closed');
+  };
 
   return (
     <Card>

@@ -1,5 +1,4 @@
 const db = require('../models');
-const passport = require('../passport');
 
 // Defining methods for the usersController
 module.exports = {
@@ -43,7 +42,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    console.log(req.body)
+    console.log(req.body);
     db.User
       .findByIdAndUpdate({ _id: req.params.id }, { cart: req.body } )
       .then(dbModel => res.json(dbModel))
@@ -71,6 +70,6 @@ module.exports = {
   logout: function(req, res) {
     req.logout();
     res.redirect('/');
-    console.log("Hit the logout route")
+    console.log('Hit the logout route');
   }
 };

@@ -47,9 +47,9 @@ function Login() {
               if (res.data[0].role === 'consumer') {
                 history.push('/');
                 API.getUser(res.data[0]._id)
-                .then(res => {
-                  dispatch({ type: 'SETuserCart', payload: res.data.cart })
-                })
+                  .then(res => {
+                    dispatch({ type: 'SETuserCart', payload: res.data.cart });
+                  });
               } else if (res.data[0].role === 'retailer') {
                 history.push('/retailer');
               }

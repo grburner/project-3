@@ -51,7 +51,7 @@ const userSchema = new Schema({
       ref: 'Product'
     }
   }]
-})
+});
 
 userSchema.methods = {
   checkPassword: function (inputPassword) {
