@@ -2,7 +2,7 @@ const router = require('express').Router();
 const orderRoutes = require('./orders');
 const productRoutes = require('./products');
 const userRoutes = require('./users');
-const externalRoutes = require('./external')
+const externalRoutes = require('./external');
 
 // Order routes
 router.use('/orders', orderRoutes);
@@ -14,6 +14,6 @@ router.use('/products', productRoutes);
 router.use('/users', userRoutes);
 
 // External routes
-router.use('/external', externalRoutes)
+router.use('/external', externalRoutes);
 
 module.exports = router;

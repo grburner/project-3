@@ -1,15 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { store } from '../../../utils/GlobalState';
-import OrderDetail from '../../organisms/OrderDetail';
-import DateFormatter from '../../../utils/DateFormatter';
-import Badge from 'react-bootstrap/Badge';
 
+// UTILS
+import API from '../../../utils/API';
+import { store } from '../../../utils/GlobalState';
+import DateFormatter from '../../../utils/DateFormatter';
+
+// COMPONENTS
+import OrderDetail from '../../organisms/OrderDetail';
+
+// BOOTSTRAP
+import Badge from 'react-bootstrap/Badge';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import API from '../../../utils/API';
 
 const OrdersTable = () => {
   const globalState = useContext(store);
@@ -21,11 +25,11 @@ const OrdersTable = () => {
   useEffect(() => {
     API.findByRetailerId(globalState.state.userId)
       .then(data => {
-        console.log(data.data);
         setChartData(data.data);
-    });
+      });
   }, []);
 
+  // Calculate order items total and total cost
   const getOrderInfo = (elem) => {
     let total = 0; 
     let items = 0;
@@ -37,6 +41,7 @@ const OrdersTable = () => {
     return {'total': total, 'items': items};
   };
 
+  // Get all order info based on index & render the detail card.
   const passProdDetail = (ind = 0) => {
     let index = ind;
     let passObj = {};
@@ -56,21 +61,14 @@ const OrdersTable = () => {
     passObj.orderDate = chartData[index].date;
     passObj.shipByDate = DateFormatter(chartData[index].date, 14);
     passObj.orderId = chartData[index]._id;
-    passObj.index = index
+    passObj.index = index;
     passObj.shippedOn = chartData[index].shipped_on;
     setProdDetail(passObj);
     setDetailIndex(index);
     setShowDetail(true);
   };
-
-  // const changeOrderState = (index, state) => {
-  //   console.log('into change order state')
-  //   setChartData(
-  //     ...chartData,
-  //     {[index]: {status: state}}
-  //   )
-  // }
   
+  // Render individual product rows, passed into chartData.map 
   const renderProductRow = (element, index) => {
     const orderDate = DateFormatter(element.date);
     const sendDate = DateFormatter(element.date, 14);
@@ -124,7 +122,6 @@ const OrdersTable = () => {
         </Col>
         <Col sm={showDetail ? 4 : 0}>
           {showDetail ? <OrderDetail data={prodDetail}></OrderDetail> : ''}
-          {/* {showDetail ? <OrderDetail data={prodDetail} onChange={changeOrderState}></OrderDetail> : ''} */}
         </Col>
       </Row>
     </div>

@@ -27,9 +27,9 @@ function App() {
   return (
     <div className="App">
       <StateProvider>
-      <Router>
-        <Header />
-        {/* <Router> */}
+        <Router>
+          <Header />
+          {/* <Router> */}
           <div>
             <Switch>
               <Route path="/signup">
@@ -55,8 +55,8 @@ function App() {
               </Route>
             </Switch>
           </div>
-        {/* </Router> */}
-        <Footer />
+          {/* </Router> */}
+          <Footer />
         </Router>
       </StateProvider>
     </div>

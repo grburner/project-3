@@ -20,7 +20,7 @@ function Filters(props){
 
   const [retailers, setRetailers] = useState(['']);
 
-  const [store, setStore] = useState('')
+  const [store, setStore] = useState('');
 
   
   let stores = [];
@@ -77,8 +77,8 @@ function Filters(props){
         <Row>
           <Col md>
             <div className="price-wrapper">
-            <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? '$' + maxPrice.maxPrice : '$' + props.filters.priceMax}</label>
-            <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
+              <label htmlFor="priceRange">Max Price: {props.filters.priceMax === 0 ? '$' + maxPrice.maxPrice : '$' + props.filters.priceMax}</label>
+              <input name="priceMax" type="range" className="custom-range" id="priceRange" min="0" max={maxPrice.maxPrice} onChange={props.filterChange}/>
             </div>
           </Col>
           <Col md>
@@ -110,7 +110,7 @@ function Filters(props){
             </select>
           </Col>
           <Col md>
-            <Button onClick={props.filterReset}>Reset<i class="fa fa-times" aria-hidden="true"></i></Button>
+            <Button onClick={props.filterReset}>Reset<i className="fa fa-times" aria-hidden="true"></i></Button>
           </Col>
         </Row>
       </Container>

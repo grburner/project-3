@@ -1,5 +1,3 @@
-import React from 'react';
-
 const DateFomatter = (in_date, daysDelta = 0) => {
   const copy = new Date(in_date);
   const deltaDate = copy.setDate(copy.getDate() + daysDelta);

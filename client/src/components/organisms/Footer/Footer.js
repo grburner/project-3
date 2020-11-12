@@ -10,7 +10,7 @@ function Footer(){
 
   return (
     <footer>
-      &copy; 2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">WineHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/grburner/project-3" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+      &copy; 2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">WineHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/grburner/project-3" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a>
     </footer>
   );
 }

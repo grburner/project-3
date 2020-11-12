@@ -47,28 +47,27 @@ export default {
       method: 'patch',
       url: ('/api/users/cart/' + userId),
       data: body
-    })
+    });
   },
   getUserByName: function(name) {
     return axios.get('/api/users/name/' + name);
   },
   logout: function(){
-    return axios.get('/logout')
+    return axios.get('/logout');
   },
   createNewOrder: function(order) {
     return axios({
       method: 'post',
       url: ('/api/orders/'),
       data: order
-    })
+    });
   },
   updateOrder: function(id, body) {
-    console.log('called in API')
     return axios({
       method: 'patch',
       url: ('/api/orders/' + id),
       data: body
-    })
+    });
   },
   createPaymentIntent: function(body) {
     return axios({
@@ -77,8 +76,8 @@ export default {
       json: true,
       data: body,
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       }
-    })
+    });
   }
 };
