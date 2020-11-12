@@ -10,18 +10,27 @@
     color:#930045;
 }
 .image-wrapper{
-    width:50%;
-    float:left;
+    width:75%;
 }
+
 .image-wrapper img{
     width:100%;
     box-shadow:3px 4px 5px black;
     border-radius:5px;
 }
 
-.product i{
+.product .fa-glass{
     color:#930045;
     margin-right:20px;
+}
+
+.product .fa-plus{
+    margin-right:20px;
+}
+
+.main-button-hover .fa-plus{
+    transform: rotate(90deg);
+    transition:all 300ms;
 }
 
 .product li{

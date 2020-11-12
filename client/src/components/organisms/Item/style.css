@@ -47,3 +47,15 @@
     color:#930045;
     font-size:18px;
 }
+
+.main-button .fa-eye{
+    opacity:0;
+    margin-left:-15px;
+    transition:all 300ms;
+}
+
+.main-button-hover .fa-eye{
+    opacity:1;
+    margin-left:10px;
+    transition:all 300ms;
+}

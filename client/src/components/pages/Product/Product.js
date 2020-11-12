@@ -99,7 +99,7 @@ function Product(){
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
               {globalState.state.userId ? 
-                <Button onClick={() => updateCart(id)}>Add To Cart</Button> :
+                <Button onClick={() => updateCart(id)}><i class="fa fa-plus" aria-hidden="true"></i>Add To Cart</Button> :
                 ''
               }
             </ul>

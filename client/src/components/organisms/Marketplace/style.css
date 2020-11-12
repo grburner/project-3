@@ -36,4 +36,16 @@
         padding:25px 100px;
     }
  }
+
+ .hide{
+     display:none;
+ }
+
+ .show{
+     display:block;
+ }
+
+ .sorry{
+    color:#930045;
+ }
   
