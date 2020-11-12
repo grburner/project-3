@@ -67,7 +67,19 @@ const SingleProductAddModal = (props) => {
 
     API.createProduct(productToAdd)
       .then(res => {
-        history.push('/retailer');
+        setProduct({
+          text: '',
+          description: '',
+          country: 'United States',
+          region: 'Napa Valley',
+          type1: 'Red',
+          type2: 'Still',
+          size: '750mL',
+          grapes: 'Syrah',
+          tags: ['Natural'],
+          image: '',
+          status: 'live'
+        })
       })
       .catch(err => console.log(err));
   }
