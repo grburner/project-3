@@ -70,7 +70,8 @@ function Marketplace(props){
   }
 
   return (
-    <div className="marketplace">
+    <div>
+    <div className={seed.length < 1 ? 'hide' : 'marketplace show'}>
       <h3 className="marketplace-header">Wines</h3>
       <CartToast />
       <Row>
@@ -86,9 +87,11 @@ function Marketplace(props){
       </Row>
       <Row>
         <Col>
-        <Button onClick={showMore} fullwidth="true">Load More</Button>
+        {products.length > limit.value ? <Button onClick={showMore} fullwidth="true">Load More</Button> : ''}
         </Col>
       </Row>
+    </div>
+    <div className={seed.length < 1 ? 'show' : 'hide'}><h1 className="sorry">Sorry, No Search Results</h1></div>
     </div>
   );
 
