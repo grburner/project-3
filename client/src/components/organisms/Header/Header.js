@@ -26,6 +26,7 @@ function Header(){
         console.log('Logout');
         console.log(res);
         dispatch({ type: 'SETuser', payload: { userRole: '', userId: '' }});
+        history.push('/')
       })
       .catch(err => console.log(err)); 
 
