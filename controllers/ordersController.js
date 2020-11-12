@@ -41,8 +41,8 @@ module.exports = {
   },
   updateOrder: function(req, res) {
     db.Order
-      .findOneAndUpdate({_id: req.params.id}, { "$set": req.body })
+      .findOneAndUpdate({_id: req.params.id}, { '$set': req.body })
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+      .catch(err => res.status(422).json(err));
   }
 };

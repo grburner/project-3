@@ -7,8 +7,8 @@ function Logo(){
   let history = useHistory();
 
   const handleClick = () => {
-    history.push('/')
-  }
+    history.push('/');
+  };
 
   return (
     <div className="logo-wrapper">

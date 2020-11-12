@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
+
+// UTILS
 import { store } from '../../../utils/GlobalState';
 
+// COMPONENTS
+import Button from '../../atoms/Button/Button';
+
+// BOOTSTRAP
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from '../../atoms/Button/Button';
 
 const RetailNav = () => {
   const globalState = useContext(store);

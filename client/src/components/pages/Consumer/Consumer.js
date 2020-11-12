@@ -41,11 +41,11 @@ function Consumer(){
 
   const handleClick = () => {
     if (globalState.state.userId === 'retailer') {
-      history.push('/retailer')
+      history.push('/retailer');
     } else if (globalState.state.userId = 'consumer') {
-      history.push('/')
+      history.push('/');
     }
-  }
+  };
 
   const seed = {
     firstName: 'John',

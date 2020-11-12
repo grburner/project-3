@@ -12,8 +12,8 @@ function Item(props){
 
   //hrefs are clearing global state but useHistory is throwing an error in filters
   const handleClick = () => {
-    history.push('/product/' + props.value._id)
-  }
+    history.push('/product/' + props.value._id);
+  };
   
   const link = '/product/' + props.value._id;
   let image = '';
@@ -33,8 +33,8 @@ function Item(props){
           <p>${props.value.price}</p>
           <p style={{margin:'5px', padding:'0'}}>&nbsp;</p>
           <div style={{position:'absolute', bottom:'0', marginTop:'50px', width:'85%'}}>
-            <Button href={handleClick} width="100%">View<i class="fa fa-eye" aria-hidden="true"></i>
-</Button>
+            <Button href={handleClick} width="100%">View<i className="fa fa-eye" aria-hidden="true"></i>
+            </Button>
             {/* <Button href={link} width="100%">View</Button> */}
           </div>
         </div>
