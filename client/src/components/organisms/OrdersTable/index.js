@@ -25,7 +25,7 @@ const OrdersTable = () => {
   useEffect(() => {
     API.findByRetailerId(globalState.state.userId)
       .then(data => {
-        setChartData(data.data);
+        setChartData(data.data.slice().sort((a,b) => new Date(a.date) - new Date(b.date)));
       });
   }, []);
 

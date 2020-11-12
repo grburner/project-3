@@ -23,7 +23,8 @@ const ProductsTable = () => {
   useEffect(() => {
     API.getProductsByRetailerId(globalState.state.userId)
       .then(data => {
-        setChartData(data.data);
+        console.log(data.data);
+        setChartData(data.data.slice().sort((a,b) => b.price - a.price));
       });
   }, []);
 
@@ -51,7 +52,7 @@ const ProductsTable = () => {
   // Change editable input based on a specific field
   const changeInput = (e, field) => {
     const id = e.target.dataset.id;
-    const value = e.target.value;
+    const value = e.target.value.replace(/^0+/, '');
     chartData.forEach((elem, index) => {
       if (id === elem._id) {
         changeState(field, index , value);

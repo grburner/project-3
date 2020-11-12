@@ -20,12 +20,12 @@ const StateProvider = ( { children } ) => {
     switch(action.type) {
     case 'SHOWsProdModalinView':
       return {
-        ...initialState,
+        ...state,
         sProdModalinView: true
       };
     case 'HIDEsProdModalinView':
       return {
-        ...initialState,
+        ...state,
         sProdModalinView: false
       };
     case 'SHOWbProdModalinView':
