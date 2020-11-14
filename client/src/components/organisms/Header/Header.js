@@ -41,25 +41,59 @@ function Header(){
     dispatch({ type: 'TOGGLEtoastSHOW' });
   };
 
+  let consumerString = "/consumer/" + globalState.state.userId
+
+  const portalButton = () => {
+    if(globalState.state.userRole === 'consumer'){
+      return (<Col>
+        <div className="your-portal">
+        <Button href={consumerString} variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button>
+        </div>
+        </Col> )
+    } else {
+      return(<Col>
+        <div className="your-portal">
+        <Button href="/retailer" variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button>
+        </div>
+        </Col>)
+    }
+  }
+
   return (
-    <header>
+    <header className="container-fluid">
       <Row>
         <Col xl={2} lg={2} md={2} sm={2} xs={2}><Logo /></Col>
         <Col xl={8} lg={7} md={6} sm={6} xs={4}><Headline /></Col>
         <Col xl={2} lg={3} md={4} sm={4} xs={6}>
           <Row>
-            <Col style={{textAlign:'right'}}>
-              <Button variant="white" onClick={logout}>{globalState.state.userId ? 'Logout' : 'Login'}</Button>
-            </Col>
+          {globalState.state.userId 
+            ? 
+            portalButton()
+            : 
+            ''
+          }
             <Col>
               {globalState.state.userId ? '' : <Button href="/signup" variant="white">Sign Up</Button>}
               {globalState.state.userRole === 'retailer' && location.pathname === '/' ? <Button variant="white" onClick={() => history.push('/retailer')}>Retail</Button> : ''}
               {globalState.state.userRole === 'retailer' && location.pathname === '/retailer'? <Button variant="white" onClick={() => history.push('/')}>Market</Button> : ''}
               {globalState.state.userRole === 'consumer' ? 
-                <Button variant="white" onClick={showCart}><i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart</Button>
+                <div className="cart">
+                  <Button variant="white" onClick={showCart}><i className="fa fa-shopping-cart" aria-hidden="true"></i></Button>
+                </div>
                 :
                 ''
               }
+            </Col>
+            <Col>
+            {globalState.state.userId 
+            ? 
+            <div className="logout">
+              <Button variant="white" onClick={logout}><i class="fa fa-sign-out" aria-hidden="true"></i></Button>
+            </div>
+            : 
+            <Button variant="white" onClick={logout}>Login</Button>
+            }
+              
             </Col>
           </Row>
         </Col>

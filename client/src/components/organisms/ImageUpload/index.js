@@ -28,7 +28,7 @@ function ImageUpload(props) {
 
   return (
     <div>
-      <Button onClick={showWidget}>Upload Image</Button>
+      <Button onClick={showWidget}>Upload Image<i class="fa fa-cloud-upload" aria-hidden="true" style={{marginLeft:"10px"}}></i></Button>
     </div>
   );
 }

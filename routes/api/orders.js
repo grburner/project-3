@@ -19,4 +19,9 @@ router
   .route('/retailer_id/:retailer_id')
   .get(ordersController.findByRetailerId);
 
+// Matches with "/api/orders/user_id/:user_id"
+router
+  .route('/user_id/:user_id')
+  .get(ordersController.findByUserId);
+
 module.exports = router;

@@ -4,9 +4,22 @@
     padding:10px;
     margin-bottom:10px;
     position: -webkit-sticky;
-position: sticky;
-top: 0;
-z-index:9999;
+    position: sticky;
+    top: 0;
+    z-index:99;
+}
+
+.filter-label{width:100%;}
+
+@media (max-width: 768px) { 
+    .filter-wrapper{
+        position:relative;
+    }
+    .filter-label{width:12%; margin-right:20px;}
+    .filter-wrapper{text-align:left;}
+    .filter-wrapper select{width:80%;}
+    .filter-wrapper .main-button{width:100%;}
+    .filter-wrapper .main-button-hover{width:100%;}
 }
 
 .filter-header{
