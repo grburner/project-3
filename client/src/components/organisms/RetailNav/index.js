@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // UTILS
 import { store } from '../../../utils/GlobalState';
@@ -13,6 +14,7 @@ import Nav from 'react-bootstrap/Nav';
 const RetailNav = () => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
+  let history = useHistory();
 
   return (
     <Navbar bg="light" expand="lg" className="w-100">

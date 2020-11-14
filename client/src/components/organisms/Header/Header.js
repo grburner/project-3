@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import './style.css';
 
 import Logo from '../../atoms/Logo/Logo';
@@ -12,6 +12,7 @@ import API from '../../../utils/API';
 
 function Header(){
   const history = useHistory();
+  const location = useLocation();
   const globalState = useContext(store);
   const { dispatch } = globalState;
 
@@ -52,6 +53,8 @@ function Header(){
             </Col>
             <Col>
               {globalState.state.userId ? '' : <Button href="/signup" variant="white">Sign Up</Button>}
+              {globalState.state.userRole === 'retailer' && location.pathname === '/' ? <Button variant="white" onClick={() => history.push('/retailer')}>Retail</Button> : ''}
+              {globalState.state.userRole === 'retailer' && location.pathname === '/retailer'? <Button variant="white" onClick={() => history.push('/')}>Market</Button> : ''}
               {globalState.state.userRole === 'consumer' ? 
                 <Button variant="white" onClick={showCart}><i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart</Button>
                 :
