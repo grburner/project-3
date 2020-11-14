@@ -18,6 +18,7 @@ const ProductsTable = () => {
 
   const [chartData, setChartData] = useState([]);
   const [inputData, setInputData] = useState('');
+  const [updateTable, setUpdateTable] = useState(true);
   const inputRef = useRef();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const ProductsTable = () => {
         console.log(data.data);
         setChartData(data.data.slice().sort((a,b) => b.price - a.price));
       });
-  }, []);
+  }, [updateTable]);
 
   // Reset state after changes (called from toggleStatus and changeInput)
   const changeState = (field, index, value) => {
@@ -71,6 +72,7 @@ const ProductsTable = () => {
       };
       API.updateProducts(elem._id, body);
     });
+    setUpdateTable(!updateTable)
   };
   
   // Render rows, called from return
