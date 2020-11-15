@@ -10,7 +10,8 @@ import './style.css';
 import ImageUpload from '../../organisms/ImageUpload/index';
 
 // BOOTSTRAP
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
+import Button from '../../atoms/Button/Button'
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
@@ -98,7 +99,10 @@ const SingleProductAddModal = (props) => {
   return (
     <Modal show={globalState.state.sProdModalinView}>
       <Modal.Header>
-        <Modal.Title>Single Product Add Template</Modal.Title>
+        <Modal.Title><span style={{color:"#930045"}}>Single Product Add Template</span></Modal.Title>
+      <div className="close-button" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+      </div>
       </Modal.Header>
       <Form>
         <Form.Group controlId="formBasicText">
@@ -125,7 +129,7 @@ const SingleProductAddModal = (props) => {
         <Form.Control 
           as="select"
           onChange={updateProduct}
-          value={product.description}
+          value={product.country}
           defaultValue="United States"
           name="country">
           <option>United States</option>
@@ -139,7 +143,7 @@ const SingleProductAddModal = (props) => {
           <option>South Africa</option>
           <option>Austria</option>
         </Form.Control>
-        <Form.Group controlId="formBasicText">
+        <Form.Group controlId="formBasicText" style={{marginTop:"15px"}}>
           <Form.Label>Product Region</Form.Label>
           <Form.Control 
             onChange={updateProduct}
@@ -149,6 +153,7 @@ const SingleProductAddModal = (props) => {
             name="region"
           />
         </Form.Group>
+        <div className="small-selects">
         <Form.Label>Type</Form.Label>
         <Form.Control 
           as="select"
@@ -207,19 +212,17 @@ const SingleProductAddModal = (props) => {
           <option>Classic</option>
           <option>Bold</option>
         </Form.Control>
+        </div>
       </Form>
       <div style={{padding:'10px 0'}}>
-        <ImageUpload imageUpload={imageUpload}/>
-      </div>
+          <ImageUpload imageUpload={imageUpload}/>
+        </div>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch({ type: 'HIDEsProdModalinView'})}>
-            Close
-        </Button>
-        <Button variant="primary" type="submit" onClick={() => {
+        <Button onClick={() => {
           addProduct(product);
           dispatch({ type: 'HIDEsProdModalinView'});
         }
-        }>
+        } >
             Submit
         </Button>
       </Modal.Footer>

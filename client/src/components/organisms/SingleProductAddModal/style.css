@@ -11,5 +11,25 @@
 
 .close-button:hover{
     color:black;
+    transform: scale(1.25);
     transition:all 300ms;
+}
+.modal-content label{
+    color:#930045; 
+}
+.small-selects label{
+
+    width:25%;
+    float:left;
+}
+
+.small-selects select,
+.small-selects input{
+    width:75%;
+}
+
+.modal-footer .buttonWrapper,
+.modal-footer .buttonWrapper .main-button,
+.modal-footer .buttonWrapper .main-button-hover{
+    width:100%;
 }
