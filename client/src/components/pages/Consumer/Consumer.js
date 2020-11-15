@@ -23,7 +23,7 @@ function Consumer(){
   const [orders, setOrders] = useState([])
   const [outputOrders, setOutputOrders] = useState(false)
 
-  let { id } = useParams();
+  let id = globalState.state.userId;
   let tempArray = [];
   useEffect(()=>{
     // Global state is empty when you hit this page
@@ -87,16 +87,6 @@ function Consumer(){
       history.push('/');
     }
   };
-
-  // const seed = {
-  //   firstName: 'John',
-  //   lastName: 'Smith',
-  //   email: 'jsmith@hotmail.com',
-  //   phone: '6105555555',
-  //   city: 'Philadelphia',
-  //   state: 'PA',
-  //   zip: '19123'
-  // };
 
   return (
     <div className="container consumer">
