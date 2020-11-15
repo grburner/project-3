@@ -41,13 +41,14 @@ function Header(){
     dispatch({ type: 'TOGGLEtoastSHOW' });
   };
 
-  let consumerString = "/consumer/" + globalState.state.userId
+  // let consumerString = "/consumer/" + globalState.state.userId
 
   const portalButton = () => {
     if(globalState.state.userRole === 'consumer'){
       return (<Col>
         <div className="your-portal">
-        <Button href={consumerString} variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button>
+        {/* <Button href={consumerString} variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button> */}
+        <Button onClick={() => history.push('/consumer')} variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button>
         </div>
         </Col> )
     } else {
