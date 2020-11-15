@@ -121,7 +121,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>username: 
+        <p>Email: 
         <Editable
             text={inputData}
             placeholder={consumer.username}
@@ -189,7 +189,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>address_city: 
+        <p>City: 
         <Editable
             text={inputData}
             placeholder={consumer.address_city}
