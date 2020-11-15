@@ -82,5 +82,12 @@ export default {
         'Content-Type': 'application/json'
       }
     });
-  }
+  },
+  updateUser: function(id, body) {
+    return axios({
+      method: 'patch',
+      url: ('/api/users/' + id),
+      data: body
+    });
+  },
 };
