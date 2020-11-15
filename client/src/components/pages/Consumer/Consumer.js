@@ -87,7 +87,6 @@ function Consumer(){
   };
 
   const changeInput = (field, e) => {
-    console.log(consumer)
     const value = e.target.value
     setConsumer({
       ...consumer,
