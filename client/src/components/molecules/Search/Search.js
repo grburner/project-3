@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
 import './style.css';
 
-// import Button from '../../atoms/Button/Button';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
+import Button from '../../atoms/Button/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 import API from '../../../utils/API';
 
@@ -21,7 +22,6 @@ function Search(){
     searchUpdate({
       search: event.target.value
     });
-    searchClick();
   };
 
   const clearSearch = () => {
@@ -60,13 +60,24 @@ function Search(){
         })
         .catch(err => console.log(err));
     }
-    
+    document.getElementById("marketplace-container").scrollIntoView();
   };
 
   return (
-    <div className="search-wrapper">
-      <input onChange={updateSearch} onFocus={clearSearch} value={searchValue.search}></input><i onClick={searchClick} className="search-icon fa fa-search" aria-hidden="true"></i>
-    </div>
+    <Container>
+    <Row>
+      <Col md={11}>
+
+        <input className="search-box" onChange={updateSearch} onFocus={clearSearch} value={searchValue.search}></input>
+
+      </Col>
+      <Col md={1}>
+        <Button onClick={searchClick}>
+        <i className="search-icon fa fa-search" aria-hidden="true"></i>
+        </Button>
+      </Col>
+    </Row>
+    </Container>
   );
 }
 

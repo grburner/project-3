@@ -52,6 +52,9 @@ export default {
   getUserByName: function(name) {
     return axios.get('/api/users/name/' + name);
   },
+  getUserOrders: function(id) {
+    return axios.get('/api/orders/user_id/' + id);
+  },
   logout: function(){
     return axios.get('/logout');
   },

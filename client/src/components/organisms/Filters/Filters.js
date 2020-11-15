@@ -72,7 +72,7 @@ function Filters(props){
   return (
     
     <div className="filter-wrapper" id="filters">
-      <Container fluid="md">
+      <Container fluid>
         <p className="filter-header">Filter Your Search:</p>
         <Row>
           <Col md>
@@ -82,7 +82,7 @@ function Filters(props){
             </div>
           </Col>
           <Col md>
-            <label htmlFor="itemsStore">Store:{store}</label><br/>
+            <label className="filter-label" htmlFor="itemsStore">Store:{store}</label>
             <select name="store"  id="itemsStore" onChange={props.filterChange}>
               <option value="">Store</option>
               {retailers.map((x, i)=>{
@@ -91,7 +91,7 @@ function Filters(props){
             </select>
           </Col>
           <Col md>
-            <label htmlFor="itemsType">Type: {props.filters.type}</label><br/>
+            <label className="filter-label" htmlFor="itemsType">Type: {props.filters.type}</label>
             <select name="type"  id="itemsType" onChange={props.filterChange}>
               <option value="">Type</option>
               <option value="Red">Red</option>
@@ -101,7 +101,7 @@ function Filters(props){
             </select>
           </Col>
           <Col md>
-            <label htmlFor="itemsStyle">Style: {props.filters.style}</label><br/>
+            <label className="filter-label" htmlFor="itemsStyle">Style: {props.filters.style}</label>
             <select  name="style" id="itemsStyle" onChange={props.filterChange}>
               <option value="">Style</option>
               <option value="Sparkling">Sparkling</option>

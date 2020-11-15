@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // UTILS
 import { store } from '../../../utils/GlobalState';
@@ -13,6 +14,7 @@ import Nav from 'react-bootstrap/Nav';
 const RetailNav = () => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
+  let history = useHistory();
 
   return (
     <Navbar bg="light" expand="lg" className="w-100">
@@ -21,7 +23,7 @@ const RetailNav = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <h2>{globalState.inView}</h2>
-          <Button onClick={() => dispatch({ type: 'SHOWsProdModalinView'})}> + Add Product</Button>
+          <Button onClick={() => dispatch({ type: 'SHOWsProdModalinView'})}><i className="fa fa-plus" aria-hidden="true" style={{marginRight:"10px"}}></i>Add Product</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
