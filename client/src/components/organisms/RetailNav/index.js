@@ -23,7 +23,7 @@ const RetailNav = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <h2>{globalState.inView}</h2>
-          <Button onClick={() => dispatch({ type: 'SHOWsProdModalinView'})}> + Add Product</Button>
+          <Button onClick={() => dispatch({ type: 'SHOWsProdModalinView'})}><i className="fa fa-plus" aria-hidden="true" style={{marginRight:"10px"}}></i>Add Product</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
