@@ -22,7 +22,7 @@ router.route('/login')
 router
   .route('/:id')
   .get(usersController.findById)
-  // .put(usersController.update)
+  .patch(usersController.updateInfo)
   .delete(usersController.remove);
 
 // Matches with "/api/users/name/:name"
