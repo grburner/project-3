@@ -37,8 +37,6 @@ module.exports = {
           });
         }
       })
-      //.create(req.body)
-      // .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -71,5 +69,11 @@ module.exports = {
     req.logout();
     res.redirect('/');
     console.log('Hit the logout route');
+  },
+  updateInfo: function(req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.params.id }, req.body )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };
