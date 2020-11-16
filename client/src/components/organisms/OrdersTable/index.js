@@ -85,7 +85,7 @@ const OrdersTable = () => {
         <td>{orderDate}</td>
         <td>{sendDate}</td>
         <td>{getOrderInfo(element).items}</td>
-        <td>${getOrderInfo(element).total}</td>
+        <td>${(getOrderInfo(element).total).toFixed(2)}</td>
         <td><Badge pill variant={(element.status == 'open' ? 'danger' : 'success')}>{element.status}</Badge></td>
       </tr>
     );
