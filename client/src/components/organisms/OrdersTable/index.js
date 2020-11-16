@@ -21,13 +21,14 @@ const OrdersTable = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [prodDetail, setProdDetail] = useState({});
   const [detailIndex, setDetailIndex] = useState(0);
+  const [reload, setReload] = useState(1)
 
   useEffect(() => {
     API.findByRetailerId(globalState.state.userId)
       .then(data => {
         setChartData(data.data.slice().sort((a,b) => new Date(a.date) - new Date(b.date)));
       });
-  }, []);
+  }, [reload]);
 
   // Calculate order items total and total cost
   const getOrderInfo = (elem) => {
@@ -85,11 +86,16 @@ const OrdersTable = () => {
         <td>{orderDate}</td>
         <td>{sendDate}</td>
         <td>{getOrderInfo(element).items}</td>
-        <td>${getOrderInfo(element).total}</td>
+        <td>${(getOrderInfo(element).total).toFixed(2)}</td>
         <td><Badge pill variant={(element.status == 'open' ? 'danger' : 'success')}>{element.status}</Badge></td>
       </tr>
     );
   };
+
+  const handleChange = () => {
+    reload === 1 ? setReload(0) : setReload(1)
+    setTimeout(() => {setShowDetail(false)}, 500)
+  }
 
   return (
     <div className="mt-3">
@@ -121,7 +127,7 @@ const OrdersTable = () => {
           </Table>
         </Col>
         <Col sm={showDetail ? 4 : 0}>
-          {showDetail ? <OrderDetail data={prodDetail}></OrderDetail> : ''}
+          {showDetail ? <OrderDetail data={prodDetail} onClick={handleChange}></OrderDetail> : ''}
         </Col>
       </Row>
     </div>

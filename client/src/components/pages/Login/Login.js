@@ -6,6 +6,7 @@ import API from '../../../utils/API';
 import Button from '../../atoms/Button/Button';
 import { store } from '../../../utils/GlobalState';
 import { useHistory } from 'react-router-dom';
+import LoginError from '../../molecules/LoginError';
 
 function Login() {
   let history = useHistory();
@@ -16,6 +17,7 @@ function Login() {
     password: '',
     redirectTo: null
   });
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     console.log(globalState);
@@ -61,11 +63,14 @@ function Login() {
       }).catch(error => {
         console.log('login error: ');
         console.log(error);
-                
+        showLoginError()
       });
   };
 
-
+const showLoginError = () => {
+  setShowError(true)
+  setTimeout(() => {setShowError(false)}, 5000)
+}
 
 
   if (userState.redirectTo) {
@@ -73,6 +78,7 @@ function Login() {
   } else {
     return (
       <div className="login-form-wrapper">
+        <LoginError show={showError}></LoginError>
         <h2 style={{color:'#930045', marginTop:'20px'}}>Login</h2>
         <form className="form-horizontal login-form">
           <div className="form-group">

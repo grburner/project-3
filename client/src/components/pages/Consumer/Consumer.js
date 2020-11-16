@@ -8,6 +8,9 @@ import './style.css';
 import DateFormatter from '../../../utils/DateFormatter';
 import Editable from '../../../utils/Editable';
 
+// COMPONENTS
+import CartToast from '../../organisms/CartToast';
+
 function Consumer(){
   let history = useHistory();
   const globalState = useContext(store);
@@ -102,12 +105,13 @@ function Consumer(){
   return (
     <div className="container consumer">
       <h1>Consumer Portal</h1>
+      <CartToast />
         <div className="consumer-info">
         <h3>Your Information</h3>
         <p>Name: 
         <Editable
             text={inputData}
-            placeholder={consumer.name}
+            placeholder={consumer.name ? consumer.name : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -124,7 +128,7 @@ function Consumer(){
         <p>Email: 
         <Editable
             text={inputData}
-            placeholder={consumer.username}
+            placeholder={consumer.username ? consumer.username : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -141,7 +145,7 @@ function Consumer(){
         <p>Phone: 
         <Editable
             text={inputData}
-            placeholder={consumer.phone_number}
+            placeholder={consumer.phone_number ? consumer.phone_number : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -158,7 +162,7 @@ function Consumer(){
         <p>Address 1: 
         <Editable
             text={inputData}
-            placeholder={consumer.address_street1}
+            placeholder={consumer.address_street1 ? consumer.address_street1 : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -175,7 +179,7 @@ function Consumer(){
         <p>Address 2: 
         <Editable
             text={inputData}
-            placeholder={consumer.address_street2}
+            placeholder={consumer.address_street2 ? consumer.address_street2 : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -192,7 +196,7 @@ function Consumer(){
         <p>City: 
         <Editable
             text={inputData}
-            placeholder={consumer.address_city}
+            placeholder={consumer.address_city ? consumer.address_city : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -209,7 +213,7 @@ function Consumer(){
         <p>State: 
         <Editable
             text={inputData}
-            placeholder={consumer.address_state}
+            placeholder={consumer.address_state ? consumer.address_state_state : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
@@ -226,7 +230,7 @@ function Consumer(){
         <p>Zip: 
         <Editable
             text={inputData}
-            placeholder={consumer.address_zip}
+            placeholder={consumer.address_zip ? consumer.address_zip : 'nothing here! please add your info'}
             childRef={inputRef}
             type='input'
           >
