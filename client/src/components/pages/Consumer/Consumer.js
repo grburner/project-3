@@ -8,6 +8,9 @@ import './style.css';
 import DateFormatter from '../../../utils/DateFormatter';
 import Editable from '../../../utils/Editable';
 
+// COMPONENTS
+import CartToast from '../../organisms/CartToast';
+
 function Consumer(){
   let history = useHistory();
   const globalState = useContext(store);
@@ -102,6 +105,7 @@ function Consumer(){
   return (
     <div className="container consumer">
       <h1>Consumer Portal</h1>
+      <CartToast />
         <div className="consumer-info">
         <h3>Your Information</h3>
         <p>Name: 
