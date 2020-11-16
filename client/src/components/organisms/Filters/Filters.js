@@ -72,7 +72,7 @@ function Filters(props){
   return (
     
     <div className="filter-wrapper" id="filters">
-      <Container fluid>
+      <Container>
         <p className="filter-header">Filter Your Search:</p>
         <Row>
           <Col md>

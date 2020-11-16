@@ -28,6 +28,7 @@ function Consumer(){
   });
   const [orders, setOrders] = useState([])
   const [outputOrders, setOutputOrders] = useState(false)
+  const [orderMessage, setOrderMessage] = useState(true)
 
   let id = globalState.state.userId;
   let tempArray = [];
@@ -72,10 +73,11 @@ function Consumer(){
         }
        tempArray.push(obj)
       }
-      
+      let count = 0;
       setTimeout(function(){ 
         setOrders(tempArray) 
         setOutputOrders(true)
+        setOrderMessage(false)
       }, 1000);
     })
     .catch(err => console.log(err));
@@ -107,8 +109,8 @@ function Consumer(){
       <h1>Consumer Portal</h1>
       <CartToast />
         <div className="consumer-info">
-        <h3>Your Information</h3>
-        <p>Name: 
+        <h3>Your Information <span className='info-note'>* click field to edit</span></h3>
+        <p><span className='info-label'>Name: </span>
         <Editable
             text={inputData}
             placeholder={consumer.name ? consumer.name : 'nothing here! please add your info'}
@@ -125,7 +127,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>Email: 
+        <p><span className='info-label'>Email:</span>
         <Editable
             text={inputData}
             placeholder={consumer.username ? consumer.username : 'nothing here! please add your info'}
@@ -142,7 +144,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>Phone: 
+        <p><span className='info-label'>Phone:</span>
         <Editable
             text={inputData}
             placeholder={consumer.phone_number ? consumer.phone_number : 'nothing here! please add your info'}
@@ -159,7 +161,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>Address 1: 
+        <p><span className='info-label'>Address 1:</span> 
         <Editable
             text={inputData}
             placeholder={consumer.address_street1 ? consumer.address_street1 : 'nothing here! please add your info'}
@@ -176,7 +178,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>Address 2: 
+        <p><span className='info-label'>Address 2:</span>
         <Editable
             text={inputData}
             placeholder={consumer.address_street2 ? consumer.address_street2 : 'nothing here! please add your info'}
@@ -193,7 +195,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>City: 
+        <p><span className='info-label'>City:</span> 
         <Editable
             text={inputData}
             placeholder={consumer.address_city ? consumer.address_city : 'nothing here! please add your info'}
@@ -210,7 +212,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>State: 
+        <p><span className='info-label'>State:</span>
         <Editable
             text={inputData}
             placeholder={consumer.address_state ? consumer.address_state_state : 'nothing here! please add your info'}
@@ -227,7 +229,7 @@ function Consumer(){
             />
           </Editable>
         </p>
-        <p>Zip: 
+        <p><span className='info-label'>Zip:</span>
         <Editable
             text={inputData}
             placeholder={consumer.address_zip ? consumer.address_zip : 'nothing here! please add your info'}
@@ -246,7 +248,7 @@ function Consumer(){
         </p>
       </div>
       <h3>Your Orders</h3>
-      {outputOrders ? '' : <p>Loading orders...</p>}
+      {orderMessage ? <div>Loading Orders...<br /><img src='https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif' /></div> : ''}
       {outputOrders && orders.length < 1 ? <p>You have no orders yet.</p> : ''}
       {orders.map((x,i)=>{
         return (

@@ -214,9 +214,21 @@ const SingleProductAddModal = (props) => {
         </Form.Control>
         </div>
       </Form>
-      <div style={{padding:'10px 0'}}>
+      <div className='row' style={{padding:'10px 0'}}>
+        <div className='col-md-6'>
           <ImageUpload imageUpload={imageUpload}/>
         </div>
+        <div className='col-md-6'>
+          {product.image 
+          ? 
+          <a href={product.image} target='_blank' className='image-link'>
+            <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+            {product.image.split('/')[7]}
+          </a> 
+          : 
+          'No image set'}
+        </div>
+      </div>
       <Modal.Footer>
         <Button onClick={() => {
           addProduct(product);

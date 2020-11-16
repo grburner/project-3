@@ -1,0 +1,8 @@
+#basic-navbar-nav .main-button-hover .fa-floppy-o{
+    transform: rotate(360deg);
+    transition: all 300ms;
+}
+
+.fa-floppy-o{
+    margin-left:10px;
+}

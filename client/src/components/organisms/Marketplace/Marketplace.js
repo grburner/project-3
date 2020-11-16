@@ -10,9 +10,12 @@ import CartToast from '../CartToast';
 
 import ProductContext from '../../../utils/ProductContext';
 
-import wave from '../../atoms/Images/wave.png';
+import { store } from '../../../utils/GlobalState';
 
 function Marketplace(props){
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
+  let userId = globalState.state.userId;
 
   const products = useContext(ProductContext);
   
@@ -72,14 +75,14 @@ function Marketplace(props){
   return (
     <div>
       <div className={seed.length < 1 ? 'hide' : 'marketplace show'}>
-        <h3 className="marketplace-header">Wines</h3>
+        <h3 className="marketplace-header">Wine Marketplace</h3>
         <CartToast />
         <Row>
           {seed.map((x,i)=>{
             if(i < limit.value){
               return (
                 <Col xl={3} lg={4} md={6} sm={6} xs={12} style={{marginBottom: '20px'}}>
-                  <Item value={x}/>
+                  <Item value={x} />
                 </Col>
               );
             }

@@ -1,0 +1,15 @@
+.floating-cart{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    font-size:24px;
+}
+
+.floating-cart .main-button-white{
+    transform: scale(1.25);
+}
+
+.floating-cart .main-button-white-hover{
+    transform: scale(1.5);
+    transition:all 300ms;
+}

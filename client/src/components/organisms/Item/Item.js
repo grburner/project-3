@@ -33,8 +33,7 @@ function Item(props){
           <p>${props.value.price}</p>
           <p style={{margin:'5px', padding:'0'}}>&nbsp;</p>
           <div style={{position:'absolute', bottom:'0', marginTop:'50px', width:'85%'}}>
-            <Button href={handleClick} width="100%">View<i className="fa fa-eye" aria-hidden="true"></i>
-            </Button>
+            <Button href={handleClick} width="100%">View<i className="fa fa-eye" aria-hidden="true"></i></Button>
             {/* <Button href={link} width="100%">View</Button> */}
           </div>
         </div>

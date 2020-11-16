@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 // UTILS
 import API from '../../../utils/API';
 import { store } from '../../../utils/GlobalState';
+import './style.css';
 
 // COMPONENTS
 import Editable from '../../../utils/Editable.js';
@@ -132,7 +133,7 @@ const ProductsTable = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Button onClick={sendData}>
-              Save
+              Save <i class="fa fa-floppy-o" aria-hidden="true"></i>
               </Button>
             </Nav>
           </Navbar.Collapse>
