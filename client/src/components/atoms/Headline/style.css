@@ -2,9 +2,9 @@
     color:white;
 }
 
-.headline a{
+.headline{
     color:white;
-    text-decoration: none;
+    cursor:pointer;
 }
 
 .headline a:hover{
