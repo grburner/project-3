@@ -51,6 +51,8 @@ function Header(){
         <Button onClick={() => history.push('/consumer')} variant="white"><i class="fa fa-user" aria-hidden="true"></i></Button>
         </div>
         </Col> )
+    } else if (globalState.state.userRole === 'retailer') {
+      return ''
     } else {
       return(<Col>
         <div className="your-portal">
