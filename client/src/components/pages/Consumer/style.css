@@ -51,3 +51,18 @@
     font-style:italic;
     color:#555555;
 }
+
+.info-note{
+    font-size:16px;
+    color:#555555;
+    font-style: italic;
+}
+
+.info-label{
+    float:left;
+    margin-right:15px;
+}
+
+.consumer p{
+    text-decoration: underline;
+}

@@ -72,7 +72,7 @@ function Product(){
     setCart(userId);
   }, []);
 
-  let defaultImage = 'https://menageatroiswines.com/sites/default/files/MAT_Redblend_new.png';
+  let defaultImage = 'https://miro.medium.com/max/441/1*9EBHIOzhE1XfMYoKz1JcsQ.gif';
 
   return (
     <div className="container" style={{minHeight: '80vh'}}>
@@ -98,9 +98,11 @@ function Product(){
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Type:</strong> { product.type1 }</li>
               <li><i className="fa fa-glass" aria-hidden="true"></i><strong>Style:</strong> { product.type2 }</li>
               <br/>
-              {globalState.state.userId ? 
-                <Button onClick={() => updateCart(id)}><i className="fa fa-plus" aria-hidden="true"></i>Add To Cart</Button> :
-                ''
+              {globalState.state.userId 
+              ? 
+                <Button onClick={() => updateCart(id)}><i className="fa fa-plus" aria-hidden="true"></i>Add To Cart</Button> 
+              :
+              <div class="alert alert-secondary" role="alert">Please login or sign in to order.</div>
               }
             </ul>
           </div>

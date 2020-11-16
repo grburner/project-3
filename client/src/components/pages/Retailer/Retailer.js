@@ -22,7 +22,7 @@ const Retailer = () => {
   const { dispatch } = globalState;
 
   return (
-    <Container>
+    <Container className="retailer-container">
       <SingleProductAddModal data={globalState.state.userId}></SingleProductAddModal>
       <Row>
         <RetailNav />

@@ -33,3 +33,8 @@
 .modal-footer .buttonWrapper .main-button-hover{
     width:100%;
 }
+
+.image-link:hover{
+    text-decoration:none;
+    font-weight:bold;
+}

@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { store } from '../../../utils/GlobalState';
 import API from '../../../utils/API';
+import ShoppingCartButton from '../../molecules/ShoppingCartButton'
 
 function Header(){
   const history = useHistory();
@@ -80,9 +81,7 @@ function Header(){
               {globalState.state.userRole === 'retailer' && location.pathname === '/' ? <Button variant="white" onClick={() => history.push('/retailer')}>Retail</Button> : ''}
               {globalState.state.userRole === 'retailer' && location.pathname === '/retailer'? <Button variant="white" onClick={() => history.push('/')}>Market</Button> : ''}
               {globalState.state.userRole === 'consumer' ? 
-                <div className="cart">
-                  <Button variant="white" onClick={showCart}><i className="fa fa-shopping-cart" aria-hidden="true"></i></Button>
-                </div>
+                <ShoppingCartButton onClick={showCart}/>
                 :
                 ''
               }
@@ -94,7 +93,9 @@ function Header(){
               <Button variant="white" onClick={logout}><i class="fa fa-sign-out" aria-hidden="true"></i></Button>
             </div>
             : 
-            <Button variant="white" onClick={logout}>Login</Button>
+            <div className="login-button">
+              <Button variant="white" onClick={logout}>Login</Button>
+            </div>
             }
               
             </Col>

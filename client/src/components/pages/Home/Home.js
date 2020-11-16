@@ -68,7 +68,7 @@ function Home(){
     priceMax: 0,
     store: '',
     type: '',
-    style: '',
+    style: ''
   });
 
   const filterChange = (event) => {
@@ -85,7 +85,7 @@ function Home(){
       priceMax: 0,
       store: '',
       type: '',
-      style: '',
+      style: ''
     });
   };
 

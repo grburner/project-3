@@ -77,8 +77,7 @@ const showLoginError = () => {
     return <Redirect to={{ pathname: userState.redirectTo }} />;
   } else {
     return (
-      <div className="login-form-wrapper">
-        <LoginError show={showError}></LoginError>
+      <div className="container login-form-wrapper">
         <h2 style={{color:'#930045', marginTop:'20px'}}>Login</h2>
         <form className="form-horizontal login-form">
           <div className="form-group">
@@ -111,9 +110,11 @@ const showLoginError = () => {
             </div>
           </div>
           <div className="form-group ">
-            <Button onClick={handleSubmit}>Login</Button>
+            <Button onClick={handleSubmit}>Login<i class="fa fa-unlock" aria-hidden="true"></i></Button>
           </div>
         </form>
+        {/* <LoginError show={showError}></LoginError> */}
+        {showError ? <div className='alert alert-danger'>Please check your username and password</div> : ''}
       </div>
     );
   }

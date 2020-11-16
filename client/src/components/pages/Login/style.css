@@ -29,3 +29,15 @@
     min-height:80vh;
     overflow:hidden;
 }
+
+.main-button .fa-unlock{
+    opacity:0;
+    margin-left:-15px;
+    transition:all 300ms;
+}
+
+.main-button-hover .fa-unlock{
+    opacity:1;
+    margin-left:10px;
+    transition:all 300ms;
+}
