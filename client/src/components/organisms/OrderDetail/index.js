@@ -15,11 +15,10 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 
 const OrderDetail = (props) => {
-  const { data } = props;
+  const { data, onClick } = props;
 
   const [custName, setCustName] = useState('');
   const [prodNames, setProdNames] = useState([]);
-  const [orderState, setOrderState] = useState(data.status);
 
   const getUserName = (id) => {
     API.getUserName(id).then((data) => {setCustName(data.data.name);});
@@ -50,7 +49,7 @@ const OrderDetail = (props) => {
 
   const shipOrder = (id, body) => {
     API.updateOrder(id, body);
-    setOrderState('closed');
+    onClick()
   };
 
   return (
