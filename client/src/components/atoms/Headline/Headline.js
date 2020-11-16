@@ -7,11 +7,11 @@ function Headline(){
 
   const handleClick = () => {
     history.push('/');
-  };
-
+  }
+  
   return (
-    <h1 className="headline" onClick={handleClick}>
-        WineHub
+    <h1 className="headline">
+      <a onClick={handleClick}>WineHub</a>
     </h1>
   );
 }
