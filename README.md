@@ -10,7 +10,13 @@ MERN eCommerce solution for small wine retailers. The application allows retaile
 ![Screenshot](client/public/images/winehub.PNG)
 
 ## How to use
-
+- Test Login:
+    * Sample Retailer
+    * U: youlanda@aol.com
+    * P: password
+    * Sample Consumer
+    * U: testuser1@test.com
+    * P: password
 - Consumer:
     * Type in a search and click the search icon
     * Adjust filters for price, store, type and style
